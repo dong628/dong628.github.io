@@ -1,26 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/07/18/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>在 Archlinux 中使用 Zsh</title>
-    <url>/2020/07/18/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/</url>
+    <url>/2020/01/26/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/</url>
     <content><![CDATA[<h2 id="什么是Shell"><a href="#什么是Shell" class="headerlink" title="什么是Shell"></a>什么是Shell</h2><p>shell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。</p>
 <a id="more"></a>
 
@@ -51,12 +33,17 @@
 <p>在上面的<code>ZSH_THEME</code>选项中，可以更改主题，我使用的是agnoster，这个主题可以很方便地显示当前目录和git分支、仓库的情况等，所有的主题预览在<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes" target="_blank" rel="noopener">这里</a>。</p>
 <p><img src="agnoster" alt="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png"></p>
 ]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
   </entry>
   <entry>
-    <title>在Archlinux下上网课</title>
-    <url>/2020/07/18/%E5%9C%A8Archlinux%E4%B8%8B%E4%B8%8A%E7%BD%91%E8%AF%BE/</url>
-    <content><![CDATA[<h1 id="在Archlinux下上网课"><a href="#在Archlinux下上网课" class="headerlink" title="在Archlinux下上网课"></a>在Archlinux下上网课</h1><p>最近，新型冠状病毒肺炎肆虐，学生们不得不延长假期，在家上网课。但有一个大问题：我们没有书。</p>
+    <title>在 Archlinux 下上网课</title>
+    <url>/2020/02/16/%E5%9C%A8Archlinux%E4%B8%8B%E4%B8%8A%E7%BD%91%E8%AF%BE/</url>
+    <content><![CDATA[<p>最近，新型冠状病毒肺炎肆虐，学生们不得不延长假期，在家上网课。但有一个大问题：我们没有书。</p>
 <p>于是，我们的老师给我们发了PDF格式的电子书，大概长这样：</p>
+<a id="more"></a>
+
 <p><img src="https://i.loli.net/2020/02/16/lZNujsFxLT7zRYD.png" alt="Screenshot_20200216_155502.png"></p>
 <p>我们当然可以把它打印出来，但那样浪费资源，关键是在这个谁都出不了门的时期，又有哪些人可以在家里打印这些资料呢？</p>
 <p>于是我就想到，我们可以在电脑上看书和记笔记。而我正好有一块wacom的数位板，也可以在上面记笔记。</p>
@@ -88,6 +75,9 @@
 <h3 id="旋转数位板"><a href="#旋转数位板" class="headerlink" title="旋转数位板"></a>旋转数位板</h3><p>在windows10下，你无法将数位板竖起来使用，但在linux下，你可以将竖起来的数位板映射到一块竖着的屏幕上。</p>
 <p>在映射配置好的情况下，使用<code>xsetwacom --set &lt;数位板id&gt; Rotate cw</code>用来顺时针旋转数位板。</p>
 ]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>[AcWing113]特殊排序</title>
@@ -123,6 +113,9 @@
     <content><![CDATA[<p><a href="https://www.luogu.cok.cn/problek/P6187" target="_blank" rel="noopener">题目链接</a></p>
 <p><img src="https://i.loli.net/2020/03/09/kp7TWLjf61FaYvt.jpg" alt="c67625086b63f624199efc639044ebf81b4ca37e.jpg"></p>
 <p>这篇文章中， “基本思路”部分会详细介绍我最真实的推理过程，可能会有些啰嗦，还会包括一些显而易见随手推一推就能推出来的结论的证明，这些结论我已经用粗体字标注出来了。</p>
+<a id="more"></a>
+
+
 <h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>观察样例，<del>显然</del>：</p>
 <p><strong>当n可以被k整除时，整个环可以拆分成k个互不相关的环。</strong></p>
 <p>样例中，k=2时，可以将最优方案看成${3,1,2}$和${6,4,5}$两个集合中任意两个距离为1的数的乘积的和。</p>
@@ -169,8 +162,10 @@
   </entry>
   <entry>
     <title>［杂谈］一个故事的开始</title>
-    <url>/2020/07/18/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
-    <content><![CDATA[<h1 id="［杂谈］一个故事的开始"><a href="#［杂谈］一个故事的开始" class="headerlink" title="［杂谈］一个故事的开始"></a>［杂谈］一个故事的开始</h1><h2 id="这是一个结束的开始"><a href="#这是一个结束的开始" class="headerlink" title="这是一个结束的开始"></a>这是一个结束的开始</h2><p>还有不到一年，初中生活就要结束了。还有不到一年，我们就要参加中考了。今天（2020年7月6日）早上，去学校参加了颁奖典礼。会上，老师多次和我们强调：我们的时间已经不多了。但学生代表pyt（好像是叫这个名字？）的发言中，详细计算了我们距离中考还有多少天，多少小时，多少分钟（尽管好像计算错了）……虽然我们即将面临的是一场至关重要的考试，但我们还有充足的时间准备。</p>
+    <url>/2020/07/06/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
+    <content><![CDATA[<h2 id="这是一个结束的开始"><a href="#这是一个结束的开始" class="headerlink" title="这是一个结束的开始"></a>这是一个结束的开始</h2><p>还有不到一年，初中生活就要结束了。还有不到一年，我们就要参加中考了。今天（2020年7月6日）早上，去学校参加了颁奖典礼。会上，老师多次和我们强调：我们的时间已经不多了。但学生代表pyt（好像是叫这个名字？）的发言中，详细计算了我们距离中考还有多少天，多少小时，多少分钟（尽管好像计算错了）……虽然我们即将面临的是一场至关重要的考试，但我们还有充足的时间准备。</p>
+<a id="more"></a>
+
 <p>这一学期开学以来，学习立马紧张了起来，各种考试接踵而来，学习的压力重重地压在了我们的头上。而当进入暑假，这场学习上的竞争正式开始了。上午的颁奖典礼中，有一个班级对抗赛颁奖的环节，一个年级16个班，8个班赢了，8个班输了（我们属于输的）。这些班的代表上台发表感言，并且输的班要给对方赠送礼物。在凤凰双语那10个班颁奖的过程中，现场充斥着一股“火药味”（高中部日常看淡成绩[捂脸]）。学习气氛似乎充满了整个学校。</p>
 <p>11月，NOIP2020也要拉开帷幕，距离我上次大量刷题已经过去了进一年。去年我已经规划好，要在这个暑假继续大量刷题、写博客，对于我的算法学习而言，这也是一个至关重要的暑假。</p>
 <p><img src="https://s1.ax1x.com/2020/07/06/UiHG2n.jpg" alt="UiHG2n.jpg"></p>
@@ -185,12 +180,17 @@
 <p>同时，我会坚持体育锻炼，中考体育也是一个大项目，需要持之以恒的练习，待暑假结束，我将王者归来。</p>
 <p>开始，指的是我对于暑假的计划，是暑假的开端。这个开端即将结束，我将要正式步入这个充实的暑假。</p>
 ]]></content>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
   </entry>
   <entry>
     <title>［杂谈］一个故事的结束</title>
     <url>/2020/07/05/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E7%BB%93%E6%9D%9F/</url>
     <content><![CDATA[<p>７月２日，期末考试的尘埃落定又标志这我一个学期的结束。看到朋友圈里许多同学都写下了自己对这个学期的总结，于是我也来趁着这个初二年级的结束来对我之前的学习做个总结（原谅我文笔不太好。。）。我上次写总结已经是2019年的暑假结束了，那么这次就写一些从那时到现在我的一系列故事吧。</p>
 <p>回想起这个学期，大部分时间都在网课中度过，开学之后就是各种考试。但直到学校给我们施加上前所未有的压力后，我才意识到，一年后的我们，就要接受义务教育阶段最重要的考试——中考 了。过去的几个学期中，我在八年级时的变化是最大的。</p>
+<a id="more"></a>
+
 <p>这是一次对自我的更深刻的认知。八年级的我接触到了更广阔的世界，了解到了更多的人。从2019年9月开始，我几乎没有再学习新的算法，我在算法竞赛上几乎毫无进展。这一方面是因为开学后的时间变少，另一方面是因为我在逐渐调整对自我的认知。</p>
 <p><img src="https://i.loli.net/2020/07/05/2bQapdrKRICD4jm.jpg" alt="Screenshot_20200705_101620.jpg"></p>
 <h2 id="八月底的决定"><a href="#八月底的决定" class="headerlink" title="八月底的决定"></a>八月底的决定</h2><p>以下内容连接我的暑假总结（<a href="https://www.luogu.com.cn/blog/tfls-djl/post-shu-jia-zong-jie-yi-ge-guan-yu-jian-chi-di-gu-shi），请结合食用。" target="_blank" rel="noopener">https://www.luogu.com.cn/blog/tfls-djl/post-shu-jia-zong-jie-yi-ge-guan-yu-jian-chi-di-gu-shi），请结合食用。</a></p>
@@ -223,10 +223,12 @@
   </entry>
   <entry>
     <title>浅谈Linux分区和挂载（点）</title>
-    <url>/2020/07/18/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/</url>
+    <url>/2020/01/04/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/</url>
     <content><![CDATA[<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>在windows下，分区是有明显的界限的，就比如这样：</p>
 <p><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg" alt=""> </p>
 <p>在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。</p>
+<a id="more"></a>
+
 <h1 id="Linux——分区就是文件夹"><a href="#Linux——分区就是文件夹" class="headerlink" title="Linux——分区就是文件夹"></a>Linux——分区就是文件夹</h1><p>其实这么说并不准确，因为Linux下“分区”的概念是比较模糊的。</p>
 <p><img src="https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg" alt=" " title="Linux下的目录树"></p>
 <p>Linux是以树的结构存储文件的。不管你的电脑中有几块硬盘（即便没有），也不管硬盘分了几个区，Linux都会给你整出来个根目录，也就是上图中最顶层的“/”。一旦你安装了Linux，它就会在根目录下创建几个文件夹，这些文件夹的名字是“root”、“home”、“dev”等等。路径分别是“/root”、“/home”、“/dev”等。</p>
@@ -269,6 +271,9 @@
 <p><img src="https://i.loli.net/2020/01/04/LByAR2Nagv9JrxH.png" alt="Screenshot_20200104_163440-1.png"></p>
 <p>其中”nvme”开头的是NVMe协议的硬盘（一般是固态），而sd开头的是通过SATA、SCSI、USB这些接口传输数据的存储设备，loop开头一般是光盘。</p>
 ]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>［题解］HNOI2003 激光炸弹</title>

@@ -17,15 +17,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"dong628.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"dong628.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Windows在windows下，分区是有明显的界限的，就比如这样：   在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。 Linux——分区就是文件夹其实这么说并不准确，因为Linux下“分区”的概念是比较模糊的。  Linux是以树的结构存储文件的。不管你的电脑中有几块硬盘（即便没有），也不管硬盘分">
+  <meta name="description" content="Windows在windows下，分区是有明显的界限的，就比如这样：   在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈Linux分区和挂载（点）">
-<meta property="og:url" content="http://dong628.github.io/2020/07/18/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/index.html">
+<meta property="og:url" content="http://dong628.github.io/2020/01/04/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/index.html">
 <meta property="og:site_name" content="Jinglei&#39;s blog">
-<meta property="og:description" content="Windows在windows下，分区是有明显的界限的，就比如这样：   在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。 Linux——分区就是文件夹其实这么说并不准确，因为Linux下“分区”的概念是比较模糊的。  Linux是以树的结构存储文件的。不管你的电脑中有几块硬盘（即便没有），也不管硬盘分">
+<meta property="og:description" content="Windows在windows下，分区是有明显的界限的，就比如这样：   在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。">
 <meta property="og:image" content="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/01/04/9vsoRilzYA4uCHM.png">
@@ -35,13 +35,14 @@
 <meta property="og:image" content="https://i.loli.net/2020/01/04/3xwlDZvz4bB7H1P.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/04/y7UbeZNcl3JxVwp.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/01/04/LByAR2Nagv9JrxH.png">
-<meta property="article:published_time" content="2020-07-18T13:13:22.473Z">
-<meta property="article:modified_time" content="2020-07-18T13:13:22.473Z">
+<meta property="article:published_time" content="2020-01-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-18T14:21:40.642Z">
 <meta property="article:author" content="JingleiDong">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg">
 
-<link rel="canonical" href="http://dong628.github.io/2020/07/18/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/">
+<link rel="canonical" href="http://dong628.github.io/2020/01/04/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/">
 
 
 <script id="page-configurations">
@@ -202,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh_Hans">
-    <link itemprop="mainEntityOfPage" href="http://dong628.github.io/2020/07/18/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://dong628.github.io/2020/01/04/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -225,8 +226,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-18 21:13:22" itemprop="dateCreated datePublished" datetime="2020-07-18T21:13:22+08:00">2020-07-18</time>
+              <time title="Created: 2020-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-04T00:00:00+08:00">2020-01-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-18 22:21:40" itemprop="dateModified" datetime="2020-07-18T22:21:40+08:00">2020-07-18</time>
+              </span>
 
           
 
@@ -242,6 +250,8 @@
         <h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>在windows下，分区是有明显的界限的，就比如这样：</p>
 <p><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg" alt=""> </p>
 <p>在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。</p>
+<a id="more"></a>
+
 <h1 id="Linux——分区就是文件夹"><a href="#Linux——分区就是文件夹" class="headerlink" title="Linux——分区就是文件夹"></a>Linux——分区就是文件夹</h1><p>其实这么说并不准确，因为Linux下“分区”的概念是比较模糊的。</p>
 <p><img src="https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg" alt=" " title="Linux下的目录树"></p>
 <p>Linux是以树的结构存储文件的。不管你的电脑中有几块硬盘（即便没有），也不管硬盘分了几个区，Linux都会给你整出来个根目录，也就是上图中最顶层的“/”。一旦你安装了Linux，它就会在根目录下创建几个文件夹，这些文件夹的名字是“root”、“home”、“dev”等等。路径分别是“/root”、“/home”、“/dev”等。</p>
@@ -291,19 +301,19 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
 
         
 
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/07/18/%EF%BC%BB%E9%A2%98%E8%A7%A3%EF%BC%BDHNOI2003%20%E6%BF%80%E5%85%89%E7%82%B8%E5%BC%B9/" rel="prev" title="［题解］HNOI2003 激光炸弹">
-      <i class="fa fa-chevron-left"></i> ［题解］HNOI2003 激光炸弹
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/07/18/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/" rel="next" title="［杂谈］一个故事的开始">
-      ［杂谈］一个故事的开始 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/01/26/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/" rel="next" title="在 Archlinux 中使用 Zsh">
+      在 Archlinux 中使用 Zsh <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -377,12 +387,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -415,7 +425,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">JingleiDong</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
         
