@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"dong628.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="什么是Shellshell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。">
+  <meta name="description" content="什么是Shell shell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Archlinux 中使用 Zsh">
 <meta property="og:url" content="http://dong628.github.io/2020/01/26/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/index.html">
 <meta property="og:site_name" content="Jinglei&#39;s blog">
-<meta property="og:description" content="什么是Shellshell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。">
+<meta property="og:description" content="什么是Shell shell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。">
 <meta property="og:image" content="https://i.loli.net/2020/01/26/EY6O13uKBzkqMhb.png">
 <meta property="og:image" content="http://dong628.github.io/2020/01/26/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/agnoster">
 <meta property="article:published_time" content="2020-01-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-07-18T14:17:37.790Z">
+<meta property="article:modified_time" content="2020-07-19T01:25:15.553Z">
 <meta property="article:author" content="JingleiDong">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-18 22:17:37" itemprop="dateModified" datetime="2020-07-18T22:17:37+08:00">2020-07-18</time>
+                <time title="Modified: 2020-07-19 09:25:15" itemprop="dateModified" datetime="2020-07-19T09:25:15+08:00">2020-07-19</time>
               </span>
 
           
@@ -240,35 +240,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="什么是Shell"><a href="#什么是Shell" class="headerlink" title="什么是Shell"></a>什么是Shell</h2><p>shell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。</p>
+        <h2 id="什么是shell"><a class="markdownIt-Anchor" href="#什么是shell"></a> 什么是Shell</h2>
+<p>shell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。</p>
 <a id="more"></a>
-
 <blockquote>
 <p>壳层（shell）这个说法起源于路易斯·普赞（Louis Pouzin），他在1964年至1965年间首次提出，随后在Multics（MULTiplexed Information and Computing System）项目中首次被实现出来。</p>
 <p>Unix上的第一个Unix壳层（Unix shell）是肯·汤普逊（Ken Thompson）以Multics上的shell为范本，所写出的Thompson shell。</p>
-<p>在微软的Windows操作系统也提供了命令行壳层的功能，它们是Windows 95 / 98下的command.com、Windows NT内核下的cmd.exe以及PowerShell；而图形界面壳层即为explorer.exe。</p>
-<p>——摘自维基百科：<a href="[https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4](https://zh.wikipedia.org/wiki/殼層)">壳层</a></p>
+<p>在微软的Windows操作系统也提供了命令行壳层的功能，它们是Windows 95 / <a href="http://xn--98command-1b6nt576a.com" target="_blank" rel="noopener">98下的command.com</a>、Windows NT内核下的cmd.exe以及PowerShell；而图形界面壳层即为explorer.exe。</p>
+<p>——摘自维基百科：<a href="%5Bhttps://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4%5D(https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4)">壳层</a></p>
 </blockquote>
 <p>在Linux的命令行界面中，可以有不同的shell，常见的有：bash，ksh，zsh 等，而其中的集大成制作当属 Zsh。它有更智能的自动补全和拼写检查，可以与其他的shell共享历史记录等特性。而插件 Oh My Zsh 使得它的入门门槛降低了许多。</p>
 <p>可以使用<code>echo $SHELL</code> 命令来查看当前使用的shell。</p>
-<h2 id="如何安装Zsh"><a href="#如何安装Zsh" class="headerlink" title="如何安装Zsh"></a>如何安装Zsh</h2><p>安装软件包<a href="https://www.archlinux.org/packages/extra/x86_64/zsh/" target="_blank" rel="noopener">zsh</a></p>
+<h2 id="如何安装zsh"><a class="markdownIt-Anchor" href="#如何安装zsh"></a> 如何安装Zsh</h2>
+<p>安装软件包<a href="https://www.archlinux.org/packages/extra/x86_64/zsh/" target="_blank" rel="noopener">zsh</a></p>
 <p>，运行命令<code>zsh</code>，根据向导配置。</p>
-<h3 id="将Zsh作为你的默认终端"><a href="#将Zsh作为你的默认终端" class="headerlink" title="将Zsh作为你的默认终端"></a>将Zsh作为你的默认终端</h3><p>列出已安装的shell：</p>
+<h3 id="将zsh作为你的默认终端"><a class="markdownIt-Anchor" href="#将zsh作为你的默认终端"></a> 将Zsh作为你的默认终端</h3>
+<p>列出已安装的shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chsh -l</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p>设置默认shell：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chsh -s &lt;完整路径到shell&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="配置Zsh"><a href="#配置Zsh" class="headerlink" title="配置Zsh"></a>配置Zsh</h2><h3 id="Oh-My-Zsh"><a href="#Oh-My-Zsh" class="headerlink" title="Oh My Zsh"></a>Oh My Zsh</h3><p>要想安装 Oh My Zsh ，运行以下命令：</p>
+<h2 id="配置zsh"><a class="markdownIt-Anchor" href="#配置zsh"></a> 配置Zsh</h2>
+<h3 id="oh-my-zsh"><a class="markdownIt-Anchor" href="#oh-my-zsh"></a> Oh My Zsh</h3>
+<p>要想安装 Oh My Zsh ，运行以下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
-
 <p>之后，重启电脑，就可以使用 Oh My Zsh 了</p>
-<h3 id="zshrc"><a href="#zshrc" class="headerlink" title=".zshrc"></a>.zshrc</h3><p>.zshrc 文件是zsh的配置文件，位于home目录下，可以通过<code>ls -a</code>命令找到。可以在这个配置文件中设置别名和环境变量。比如我参考<a href="https://www.cnblogs.com/dhcn/p/11666845.html" target="_blank" rel="noopener">这篇文章</a>，配置成了这样：</p>
-<p><img src="https://i.loli.net/2020/01/26/EY6O13uKBzkqMhb.png" alt=""></p>
+<h3 id="zshrc"><a class="markdownIt-Anchor" href="#zshrc"></a> .zshrc</h3>
+<p>.zshrc 文件是zsh的配置文件，位于home目录下，可以通过<code>ls -a</code>命令找到。可以在这个配置文件中设置别名和环境变量。比如我参考<a href="https://www.cnblogs.com/dhcn/p/11666845.html" target="_blank" rel="noopener">这篇文章</a>，配置成了这样：</p>
+<p><img src="https://i.loli.net/2020/01/26/EY6O13uKBzkqMhb.png" alt="" /></p>
 <p>在上面的<code>ZSH_THEME</code>选项中，可以更改主题，我使用的是agnoster，这个主题可以很方便地显示当前目录和git分支、仓库的情况等，所有的主题预览在<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes" target="_blank" rel="noopener">这里</a>。</p>
-<p><img src="agnoster" alt="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png"></p>
+<p><img src="agnoster" alt="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" /></p>
 
     </div>
 
@@ -352,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Shell"><span class="nav-number">1.</span> <span class="nav-text">什么是Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何安装Zsh"><span class="nav-number">2.</span> <span class="nav-text">如何安装Zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将Zsh作为你的默认终端"><span class="nav-number">2.1.</span> <span class="nav-text">将Zsh作为你的默认终端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Zsh"><span class="nav-number">3.</span> <span class="nav-text">配置Zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Oh-My-Zsh"><span class="nav-number">3.1.</span> <span class="nav-text">Oh My Zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zshrc"><span class="nav-number">3.2.</span> <span class="nav-text">.zshrc</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是shell"><span class="nav-number">1.</span> <span class="nav-text"> 什么是Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何安装zsh"><span class="nav-number">2.</span> <span class="nav-text"> 如何安装Zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将zsh作为你的默认终端"><span class="nav-number">2.1.</span> <span class="nav-text"> 将Zsh作为你的默认终端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置zsh"><span class="nav-number">3.</span> <span class="nav-text"> 配置Zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#oh-my-zsh"><span class="nav-number">3.1.</span> <span class="nav-text"> Oh My Zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zshrc"><span class="nav-number">3.2.</span> <span class="nav-text"> .zshrc</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -366,12 +366,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -457,6 +457,8 @@
 
 
 
+
+  
 
   
 

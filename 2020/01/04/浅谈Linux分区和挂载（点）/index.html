@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"dong628.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Windows在windows下，分区是有明显的界限的，就比如这样：   在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。">
+  <meta name="description" content="Windows 在windows下，分区是有明显的界限的，就比如这样：  在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈Linux分区和挂载（点）">
 <meta property="og:url" content="http://dong628.github.io/2020/01/04/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/index.html">
 <meta property="og:site_name" content="Jinglei&#39;s blog">
-<meta property="og:description" content="Windows在windows下，分区是有明显的界限的，就比如这样：   在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。">
+<meta property="og:description" content="Windows 在windows下，分区是有明显的界限的，就比如这样：  在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。">
 <meta property="og:image" content="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/01/04/9vsoRilzYA4uCHM.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/01/04/y7UbeZNcl3JxVwp.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/01/04/LByAR2Nagv9JrxH.png">
 <meta property="article:published_time" content="2020-01-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-07-18T14:21:40.642Z">
+<meta property="article:modified_time" content="2020-07-19T01:25:04.523Z">
 <meta property="article:author" content="JingleiDong">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-18 22:21:40" itemprop="dateModified" datetime="2020-07-18T22:21:40+08:00">2020-07-18</time>
+                <time title="Modified: 2020-07-19 09:25:04" itemprop="dateModified" datetime="2020-07-19T09:25:04+08:00">2020-07-19</time>
               </span>
 
           
@@ -247,13 +247,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>在windows下，分区是有明显的界限的，就比如这样：</p>
-<p><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg" alt=""> </p>
+        <h2 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h2>
+<p>在windows下，分区是有明显的界限的，就比如这样：</p>
+<p><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg" alt="" /></p>
 <p>在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。</p>
 <a id="more"></a>
-
-<h1 id="Linux——分区就是文件夹"><a href="#Linux——分区就是文件夹" class="headerlink" title="Linux——分区就是文件夹"></a>Linux——分区就是文件夹</h1><p>其实这么说并不准确，因为Linux下“分区”的概念是比较模糊的。</p>
-<p><img src="https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg" alt=" " title="Linux下的目录树"></p>
+<h1 id="linux分区就是文件夹"><a class="markdownIt-Anchor" href="#linux分区就是文件夹"></a> Linux——分区就是文件夹</h1>
+<p>其实这么说并不准确，因为Linux下“分区”的概念是比较模糊的。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg" alt=" " title="Linux下的目录树" /></p>
 <p>Linux是以树的结构存储文件的。不管你的电脑中有几块硬盘（即便没有），也不管硬盘分了几个区，Linux都会给你整出来个根目录，也就是上图中最顶层的“/”。一旦你安装了Linux，它就会在根目录下创建几个文件夹，这些文件夹的名字是“root”、“home”、“dev”等等。路径分别是“/root”、“/home”、“/dev”等。</p>
 <p>众所周知，存储文件需要硬盘。Linux这波操作光搞了个目录，但是与硬盘和分区没有任何关系，那么这些文件夹和之后要写入的文件存在哪里啊？这就引入了Linux下“挂载”的概念。</p>
 <blockquote>
@@ -262,22 +263,22 @@
 <p>在linux下，你可以像windows一样创建分区，但是并不像windows一样，创建完就给你显示在“此电脑”中（默认是这样的，也可以设置不显示）。但是在Linux下，要想使用一个分区，必须先要挂载。</p>
 <p>前面说过，Linux下的根目录里是要存东西的，要想存东西，就要有硬盘。所以Linux的做法是：将根目录下的某一部分（也有可能是全部）与分区建立对应关系。</p>
 <p>打个比方，打开你的文件管理器，在里面的地址栏中输入“/”，然后在空白区域右击，选择“属性”。</p>
-<p><img src="https://i.loli.net/2020/01/04/9vsoRilzYA4uCHM.png" alt="Screenshot_20200104_154532.png"></p>
+<p><img src="https://i.loli.net/2020/01/04/9vsoRilzYA4uCHM.png" alt="Screenshot_20200104_154532.png" /></p>
 <p>然后你应该可以看到挂载点和挂载的分区。其中，分区并不像Windows那样以盘符表示，而是一个文件。关于这个文件的意义，我们以后再说。</p>
-<p><img src="https://i.loli.net/2020/01/04/hfXDUelGJ2LYqnb.png" alt="Screenshot_20200104_153959.png"></p>
+<p><img src="https://i.loli.net/2020/01/04/hfXDUelGJ2LYqnb.png" alt="Screenshot_20200104_153959.png" /></p>
 <p>而这个挂载点就是根目录“/”，也就是说，根目录下的所有文件，都存在了这个分区里？</p>
 <p>其实并不是这样的，这个分区只是和根目录建立了一个对应关系，并不代表根目录中所有文件都存在了这个分区中。</p>
 <p>再举个例子，插上你的U盘，如果你用的是KDE、GNOME这样的桌面环境，应该可以通过简单的动动鼠标，进入这个U盘。</p>
-<p><img src="https://i.loli.net/2020/01/04/pSGx4mnEBcYgtlZ.png" alt="Screenshot_20200104_160153-1.png"></p>
+<p><img src="https://i.loli.net/2020/01/04/pSGx4mnEBcYgtlZ.png" alt="Screenshot_20200104_160153-1.png" /></p>
 <p>而这时，点击文件管理器中的地址栏，你会得到一个路径，就像这样：</p>
-<p><img src="https://i.loli.net/2020/01/04/a9JxvENR8B5yMCo.png" alt="Screenshot_20200104_160310.png"></p>
+<p><img src="https://i.loli.net/2020/01/04/a9JxvENR8B5yMCo.png" alt="Screenshot_20200104_160310.png" /></p>
 <p>然后，在根目录下，按照这个目录，打开这个文件夹。</p>
 <p>比如，我的是“/run/media/archer/7BD2-F1FA/”，于是我现在根目录下找到“run”文件夹，打开，再找到“media”文件夹，打开，在找到并打开“archer”文件夹（我的用户名），然后打开“7BD2-F1FA”文件夹。</p>
 <p>然后，你就会发现：</p>
 <blockquote>
 <p>这不就是我U盘里的东西吗</p>
 </blockquote>
-<p><img src="https://i.loli.net/2020/01/04/3xwlDZvz4bB7H1P.png" alt="Screenshot_20200104_160941.png"></p>
+<p><img src="https://i.loli.net/2020/01/04/3xwlDZvz4bB7H1P.png" alt="Screenshot_20200104_160941.png" /></p>
 <p>在页面的空白处，右击，点击“属性”。“挂载点”那一栏写的就是你刚才打开的文件夹的路径，而“挂载自”一栏也是 /dev 目录下的一个文件，sd**代表这是一个分区。</p>
 <p>这时，你可能就会发现：</p>
 <blockquote>
@@ -285,14 +286,14 @@
 </blockquote>
 <p>没错，分区本身，在Linux下是一个在 /dev 目录下的文件，你可以把它挂载到目录树的一个文件夹下，你才可以访问这个分区中的文件。</p>
 <p>这个实验也表明了，Linux下的挂载点是可以嵌套的。你可以将任何一个分区挂载到任何一个目录（除了根目录必须作为一个挂载点挂载磁盘），这就为Linux的文件管理提供了无限的可能。比如说，我的Linux目录树是这样的：</p>
-<p><img src="https://i.loli.net/2020/01/04/y7UbeZNcl3JxVwp.jpg" alt="003vPl7Rty6E8kZRlAEdc690_1.jpg"></p>
+<p><img src="https://i.loli.net/2020/01/04/y7UbeZNcl3JxVwp.jpg" alt="003vPl7Rty6E8kZRlAEdc690_1.jpg" /></p>
 <p>至于我为什么要把 /home 文件夹里的内容存到一个单独的分区里，这个以后再说。</p>
-<h2 id="在Linux下如何查看我的分区情况"><a href="#在Linux下如何查看我的分区情况" class="headerlink" title="在Linux下如何查看我的分区情况"></a>在Linux下如何查看我的分区情况</h2><p>Linux下，有一个分区工具叫做 fdisk ，你可以以root用户运行以下命令查看分区情况：</p>
+<h2 id="在linux下如何查看我的分区情况"><a class="markdownIt-Anchor" href="#在linux下如何查看我的分区情况"></a> 在Linux下如何查看我的分区情况</h2>
+<p>Linux下，有一个分区工具叫做 fdisk ，你可以以root用户运行以下命令查看分区情况：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># fdisk -l</span><br></pre></td></tr></table></figure>
-
 <p>就像这样：</p>
-<p><img src="https://i.loli.net/2020/01/04/LByAR2Nagv9JrxH.png" alt="Screenshot_20200104_163440-1.png"></p>
-<p>其中”nvme”开头的是NVMe协议的硬盘（一般是固态），而sd开头的是通过SATA、SCSI、USB这些接口传输数据的存储设备，loop开头一般是光盘。</p>
+<p><img src="https://i.loli.net/2020/01/04/LByAR2Nagv9JrxH.png" alt="Screenshot_20200104_163440-1.png" /></p>
+<p>其中&quot;nvme&quot;开头的是NVMe协议的硬盘（一般是固态），而sd开头的是通过SATA、SCSI、USB这些接口传输数据的存储设备，loop开头一般是光盘。</p>
 
     </div>
 
@@ -373,7 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows"><span class="nav-number">1.</span> <span class="nav-text">Windows</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux——分区就是文件夹"><span class="nav-number"></span> <span class="nav-text">Linux——分区就是文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在Linux下如何查看我的分区情况"><span class="nav-number">1.</span> <span class="nav-text">在Linux下如何查看我的分区情况</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows"><span class="nav-number">1.</span> <span class="nav-text"> Windows</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linux分区就是文件夹"><span class="nav-number"></span> <span class="nav-text"> Linux——分区就是文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在linux下如何查看我的分区情况"><span class="nav-number">1.</span> <span class="nav-text"> 在Linux下如何查看我的分区情况</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -387,12 +388,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -478,6 +479,8 @@
 
 
 
+
+  
 
   
 
