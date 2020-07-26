@@ -382,4 +382,55 @@
         <tag>算法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>「CH0601」Genius ACM</title>
+    <url>/2020/07/26/%E3%80%8CCH0601%E3%80%8DGenius%20ACM/</url>
+    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
+<p>AcWing：<a href="https://www.acwing.com/problem/content/description/111/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/description/111/</a></p>
+<p>ContestHunter 挂了，只有 AcWing 上能找到这题了。。</p>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>给定一个整数 M，对于任意一个整数集合 S，定义“校验值”如下:</p>
+<p>从集合 S 中取出 M 对数(即 2∗M个数，不能重复使用集合中的数，如果 S 中的整数不够 M 对，则取到不能取为止)，使得“每对数的差的平方”之和最大，这个最大值就称为集合 S 的“校验值”。</p>
+<a id="more"></a>
+<p>现在给定一个长度为 N 的数列 A 以及一个整数 T。</p>
+<p>我们要把 A 分成若干段，使得每一段的“校验值”都不超过 T。</p>
+<p>求最少需要分成几段。</p>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>第一行输入整数 K，代表有 K 组测试数据。</p>
+<p>对于每组测试数据，第一行包含三个整数 N,M,T 。</p>
+<p>第二行包含 N 个整数，表示数列A1,A2…AN。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>对于每组测试数据，输出其答案，每个答案占一行。</p>
+<h2 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围"></a> 数据范围</h2>
+<p>1≤K≤12,<br />
+1≤N,M≤500000,<br />
+0≤T≤10^18,<br />
+0≤Ai≤2^20</p>
+<h2 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h2>
+<h3 id="朴素算法暴力"><a class="markdownIt-Anchor" href="#朴素算法暴力"></a> 朴素算法——暴力</h3>
+<p>从这个集合的开头开始，确定每一个划分点。</p>
+<p>采用类似贪心的方法，不考虑后面的数， 一个个向后枚举划分点。</p>
+<p>拿样例数据举例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">5 1 49</span><br><span class="line">8 2 1 7 9</span><br><span class="line">5 1 64</span><br><span class="line">8 2 1 7 9</span><br></pre></td></tr></table></figure>
+<p>先规定起始点 l 为 0，然后枚举：</p>
+<p>{8} -&gt; {8, 2} -&gt; {8, 2, 1} -&gt; {8, 2, 1, 7} -&gt; {8, 2, 1, 7, 9} -&gt;{8, 2, 1, 7}, {9}</p>
+<p>每次枚举还需要 O(n lg n) 的时间来排序，时间复杂度为 O(n^2 lg n)</p>
+<h3 id="倍增其实有点像二分"><a class="markdownIt-Anchor" href="#倍增其实有点像二分"></a> 倍增（其实有点像二分）</h3>
+<p>把枚举改成倍增</p>
+<p>显而易见，对于相同的左端 l，右端 r 越大，校验值越大（也有可能相等）。</p>
+<p>所以，校验值可以看成是具有单调性的，可以通过倍增求解。</p>
+<p>具体来说，可以确定一个右端 R 和右端增加长度 p，如果这个序列的校验值小于等于上限，那么将 p 乘以 2，并且将右端更新（R+=p），如果大于上限，就将 p 除以 2。</p>
+<p>这样，我们可以将时间复杂度降低到 O(n^2)</p>
+<h3 id="关于排序"><a class="markdownIt-Anchor" href="#关于排序"></a> 关于排序</h3>
+<p>每次求校验值时都需要排序，其实没有必要使用快速排序，可以采用归并排序，把新增的序列排好序然后再归并。时间复杂度 O(n lg n)</p>
+<p>然而我用了时间复杂度相同的二分插入排序，但是后面 TLE 了，时间限制是10s，我的程序运行了600s</p>
+<p><img src="https://i.loli.net/2020/07/26/FcR4CDdLo2WpeBJ.jpg" alt="Screenshot_20200726_132705.jpg" /></p>
+<p>应该是 vector 常数太大了吧</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">min</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">500005</span>;</span><br><span class="line"><span class="keyword">int</span> k, n, m;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; o, ne;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> t, a[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">genius</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;k; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%lld"</span>, &amp;n, &amp;m, &amp;t);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, genius());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">genius</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> r=<span class="number">0</span>, ans=<span class="number">0</span>, l, p;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ch;</span><br><span class="line">	<span class="keyword">while</span>(r&lt;n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(r==n<span class="number">-1</span>)&#123;</span><br><span class="line">			ans++; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		l=r; p=<span class="number">1</span>;</span><br><span class="line">		ne.<span class="built_in">clear</span>(); o.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="number">0</span> &amp;&amp; r&lt;n)&#123;</span><br><span class="line">			ch = check(r, p);</span><br><span class="line">			<span class="keyword">if</span>(ch&lt;=t)&#123;</span><br><span class="line">				r+=p; p*=<span class="number">2</span>;</span><br><span class="line">				o=ne;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> p/=<span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ans++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> r, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">	ne=o;</span><br><span class="line">	<span class="keyword">int</span> l, r1, mid;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=r; i&lt;<span class="built_in">min</span>(r+p, n); i++)&#123;</span><br><span class="line">		l=<span class="number">0</span>; r1=ne.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r1)&#123;</span><br><span class="line">			mid=(l+r1)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(ne[mid]&gt;=a[i]) r1=mid; </span><br><span class="line">			<span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ne.insert(ne.<span class="built_in">begin</span>()+l, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> s=ne.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s&gt;=(i+<span class="number">1</span>)*<span class="number">2</span>)&#123;</span><br><span class="line">			ans+=(ne[i]-ne[s-i<span class="number">-1</span>])*(ne[i]-ne[s-i<span class="number">-1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
 </search>
