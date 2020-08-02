@@ -483,4 +483,44 @@
         <tag>几何 - 立体几何</tag>
       </tags>
   </entry>
+  <entry>
+    <title>「USACO06FEB」Stall Reservations</title>
+    <url>/2020/08/02/%E3%80%8CUSACO06FEB%E3%80%8DStall%20Reservations/</url>
+    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
+<p>貌似是 USACO 原创，但我实在找不到原创的链接，只能在洛谷、 AcWing 和 POJ 上找了</p>
+<p>洛谷：<a href="https://www.luogu.com.cn/problem/P2859" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2859</a></p>
+<p>AcWing：<a href="https://www.acwing.com/problem/content/113/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/113/</a></p>
+<a id="more"></a>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>有N头牛在畜栏中吃草。</p>
+<p>每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。</p>
+<p>给定N头牛和每头牛开始吃草的时间A以及结束吃草的时间B，每头牛在[A,B]这一时间段内都会一直吃草。</p>
+<p>当两头牛的吃草区间存在交集时（包括端点），这两头牛不能被安排在同一个畜栏吃草。</p>
+<p>求需要的最小畜栏数目和每头牛对应的畜栏方案。</p>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>第1行：输入一个整数N。</p>
+<p>第2…N+1行：第i+1行输入第i头牛的开始吃草时间A以及结束吃草时间B，数之间用空格隔开。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>第1行：输入一个整数，代表所需最小畜栏数。</p>
+<p>第2…N+1行：第i+1行输入第i头牛被安排到的畜栏编号，编号是从1开始的 连续 整数，只要方案合法即可。</p>
+<p>（洛谷上题目描述是挤奶，AcWing上是吃草。。。）</p>
+<h1 id="基本算法"><a class="markdownIt-Anchor" href="#基本算法"></a> 基本算法</h1>
+<h2 id="贪心"><a class="markdownIt-Anchor" href="#贪心"></a> 贪心</h2>
+<p>应该是比较显而易见的一个贪心，我刚开始都不觉得自己有多贪。。</p>
+<p>按开始的时间把牛排序，然后依次放入畜栏，每次尽量放在已经使用过的畜栏中，如果没有就新建一个畜栏，cnt++。</p>
+<p>由于可以放进任意一个畜栏，可以直接选出结束时间最早的畜栏比较，如果比当前时间早就可以放入，如果比当前时间晚就新建。</p>
+<p>因此，可以通过 <code>std::priority_queue</code> 来维护一个小根堆来存放畜栏使用情况（当然手写也可以</p>
+<h2 id="priority_queue"><a class="markdownIt-Anchor" href="#priority_queue"></a> priority_queue</h2>
+<p>我一般管这个叫优先队列，它可以保证队头的元素是 最小/最大 的。</p>
+<p>对于这道题，存放畜栏的优先队列需要存放 畜栏中牛结束的时间 和 畜栏的编号，其中需要将最小值放在队首的是结束时间。因此，可以使用 <code>std::pair</code> 来作为一个单位存放。对于 pair ，每个元素进行比较时，先比较 first ，所以可以把结束时间放在 first 中。</p>
+<p>当然，手写一个node然后重载运算符来自定义比较也可以，但这就是 C++ 的进阶操作了。</p>
+<p>另外，在写的时候，一定要搞清楚队列里要存什么，思路一定要清晰（我就是因为这个被绕住了）</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::priority_queue;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::sort;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::greater;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pint;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50005</span>;</span><br><span class="line"><span class="keyword">int</span> n, cnt, le, ans[MAX];</span><br><span class="line">priority_queue &lt; pint, <span class="built_in">vector</span>&lt;pint&gt;, greater&lt;pint&gt; &gt; cl;</span><br><span class="line">pint tmp;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cow</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> start, <span class="built_in">end</span>, nu;</span><br><span class="line">&#125;cow[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Cow x, Cow y)</span> </span>&#123; <span class="keyword">return</span> x.start &lt; y.start; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"data.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;cow[i].start, &amp;cow[i].<span class="built_in">end</span>);</span><br><span class="line">		cow[i].nu=i;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(cow, cow+n, cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!cl.empty() &amp;&amp; cl.top().first&lt;cow[i].start)&#123;</span><br><span class="line">			ans[cow[i].nu]=cl.top().second;</span><br><span class="line">			cl.pop();</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; <span class="comment">// tmp.second=cl.size();</span></span><br><span class="line">			tmp.second=ans[cow[i].nu];</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; tmp.second=cnt;</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			ans[cow[i].nu]=cnt;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, cnt);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>题解 - 贪心</tag>
+      </tags>
+  </entry>
 </search>
