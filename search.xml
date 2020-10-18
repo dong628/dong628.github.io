@@ -1,40 +1,305 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>在 Archlinux 中使用 Zsh</title>
-    <url>/2020/01/26/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/</url>
-    <content><![CDATA[<h2 id="什么是shell"><a class="markdownIt-Anchor" href="#什么是shell"></a> 什么是Shell</h2>
-<p>shell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。</p>
+    <title>mssCTF 2020 赛后总结</title>
+    <url>/2020/09/26/mssCTF%202020%20%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>这真的是我打过最惊险，最一波三折的一场比赛，尤其是决赛的最后十分钟，简直是我打过比赛中最紧张刺激的最后时刻。。</p>
+<p>由于这次比赛中，组委会要求我们全程录屏，所以我才能在比赛过去一周后复盘，写下这篇心得。。</p>
 <a id="more"></a>
-<blockquote>
-<p>壳层（shell）这个说法起源于路易斯·普赞（Louis Pouzin），他在1964年至1965年间首次提出，随后在Multics（MULTiplexed Information and Computing System）项目中首次被实现出来。</p>
-<p>Unix上的第一个Unix壳层（Unix shell）是肯·汤普逊（Ken Thompson）以Multics上的shell为范本，所写出的Thompson shell。</p>
-<p>在微软的Windows操作系统也提供了命令行壳层的功能，它们是Windows 95 / <a href="http://xn--98command-1b6nt576a.com" target="_blank" rel="noopener">98下的command.com</a>、Windows NT内核下的cmd.exe以及PowerShell；而图形界面壳层即为explorer.exe。</p>
-<p>——摘自维基百科：<a href="%5Bhttps://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4%5D(https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4)">壳层</a></p>
-</blockquote>
-<p>在Linux的命令行界面中，可以有不同的shell，常见的有：bash，ksh，zsh 等，而其中的集大成制作当属 Zsh。它有更智能的自动补全和拼写检查，可以与其他的shell共享历史记录等特性。而插件 Oh My Zsh 使得它的入门门槛降低了许多。</p>
-<p>可以使用<code>echo $SHELL</code> 命令来查看当前使用的shell。</p>
-<h2 id="如何安装zsh"><a class="markdownIt-Anchor" href="#如何安装zsh"></a> 如何安装Zsh</h2>
-<p>安装软件包<a href="https://www.archlinux.org/packages/extra/x86_64/zsh/" target="_blank" rel="noopener">zsh</a></p>
-<p>，运行命令<code>zsh</code>，根据向导配置。</p>
-<h3 id="将zsh作为你的默认终端"><a class="markdownIt-Anchor" href="#将zsh作为你的默认终端"></a> 将Zsh作为你的默认终端</h3>
-<p>列出已安装的shell：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chsh -l</span></span><br></pre></td></tr></table></figure>
-<p>设置默认shell：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chsh -s &lt;完整路径到shell&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="配置zsh"><a class="markdownIt-Anchor" href="#配置zsh"></a> 配置Zsh</h2>
-<h3 id="oh-my-zsh"><a class="markdownIt-Anchor" href="#oh-my-zsh"></a> Oh My Zsh</h3>
-<p>要想安装 Oh My Zsh ，运行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
-<p>之后，重启电脑，就可以使用 Oh My Zsh 了</p>
-<h3 id="zshrc"><a class="markdownIt-Anchor" href="#zshrc"></a> .zshrc</h3>
-<p>.zshrc 文件是zsh的配置文件，位于home目录下，可以通过<code>ls -a</code>命令找到。可以在这个配置文件中设置别名和环境变量。比如我参考<a href="https://www.cnblogs.com/dhcn/p/11666845.html" target="_blank" rel="noopener">这篇文章</a>，配置成了这样：</p>
-<p><img src="https://i.loli.net/2020/01/26/EY6O13uKBzkqMhb.png" alt="" /></p>
-<p>在上面的<code>ZSH_THEME</code>选项中，可以更改主题，我使用的是agnoster，这个主题可以很方便地显示当前目录和git分支、仓库的情况等，所有的主题预览在<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes" target="_blank" rel="noopener">这里</a>。</p>
-<p><img src="agnoster" alt="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" /></p>
+<h1 id="mssctf-2019"><a class="markdownIt-Anchor" href="#mssctf-2019"></a> mssCTF 2019</h1>
+<p>先说下去年的情况吧。</p>
+<p>去年我初赛排名大概80+，没有入围决赛。但学校有一个推荐名额，我就去西安参加了决赛。</p>
+<p>决赛上午一道题也没有写出来，并且坐在我旁边的刘星宇同学上午直接AKPPC（做出了所有的编程题），冲到了Rank1。</p>
+<p>好在下午做出来了两道PPC，之后从Rank16-掉到Rank19。。（记住这个19名，后面要考）</p>
+<p>而第16名正好也是1000分，只是比我做得快了一点，也就是说，我只需要再做一道题，就可以把他挤下去，拿到三等奖（前16名就有奖）。</p>
+<p>再说说今年和去年的不同吧。</p>
+<p>今年的决赛在线上举行，使用双机位+录屏来监考，全程不允许连接外网。而上次比赛直接在体育场里用局域网，外面还放了信号屏蔽器，两位选手就有一位志愿者监考。去年的比赛是可以申请去用组委会提供的连接外网的机器的，只是时间有限制（貌似是30min）。</p>
+<p>这次的比赛分为上下两个半场，从9点到17点，中午2个小时的休息时间，把上下午两个阶段分开，为了避免大家作弊，下午有新的题，不能继续做上午的题。</p>
+<p>去年的比赛真的挺遗憾的，可能是我当时还不知道我离三等奖那么进，也可能是我看到所有的题目我都不会，我在比赛结束前1小时就基本放弃了，也没有过多关注排名，最后只拿了个「优秀奖」，和三等奖和5k元奖金“交臂失之”。</p>
+<h1 id="初赛"><a class="markdownIt-Anchor" href="#初赛"></a> 初赛</h1>
+<p>初赛实在9月13日举行的，共有200多名选手参加，据说还有11岁的选手。从上午9点到晚上6点一共9个小时。</p>
+<p>上午，开赛一分钟后我拿到了 PPC-量子波动速读  一题的一血（第一个做出来的），然后非常出乎意料地拿到了短暂的榜一。之后我有写了两道PPC题，但都没有通过。</p>
+<p>下午去学校写题，用binwalk把签到题解决了，然后一直在搞PPC。</p>
+<p>在离比赛结束还有1小时时，我看到我的排名是30+，可能进不了决赛，之后我又用C++重新写了一遍那道PPC（之前是用Python写的）。最终在5：40，也就是离比赛结束还有十几分钟的时候A掉了这道题，成功挤进了前30。</p>
+<p>我本来以为这已经够刺激的了，没想到后面还有更刺激的。。。</p>
+<h1 id="决赛前"><a class="markdownIt-Anchor" href="#决赛前"></a> 决赛前</h1>
+<p>决赛前一天，也就是周五（9月18日），我早早回到了家参加设备调试。调试过程中，我的设备非常完美地运行着。调试结束后，我非常手残地更新了一下系统，然后就出事了。。</p>
+<p>系统中的桌面和顶部菜单栏都出了问题，启动失败。我的电脑自今年2月份重装系统以来，一直没有出过啥大问题，然而到了这关键时刻出锅。。还好除了某些操作稍微有些麻烦，所有其他软件和功能都没有受到影响，算是不幸中的万幸了吧。虽然不会影响到我第二天的比赛，但对我当时的心态是个很大的打击。</p>
+<p>顺便说下，后面录屏上没有时间，就是因为这个组件坏了。</p>
+<h1 id="决赛上午"><a class="markdownIt-Anchor" href="#决赛上午"></a> 决赛上午</h1>
+<p>8点开始，选手们就陆续进入会议室，到比赛开始时，我们组里所有选手的设备都已经调试完毕。</p>
+<p>比赛开始后，我发现平台上只放了一道PPC（也就是传统编程，是我最擅长的领域）题，这可怎么打。。</p>
+<p>我和其他选手陆陆续续地A掉了这道题，之后我的排名为14，还是做得太晚了呀。之后，我并没有在上午解出新的题目，排名一路从最初的14掉到了19。</p>
+<p><img src="https://i.loli.net/2020/09/26/Ww34ZsTNE2SyPVY.jpg" alt="mmexport1601116879936.jpg" /></p>
+<h1 id="下午"><a class="markdownIt-Anchor" href="#下午"></a> 下午</h1>
+<p>下午的比赛非常有意思，我把它分成了几个不同的阶段，每个小标题的时间是比赛开始后经过的时间，也就是我录屏的持续时间，如40:00指的是比赛开始后40分钟。由于我们要求提前开录屏，录屏的时间会比比赛持续时间长2分钟，这对最后争分夺秒的时刻非常重要，我也懒得剪了，各位自己计算真实时间吧。</p>
+<h2 id="00002400-消失的ppc"><a class="markdownIt-Anchor" href="#00002400-消失的ppc"></a> 00:00–24:00 消失的PPC</h2>
+<p>下午开始时，放了两道PPC题，按照我的策略，先把题都看一遍再说。</p>
+<p>“安全评估”那题，我一看是道图论，我就直接放弃，反而是第二道题“砍怪”看起来相当简单。</p>
+<p><img src="https://i.loli.net/2020/09/26/CxJ7T34hG1Heyof.png" alt="《砍怪》" /></p>
+<p>我用大概15分钟打完了一个暴力，由于题面过于简单，我并没有再去看题，等到我写完之后，我才发现：这题没了？！</p>
+<p>没错，这道题在我写完之后莫名其妙消失了。可能只是组委会不小心多放了一道题，但却浪费了我的20分钟。</p>
+<p>上午，我在比赛开始后5分钟才开始看PPC题（之前在看Crypto），结束之后，我认为如果早点开始写的话名次还能上升。。结果下午组委会就出了个大锅，把我的心态搞崩了。。</p>
+<p><img src="https://i.loli.net/2020/09/26/KQWuDwjFcr9JBih.png" alt="运维出来挨打（" /></p>
+<p>当时，那道最简单的 Crypto 已经有几个人做出来了，我如果坚持上午的策略，先看 Crypto ，再看 PPC ，也许可以比其他人快一些。</p>
+<h2 id="27503948-送分题签到题"><a class="markdownIt-Anchor" href="#27503948-送分题签到题"></a> 27:50–39:48 送分题&amp;签到题</h2>
+<p>在心态受到打击，之后又看了不到四分钟另一道PPC后，我决定暂时搁置PPC，去写其他题。</p>
+<p>我瞄准两道做的人最多的 Crypto 和 Reverse ，当时比赛开始了28分钟，到比赛开始40分钟时，我已经完成了这两道题，冲到了排行榜第7名。</p>
+<h3 id="crypto-easy_encrypt"><a class="markdownIt-Anchor" href="#crypto-easy_encrypt"></a> Crypto-easy_encrypt</h3>
+<p><code>easy_encrypt</code>整场比赛中做出来人数第二多的题，也是最简单的一道 Crypto。</p>
+<p>稍有密码学经验的同学，看到下面的输出<code>msYs__s1fc_1tHnf@C{pe1p}T</code>里包含括号、下划线、和分散的 <code>mssctf</code> 字样，就一定知道这是个栅栏加密。</p>
+<p>我先是解读了一下这个脚本，发现这个加密只改变了每个字符的位置，字符的集合是不变的。</p>
+<p>于是我把脚本下载下来，用<code>abcdefghijklmnopqrstuvwxy</code>这个长度为25的字符串替代长度为25的flag加密，之后看每个字符移动到的位置，就可以通过密文反推出明文：</p>
+<p><img src="https://i.loli.net/2020/09/26/IsVPZwMiGuDxHR8.jpg" alt="Screenshot_20200926_110731.jpg" /></p>
+<p><img src="https://i.loli.net/2020/09/26/Gej4ktPzX9s2dIq.jpg" alt="本来想写脚本，后来懒得写了干脆手算" /></p>
+<h3 id="reverse-hello"><a class="markdownIt-Anchor" href="#reverse-hello"></a> Reverse-Hello</h3>
+<p><code>Hello</code>是比赛中通过最多的题，是一道<code>Reverse</code>，40位选手中，共有32人通过了这道题，80%的通过率，想想就相当可怕。</p>
+<p>其实只要有一点计算机常识，就可以做出来这道送分题，简直是“有手就行”。甚至在我看来，比赛结束后计算md5值都比这个技术含量高。</p>
+<p>直接下载附件，用记事本打开（我这里用的是linux上的Kate），就可以看到flag。</p>
+<p><img src="https://i.loli.net/2020/09/26/79rPKMguiF4cN3H.jpg" alt="Screenshot_20200926_111437.jpg" /></p>
+<p>当然，Windows下可能会用编码错误导致无法查找flag，没关系，把它放到IDA中也可以一眼看见flag。</p>
+<p>这道题简单到了什么程度，我上张图的时间为38:45，这张图的时间为39:40。也就是说，我在1分钟内提交了两个flag。</p>
+<p>去年、今年、初赛、复赛。我从来没有在比赛中做过这种明文保存 flag 的 Reverse 题，这次这道题真的是一点难度都没有。</p>
+<h2 id="394813000-看题摸鱼"><a class="markdownIt-Anchor" href="#394813000-看题摸鱼"></a> 39:48–1:30:00 看题+摸鱼</h2>
+<p>做完这两道题后，我处在第7名的位置，再看时间还多，也没啥做题的动力，于是各种发呆和看题。</p>
+<p>在这不到1小时的时间里，我把所有题看了个遍，能下载的附件都下载了回来，创建了一个又一个web和pwn实例，还几次去看排行榜、PPC评测记录和选手们的脸。。</p>
+<p><img src="https://i.loli.net/2020/09/26/7WDgUjdFJyTbxlo.jpg" alt="Screenshot_20200926_114512.jpg" /></p>
+<p><img src="https://i.loli.net/2020/09/26/LbqPYONA14BKydc.jpg" alt="Screenshot_20200926_114914.jpg" /></p>
+<p>1小时22分时，我的排名从7掉到了12。而这时我也把题看得差不多了，我意识到我只有完成那道“安全评估”，才能挤进前16。</p>
+<h2 id="1300020500-dijkstra解决安全评估"><a class="markdownIt-Anchor" href="#1300020500-dijkstra解决安全评估"></a> 1:30:00–2:05:00 Dijkstra解决安全评估</h2>
+<p>其实这道题我一开始以为是一道最小生成树，于是在我做出那两道水题后就在本机和书上找类似的题。我们这次比赛是<strong>允许</strong>使用本机资源的，也就是说，如果你做过这道题，或者你保存着这道题的题解，那么你可以直接提交。比赛开始5分钟内就有选手通过了这道题，估计他们用的就是这种方法。</p>
+<p>我真的是对图论一窍不通，什么都不会写，于是我的策略就是拿别人类似题的代码修改。在知道这并不是一道最小生成树而是单源最短路径的时候，我将目光转向了Dijkstra算法。</p>
+<p>我翻开了《算法竞赛进阶指南》，并且在本地找到了与之匹配的代码库：</p>
+<p><img src="https://i.loli.net/2020/09/26/krVy3hjgCF5vbOc.jpg" alt="Screenshot_20200926_163830.jpg" /></p>
+<p><img src="https://i.loli.net/2020/09/26/98k7lGsptSefQdE.jpg" alt="Screenshot_20200926_163850.jpg" /></p>
+<p>当时我还没有考虑什么堆优化，我一直认为这些优化算法过于复杂，会导致出了问题很难排查。于是我把别人写的dijkstra复制了下来。</p>
+<p>简单地改了改，主要体现在输入格式的不同和对“路由器”设定的变动，这点后面再说。</p>
+<p>总之，大约比赛开始2小时后，我提交了代码。</p>
+<p>提交之后，我意识到，这个规模的数据根本不能使用邻接矩阵存储，需要上邻接表+堆优化Dijkstra，于是我又复制粘贴了堆优化的核心代码，并且针对核心代码改main函数。</p>
+<h2 id="2050024000-堆优化"><a class="markdownIt-Anchor" href="#2050024000-堆优化"></a> 2:05:00–2:40:00 堆优化</h2>
+<p>说道这里，可以介绍一下这道题和它的解法了。</p>
+<p>题目链接：<a href="https://mssctf.xidian.edu.cn/challenges#%E5%AE%89%E5%85%A8%E8%AF%84%E4%BC%B0-6" target="_blank" rel="noopener">https://mssctf.xidian.edu.cn/challenges#%E5%AE%89%E5%85%A8%E8%AF%84%E4%BC%B0-6</a></p>
+<p>其实这题的建模过程并不难。题目大致就是给定n个点和m条带权边，并且有o个“路由器”，每个路由器都连接了数个点，任意两个连接着的点都存在一条权值为b的边，求从s点出发的单源最短路径。</p>
+<p>这道题和一般的最短路模板题不一样的是：增加了“路由器”这个设定。</p>
+<p>我对这个设定的解决方法是：把每个路由器都看作是一个点，每条与它相连的边的权值为b/2。这样，对于每个不是路由器的普通节点，可以实现与题目描述相同的效果。</p>
+<p>那么b如果不被2整除怎么半呢？用double吗？</p>
+<p>很简单，直接把所有的边权都×2，最后再除以2就可以了，根据题目描述，结果一定是整数。</p>
+<p>这样，这道题就成为了一道普通的单源最短路径的模板题。</p>
+<p>回到比赛，我在2小时5分之后就开始写对于堆优化代码的main函数，由于有特殊的数据结构，我只好“照葫芦画瓢”，但得益于我的代码能力，我花了不到30分钟改好了代码，并且通过了样例。在2小时35分时，我第一次提交了代码。</p>
+<p>然后它就RE了。。之后我又把数据规模又开大了一些，WA。</p>
+<p><img src="https://i.loli.net/2020/09/26/Cmrk6PiaDdeJ38L.jpg" alt="Screenshot_20200926_172633.jpg" /></p>
+<p>之后反复看了几遍代码，又调试了几次，但并没有发现什么问题。</p>
+<p>当时离比赛结束，只有不到20分钟了。</p>
+<h2 id="2400030000-反杀"><a class="markdownIt-Anchor" href="#2400030000-反杀"></a> 2:40:00–3:00:00 反！杀！</h2>
+<p>现在看看这段的录屏，都会觉得刺激。在比赛结束前4分钟从19挤到16，简直是太惊险了。</p>
+<p>为什么我会把2小时40分钟作为一个分界点呢？因为在那之后，我改变了策略，开始疯狂提交代码。</p>
+<p><img src="https://i.loli.net/2020/09/26/6D1pJmwEuBs7QtV.jpg" alt="Screenshot_20200926_165057.jpg" /></p>
+<p>由于我并不清楚准确的问题，只能挨个去试。</p>
+<p>当时我精神紧绷，一直在看表，这份紧张也影响了我后面的发挥。</p>
+<p>在2小时50分时，我把代码中的int都改成了longlong，这下干脆连样例都过不了了，还白白浪费了时间，</p>
+<p><img src="https://i.loli.net/2020/09/26/rJ8C1WXU5DbS9hV.jpg" alt="Screenshot_20200926_173448.jpg" /></p>
+<p>在55分时，我发现了一个最大的问题：变量重复定义。我在for循环外定义了一个x，又在循环中定义了一个x用于计数，还在循环内修改了它。</p>
+<p>我立马把1分钟前提交的没有修改longlong的代码拷贝下来，开始修改。</p>
+<p>但由于我过于紧张，忽略了被注释掉的freopen，导致我以为我的本机出了问题。</p>
+<p>于是，我干脆直接在提交框里修改：</p>
+<p><img src="https://i.loli.net/2020/09/26/zGMDyZRJWPeBT6x.jpg" alt="Screenshot_20200926_174308.jpg" /></p>
+<p>正当我提交之后，惊喜出现了。弹出的并不是我期待的“Added to Judge Queue”，而是“You have already solved this”。</p>
+<p>当时的我真的惊呆了。</p>
+<p>“你已经解决了这道题”，因为平台不能查看提交的具体代码，我当时并不知道我的哪次提交通过了这道题。直到现在，我才明白，重复定义并不会给程序造成什么影响，for循环内外两个变量应该是相互独立的，真正的罪魁祸首是：评测机并不会忽略行末空格</p>
+<p>当时我修改代码，去掉行末空格时，根本没有报要AC的心态，就是随便改一改，OI系列比赛一般都是会忽略行末空格的，没想到这个比赛没有这样做，赛后组委会还特别向那些栽在这个点上的选手解释道歉，那些提交了几十次没有AC的选手应该也是因为这个。</p>
+<p>总之，这个在OI中没有人关注的点，竟成为了我解这道题的关键，其它的难度都不大，就看细节上的处理。</p>
+<p><img src="https://i.loli.net/2020/09/26/tgmoCXDM6I5ec23.jpg" alt="我当时怎么也不会想到" /></p>
+<p>当时，我第一反应是去看排行榜，一看16名，真是太惊险了。</p>
+<p><img src="https://i.loli.net/2020/09/26/atVgCkiqj9WvmUw.jpg" alt="Screenshot_20200926_175956.jpg" /></p>
+<p>我长舒一口气，静静地观察排行榜，等待比赛的结束。</p>
+<h1 id="赛后"><a class="markdownIt-Anchor" href="#赛后"></a> 赛后</h1>
+<p>父母在看见我在比赛快要结束时还在第19名，就没有再关注排名了。比赛结束后，我口中的16名，着实让他们吃了一惊。</p>
+<p>据一位看了B站排名直播的同学说，结束前4分钟我冲进了排行榜前16，还是最后一个拿到分的选手。</p>
+<p>在我之后的PPC提交就全是RE和WA了，这也许就是心态的差距吧。</p>
+<p>第二天的线上闭幕式，说好要办一个小时，但最终只持续了20多分钟。会上，我看到冯校长在现场，还是组委会邀请到的“知名中学的领导”的第一位，顿时心潮澎湃。</p>
+<p>顺便说下，这场闭幕式B站有录播，传送门：<a href="https://www.bilibili.com/video/BV1354y117rP" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1354y117rP</a></p>
+<p>宣读获奖名单的时候，主持人差点把我给落下，这里吐槽一下。</p>
+<p><img src="https://i.loli.net/2020/09/26/HTSWY7gcVGJf1U8.jpg" alt="Screenshot_20200920_101553.jpg" /></p>
+<p>最终，学校的一位老师替我拿回来了奖状和大支票，我也在周二学校的信息课上见到了它们。</p>
+<p>周四，我登上了学校公众号，编辑还特意把我的名字放在了标题上，文章在这里：<a href="https://mp.weixin.qq.com/s/jwPMs0CtaUzah5Di-07T3g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/jwPMs0CtaUzah5Di-07T3g</a></p>
+<p>去年的比赛，我是第19名，差1分进前16得奖，当时的我并没有坚持到最后，早早地就放弃了。这次上午比赛，我也是第19名，下午在我做出来最后一道题之前也是19名，好在我坚持到了最后，用对细节的追求和心态弥补了去年的遗憾。这种感觉是非常奇妙的，“history repeats itself”，我真的无法想象如果我没有做出那道题，再次拿到第19名，之后会发生什么样的事。</p>
+<p>比赛结束后，获得三等奖的喜悦很快就消散了，这次比赛的偶然性真是太强了。这次比赛中我最大的收获并不是这个三等奖，也不是5000元奖金（虽然确实挺多的哈哈），而是这次独特的经历。我第一次在比赛结束前4分钟有突破性的进展；第一次在最后时刻“临危不乱”，“扭转乾坤”；在我好几次为了一点点微小的希望而去掉行末空格中，第一次真正的看到希望……这次比赛的经历真是奇妙啊。</p>
 ]]></content>
       <tags>
-        <tag>Linux</tag>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「POJ2965」The Pilots Brothers&#39; refrigerator</title>
+    <url>/2020/08/05/%E3%80%8CPOJ2965%E3%80%8DThe%20Pilots%20Brothers&#39;%20refrigerator/</url>
+    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
+<p>AcWing：<a href="https://www.acwing.com/problem/content/118/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/118/</a></p>
+<p>VirtualJudge：<a href="https://vjudge.net/problem/POJ-2965" target="_blank" rel="noopener">https://vjudge.net/problem/POJ-2965</a></p>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>“飞行员兄弟”这个游戏，需要玩家顺利的打开一个拥有16个把手的冰箱。</p>
+<p>已知每个把手可以处于以下两种状态之一：打开或关闭。</p>
+<p>只有当所有把手都打开时，冰箱才会打开。</p>
+<p>把手可以表示为一个4х4的矩阵，您可以改变任何一个位置[i,j]上把手的状态。</p>
+<p>但是，这也会使得第i行和第j列上的所有把手的状态也随着改变。</p>
+<p>请你求出打开冰箱所需的切换把手的次数最小值是多少</p>
+<a id="more"></a>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>输入一共包含四行，每行包含四个把手的初始状态。</p>
+<p>符号“+”表示把手处于闭合状态，而符号“-”表示把手处于打开状态。</p>
+<p>至少一个手柄的初始状态是关闭的。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>第一行输出一个整数N，表示所需的最小切换把手次数。</p>
+<p>接下来N行描述切换顺序，每行输入两个整数，代表被切换状态的把手的行号和列号，数字之间用空格隔开。</p>
+<p>注意：如果存在多种打开冰箱的方式，则按照优先级整体从上到下，同行从左到右打开。</p>
+<h2 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围"></a> 数据范围</h2>
+<p>1≤i,j≤4</p>
+<h1 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h1>
+<h2 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> DFS</h2>
+<p>要想解法最优，首先要保证一个一个把手最多切换1次，如果切换1次以上就是浪费次数。</p>
+<p>例如切换2次，和不切换效果相同，切换3次，和切换1次效果相同……不管这n次切换中间经历了什么，最后的效果是和0或1次切换效果相同。</p>
+<p>这个非常容易证明，只需要证明操作是无序的即可。其实题目输出的排序，也暗示了这点。</p>
+<p>并且，如果不重复切换的话，每种情况是有唯一解的。</p>
+<p>这点是我的直觉告诉我的（真的很显而易见），也就是说，题目中“多种打开冰箱的方式”也只是打开的顺序不同，解法是相同的。</p>
+<p>这样，对于一个把手，只有切换和不切换两种状态，状态空间大小为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>16</mn></msup></mrow><annotation encoding="application/x-tex">2^{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span> ，也就是65536，完全可以考虑深搜。</p>
+<h2 id="二进制状态压缩"><a class="markdownIt-Anchor" href="#二进制状态压缩"></a> 二进制状态压缩</h2>
+<p>其实对于这道题，一共就4×4的范围，没什么必要弄状态压缩，但看在书上和 AcWing 给了位运算的tag，就写一下吧，实际优化的程度并不大。</p>
+<p>把当前状态用16位二进制表示，我选择的是从左到右，从上到下（和数据输出的顺序相同）。</p>
+<p>每次改变把手的时候就让相应的位和1做异或运算。</p>
+<p>由于我用1表示闭合，用0表示打开，所以当这个二进制数等于0的时候，说明找到了解（并且是唯一解），输出。</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mkbin</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="keyword">char</span> a;</span><br><span class="line"><span class="keyword">int</span> r, b, x, y, logx[<span class="number">20</span>], logy[<span class="number">20</span>], cnt, ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">16</span>; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;a);</span><br><span class="line">		<span class="keyword">if</span>(a==<span class="string">'\n'</span>) i--;</span><br><span class="line">		<span class="keyword">if</span>(a==<span class="string">'+'</span>) &#123; r*=<span class="number">2</span>; r+=<span class="number">1</span>; &#125;</span><br><span class="line">		<span class="keyword">if</span>(a==<span class="string">'-'</span>) r*=<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> <span class="built_in">step</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(r==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, cnt);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cnt; i++)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, logx[i], logy[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">step</span>==<span class="number">16</span>) <span class="keyword">return</span>;</span><br><span class="line">	</span><br><span class="line">	dfs(<span class="built_in">step</span>+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> b = mkbin(<span class="built_in">step</span>);</span><br><span class="line">	r = r^b;</span><br><span class="line">	logx[cnt]=<span class="built_in">step</span>/<span class="number">4</span>+<span class="number">1</span>;</span><br><span class="line">	logy[cnt]=<span class="built_in">step</span>%<span class="number">4</span>+<span class="number">1</span>;</span><br><span class="line">	cnt++;</span><br><span class="line">	dfs(<span class="built_in">step</span>+<span class="number">1</span>);</span><br><span class="line">	r = r^b;</span><br><span class="line">	cnt--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mkbin</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">	ans=<span class="number">0</span>;</span><br><span class="line">	x=num/<span class="number">4</span>; y=num%<span class="number">4</span>;</span><br><span class="line">	ans^=<span class="number">15</span>*<span class="built_in">pow</span>(<span class="number">16</span>, <span class="number">3</span>-x);</span><br><span class="line">	ans^=<span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">3</span>-y)*<span class="number">1</span>;</span><br><span class="line">	ans^=<span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">3</span>-y)*<span class="number">16</span>;</span><br><span class="line">	ans^=<span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">3</span>-y)*<span class="number">256</span>;</span><br><span class="line">	ans^=<span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">3</span>-y)*<span class="number">4096</span>;</span><br><span class="line">	ans^=<span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">3</span>-y)*<span class="built_in">pow</span>(<span class="number">16</span>, <span class="number">3</span>-x);</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pow</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> anss=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;d; i++) anss*=c;</span><br><span class="line">	<span class="keyword">return</span> anss;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>题解 - 状态压缩</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「USACO06FEB」Stall Reservations</title>
+    <url>/2020/08/02/%E3%80%8CUSACO06FEB%E3%80%8DStall%20Reservations/</url>
+    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
+<p>貌似是 USACO 原创，但我实在找不到原创的链接，只能在洛谷、 AcWing 和 POJ 上找了</p>
+<p>洛谷：<a href="https://www.luogu.com.cn/problem/P2859" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2859</a></p>
+<p>AcWing：<a href="https://www.acwing.com/problem/content/113/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/113/</a></p>
+<a id="more"></a>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>有N头牛在畜栏中吃草。</p>
+<p>每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。</p>
+<p>给定N头牛和每头牛开始吃草的时间A以及结束吃草的时间B，每头牛在[A,B]这一时间段内都会一直吃草。</p>
+<p>当两头牛的吃草区间存在交集时（包括端点），这两头牛不能被安排在同一个畜栏吃草。</p>
+<p>求需要的最小畜栏数目和每头牛对应的畜栏方案。</p>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>第1行：输入一个整数N。</p>
+<p>第2…N+1行：第i+1行输入第i头牛的开始吃草时间A以及结束吃草时间B，数之间用空格隔开。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>第1行：输入一个整数，代表所需最小畜栏数。</p>
+<p>第2…N+1行：第i+1行输入第i头牛被安排到的畜栏编号，编号是从1开始的 连续 整数，只要方案合法即可。</p>
+<p>（洛谷上题目描述是挤奶，AcWing上是吃草。。。）</p>
+<h1 id="基本算法"><a class="markdownIt-Anchor" href="#基本算法"></a> 基本算法</h1>
+<h2 id="贪心"><a class="markdownIt-Anchor" href="#贪心"></a> 贪心</h2>
+<p>应该是比较显而易见的一个贪心，我刚开始都不觉得自己有多贪。。</p>
+<p>按开始的时间把牛排序，然后依次放入畜栏，每次尽量放在已经使用过的畜栏中，如果没有就新建一个畜栏，cnt++。</p>
+<p>由于可以放进任意一个畜栏，可以直接选出结束时间最早的畜栏比较，如果比当前时间早就可以放入，如果比当前时间晚就新建。</p>
+<p>因此，可以通过 <code>std::priority_queue</code> 来维护一个小根堆来存放畜栏使用情况（当然手写也可以</p>
+<h2 id="priority_queue"><a class="markdownIt-Anchor" href="#priority_queue"></a> priority_queue</h2>
+<p>我一般管这个叫优先队列，它可以保证队头的元素是 最小/最大 的。</p>
+<p>对于这道题，存放畜栏的优先队列需要存放 畜栏中牛结束的时间 和 畜栏的编号，其中需要将最小值放在队首的是结束时间。因此，可以使用 <code>std::pair</code> 来作为一个单位存放。对于 pair ，每个元素进行比较时，先比较 first ，所以可以把结束时间放在 first 中。</p>
+<p>当然，手写一个node然后重载运算符来自定义比较也可以，但这就是 C++ 的进阶操作了。</p>
+<p>另外，在写的时候，一定要搞清楚队列里要存什么，思路一定要清晰（我就是因为这个被绕住了）</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::priority_queue;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::sort;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::greater;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pint;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50005</span>;</span><br><span class="line"><span class="keyword">int</span> n, cnt, le, ans[MAX];</span><br><span class="line">priority_queue &lt; pint, <span class="built_in">vector</span>&lt;pint&gt;, greater&lt;pint&gt; &gt; cl;</span><br><span class="line">pint tmp;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cow</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> start, <span class="built_in">end</span>, nu;</span><br><span class="line">&#125;cow[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Cow x, Cow y)</span> </span>&#123; <span class="keyword">return</span> x.start &lt; y.start; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"data.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;cow[i].start, &amp;cow[i].<span class="built_in">end</span>);</span><br><span class="line">		cow[i].nu=i;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(cow, cow+n, cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!cl.empty() &amp;&amp; cl.top().first&lt;cow[i].start)&#123;</span><br><span class="line">			ans[cow[i].nu]=cl.top().second;</span><br><span class="line">			cl.pop();</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; <span class="comment">// tmp.second=cl.size();</span></span><br><span class="line">			tmp.second=ans[cow[i].nu];</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; tmp.second=cnt;</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			ans[cow[i].nu]=cnt;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, cnt);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>题解 - 贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「XSection立体几何」中心投影和平行投影</title>
+    <url>/2020/08/09/%E3%80%8CXSection%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95%E3%80%8D%E5%B9%B3%E8%A1%8C%E6%8A%95%E5%BD%B1%E5%92%8C%E4%B8%AD%E5%BF%83%E6%8A%95%E5%BD%B1/</url>
+    <content><![CDATA[<h1 id="投影"><a class="markdownIt-Anchor" href="#投影"></a> 投影</h1>
+<p>话说前几天我在翻北师大版九年级上册数学书时，发现这本书的第五章是“投影与视图”。（这游戏没有汉化，这使书上术语的英文名是我感到十分亲切。。）</p>
+<p>这一章的第一小节就是投影，但其实对于立体几何，书上讲得非常简单，这节的重点其实是承接上一章《图形的相似》，利用相似三角形来计算投影的位置。</p>
+<p>即使是这样，我觉得还是很有必要放一下教科书上对投影的定义的：</p>
+<blockquote>
+<p>物体在光线的照射下，会在地面或其他平面上留下它的影子，这就是投影（Projection）现象，影子所在的平面称为投影面。</p>
+</blockquote>
+<a id="more"></a>
+<p>本来，小编觉得这句话的前半句太过物理化，不像数学语言的风格。但我之后又发现 百度百科 和 Wikipedia 上都是差不多的解释，也就认了这个定义。</p>
+<p>直到我翻了翻 XSection 的术语表：</p>
+<p><img src="https://i.loli.net/2020/08/09/e7mWLX63OMaV2ru.jpg" alt="Screenshot_20200809-160822.jpg" /></p>
+<p>它的解释是这样的：</p>
+<blockquote>
+<p>A projection is a correspondence between the points of an object and a plane.</p>
+</blockquote>
+<p>翻译成中文就是：</p>
+<blockquote>
+<p>投影是对象上和平面之间点的的对应关系</p>
+</blockquote>
+<p>其中，<code>correspondence</code>这个词就用得非常妙，一开始我其它词都认识，只有这个不知道什么意思，之后上谷歌翻译查了查，Google 给我的解释是 “对应”。</p>
+<p>我认为这个术语表中的解释是非常到位的，至少在游戏中是适用且非常严谨的。</p>
+<p>在后面的关卡中，会有许多需要找出投影的任务，这类题无非分两种，一种是已知平面上的投影，求物体（object）上的点。</p>
+<p>一种是已知物体上的点，求它在已知平面上的投影。</p>
+<p>而只要掌握了这种对应关系，这两种问题都可以迎刃而解。</p>
+<h1 id="中心投影"><a class="markdownIt-Anchor" href="#中心投影"></a> 中心投影</h1>
+<p>按照数学书对投影的解释，把光源看作是一个点，也就是所有的光线都会相交在一个点上，就是中心投影。</p>
+<p>数学书上的定义如下：</p>
+<blockquote>
+<p>手电筒、路灯和台灯的光线可以看成是从一个点发出的，这样的光线所形成的投影称为中心投影。</p>
+</blockquote>
+<p>最典型的例子就是灯泡了，我们可以将它看作是一个点光源，会向各个方向发光。手电筒还并不是一个典型，因为许多手电筒发出的其实更像是平行光。</p>
+<p>在 XSection 中，它的定义是这样的：</p>
+<p><img src="https://i.loli.net/2020/08/09/J8CLe7rxq4FBaHl.jpg" alt="Screenshot_20200809-165252.jpg" /></p>
+<blockquote>
+<p>A central projection is a projection in which all projective rays passes through a given point S (the center of projetion).</p>
+</blockquote>
+<p>翻译过来就是：</p>
+<blockquote>
+<p>中心投影中的每个投射线经过一个已知的点S（投影中心）。</p>
+</blockquote>
+<h1 id="平行投影"><a class="markdownIt-Anchor" href="#平行投影"></a> 平行投影</h1>
+<p>对于平行投影，一个很有意思的点是，太阳和灯都在向各个方向发光，但人们一般把灯光看作是点光源，使用的是中心投影，而太阳光则是平行光线，使用平行投影。</p>
+<p>这主要是因为，太阳离我们太远了，物体上的任意两个点与太阳构成的三角形的那个角实在太小太小了，完全可以看作是平行的。</p>
+<p>对于平行投影，书上的定义是这样的：</p>
+<blockquote>
+<p>太阳光线可以看成平行光线，平行光线所形成的投影成为平行投影（parallel projeciton）.</p>
+</blockquote>
+<p>百度百科上说：</p>
+<blockquote>
+<p>如果把中心投影法的投射中心即光源S移至无穷远处，则各投射线成为相互平行的直线，物体投影就不受距离变化的影响，这种投射线都互相平行的投影法称为平行投影法。</p>
+</blockquote>
+<p>而 XSection 上的定义，则更加严谨和明确：</p>
+<p><img src="https://i.loli.net/2020/08/09/DuhnoCcUt13XArZ.jpg" alt="Screenshot_20200809-172043.jpg" /></p>
+<blockquote>
+<p>A parallel projection is a projection in which all projection rays are parallel to a given line.</p>
+</blockquote>
+<p>翻译成中文就是：</p>
+<blockquote>
+<p>平行投影指的是每一条投射线都与给定直线平行的投影。</p>
+</blockquote>
+<h1 id="一个例子"><a class="markdownIt-Anchor" href="#一个例子"></a> 一个例子</h1>
+<p>值得注意的是，在游戏中，所有关于投影的题都不会提示你使用中心投影法或者平行投影法。</p>
+<p>不知道各位有没有发现，在画图上，平行投影法像是画出了一个棱柱，而中心投影法像是画出了一个棱锥。</p>
+<p>这是因为棱柱的每条棱互相平行，正好符合平行投影中投射线的性质。棱锥中所有棱都会相交与一点，也符合中心投影的性质。</p>
+<p>下面来看一个例子。因为 XSection 中是无法改变视图的，再加上竖屏不方便观看，我们就用 GeoGebra 进行演示：</p>
+<p><img src="https://i.loli.net/2020/08/09/DUq6LEMoI7cbX9y.jpg" alt="Screenshot_20200809_221233.jpg" /></p>
+<p>这是 XSection 中的 3.4 题，我认为比较有代表性。题目是这样的：</p>
+<p>已知<code>I</code>、<code>H</code>两点，求线段 I、H 在底面上的投影。（过F点的直线FH和GC是相交的，原谅我忘了作交点了吧）</p>
+<p>看到这个棱锥，首先想到的一定是中心投影法，因为它相当于给定了一个点G来求投影。</p>
+<p>投影面当然是底面，这个在题目中有提到。</p>
+<p>需要说明的是，直线FH的作用是表明点H在平面BGC上。事实上，FH//BC。</p>
+<p>那么作法就非常简单了，首先连接并延长GH、GI。</p>
+<p><img src="https://i.loli.net/2020/08/09/8GsNxvmBnzocQay.jpg" alt="Screenshot_20200809_221321.jpg" /></p>
+<p>下一步，找到这两条射线和底面的交点。</p>
+<p>这里要注意的是，游戏中你是无法直接找到线和面的交点的，必须找到这个面上可以与它相交的一条线，然后点出线与线的交点（这其实也是后面很多题的难点）</p>
+<p>在这道题中，这条线就是BC。<a href="https://www.cnblogs.com/dong628/p/13415431.html" target="_blank" rel="noopener">第一节</a>中讲过，「一个平面上任意个点都是处在同一平面的」，所以，有了平面BCG，就有平面HCG，也就有交点J。</p>
+<p>于是，根据同样的方法，可以找到点I的投影点D。</p>
+<p>最后，连接DJ，完成。</p>
+<p><img src="https://i.loli.net/2020/08/09/lVJZskqnMXaSCg4.jpg" alt="Screenshot_20200809_221342.jpg" /></p>
+<p>-&gt; to be continued…</p>
+]]></content>
+      <tags>
+        <tag>XSection</tag>
       </tags>
   </entry>
   <entry>
@@ -72,6 +337,129 @@
 ]]></content>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「题解」NowCoder7225A 排列</title>
+    <url>/2020/09/05/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8DNowCoder7225A%20%E6%8E%92%E5%88%97/</url>
+    <content><![CDATA[<p>题目链接：<a href="https://ac.nowcoder.com/acm/contest/7225/A" target="_blank" rel="noopener">https://ac.nowcoder.com/acm/contest/7225/A</a></p>
+<h1 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h1>
+<p>牛牛拿到了一个长度为N的排列和M个区间，一开始排列是1、2、3…N。</p>
+<p>然后他将这些区间在按顺序在排列上翻转，全部翻转一遍称一次操作。</p>
+<p>现在他要去搞文化课了…所以拜托你告诉他经过K次操作后的排列长什么样子。</p>
+<a id="more"></a>
+<h2 id="输入描述"><a class="markdownIt-Anchor" href="#输入描述"></a> 输入描述:</h2>
+<p>第一行三个整数：N，M，K。</p>
+<p>接下来M行，每行两个整数L和R描述一个区间。</p>
+<h2 id="输出描述"><a class="markdownIt-Anchor" href="#输出描述"></a> 输出描述:</h2>
+<p>输出一行N个数，表示经过K次操作后的排列。</p>
+<h1 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h1>
+<p>一开始，我认为对于任何的操作，只要操作两遍就等于没有操作，也就是说所有偶数次的操作都可以被忽略，然而……</p>
+<p><img src="https://i.loli.net/2020/09/05/wa2LNxdTjEGFPDH.jpg" alt="Screenshot_20200905_220229.jpg" /></p>
+<p>事实证明，我这个方法是不对的，这题也不可能这么简单（实际上我到现在没有找到反例）</p>
+<p>那么换种思路</p>
+<h2 id="记录变化量"><a class="markdownIt-Anchor" href="#记录变化量"></a> 记录变化量</h2>
+<p>一开始我想到的是，可以先翻转一次，记录这个数组的变化，也就是哪些位置发生了交换。</p>
+<p>之后，就可以直接使用这个变化量来循环操作K次了，时间复杂度为<code>O(NK)</code></p>
+<p>但是按照这个数据规模，这个时间复杂度一定没有办法AC，怎么办呢？</p>
+<h2 id="倍增思想"><a class="markdownIt-Anchor" href="#倍增思想"></a> 倍增思想</h2>
+<p>众所周知，倍增是一个特别快的算法，时间复杂度可以降低到对数级，著名的快速幂算法和ST表使用的就是倍增思想。</p>
+<p>稍加思考，很容易发现，求出2此操作后的变化量，可以把操作一次之后的结果在按照这个变化量变化，这样就可以得到操作2次的变化量。</p>
+<p>然后，我们就可以利用操作2次之后的结果 来得出操作两次后 数组的变化量，进而得出操作4次之后的结果。</p>
+<p>如此往复，可以通过递推的方式得到2^n次操作之后的变化量。</p>
+<p>又因为任何一个数都可以拆分成2^a[i]的和（其中a[i]为自然数）。</p>
+<p>比如5次操作可以通过先进行1此操作，再进行4次操作实现，这和快速幂算法是非常接近的。</p>
+<p>于是，我们可以使用记录变化量和倍增的方式达到<code>O(N log K)</code>的时间复杂度。</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Max=<span class="number">100005</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("data.in", "r", stdin);</span></span><br><span class="line">	<span class="keyword">int</span> n, m, k, pre[Max], tmp, l, r;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;n, &amp;m, &amp;k);</span><br><span class="line"><span class="comment">/*	if(!(k&amp;1))&#123;</span></span><br><span class="line"><span class="comment">		for(int i=1; i&lt;=n; i++) printf("%d ", i);</span></span><br><span class="line"><span class="comment">		return 0;</span></span><br><span class="line"><span class="comment">	&#125;*/</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) pre[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;l, &amp;r);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=l; j&lt;=((l+r)&gt;&gt;<span class="number">1</span>); j++)&#123;</span><br><span class="line">			tmp=pre[j];</span><br><span class="line">			pre[j]=pre[r-(j-l)];</span><br><span class="line">			pre[r-(j-l)]=tmp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> now[Max], ans[Max], ansbak[Max];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) now[i]=pre[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) ans[i]=i;</span><br><span class="line">	<span class="keyword">while</span>(k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(k&amp;<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)&#123;</span><br><span class="line">				ansbak[i]=ans[i];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)&#123;</span><br><span class="line">				ans[i]=ansbak[now[i]];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)&#123;</span><br><span class="line">			now[i]=pre[pre[i]];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) pre[i]=now[i];</span><br><span class="line">		k&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="built_in">printf</span>(<span class="string">"%d "</span>, ans[i]);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Git 来管理代码</title>
+    <url>/2020/08/22/%E4%BD%BF%E7%94%A8%20Git%20%E6%9D%A5%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="关于我的代码仓库"><a class="markdownIt-Anchor" href="#关于我的代码仓库"></a> 关于我的代码仓库</h1>
+<p>如果你关注我的 Github，那你应该知道，我最近新建了一个仓库，专门用来存放我平常在OJ上刷的题的代码，地址在这里：</p>
+<p><a href="https://github.com/dong628/OhMyCodes" target="_blank" rel="noopener">https://github.com/dong628/OhMyCodes</a>（求star啊啊啊）</p>
+<p>这个仓库使用 MIT 协议开源，意味着任何人都可以复制、修改、分发（商业或非商业），并且不需要使用相同的协议。</p>
+<p>目前位置，一共有67次 commit ，记录着我从2020年5月的刷题记录。</p>
+<a id="more"></a>
+<h1 id="为什么使用-git"><a class="markdownIt-Anchor" href="#为什么使用-git"></a> 为什么使用 Git</h1>
+<p>我每天上午会去学校机房刷题，下午有时间会接着刷，于是，在这两个地方管理代码就显得很麻烦。</p>
+<p>一个朴素的策略是，用一个可移动存储介质（比如U盘）在家和学校之间拷贝代码。U盘，机房和家中的电脑同时存放着一份我刷过所有题的代码，每次我在家或学校更新，都将最新的版本拷贝到U盘上，再带到另一个地方更新那边的文件。</p>
+<p>但是这样做有许多问题：</p>
+<ul>
+<li>用U盘一个个拷贝太麻烦了</li>
+<li>万一哪天存着最新版本的设备坏了怎么办，难道要用另一个U盘备份？</li>
+<li>哪天我代码写错了，没有办法退回到上一个版本</li>
+<li><s>插上U盘 -&gt; 拖动鼠标拷贝文件 -&gt; 拔出U盘 这个操作太不（mei）优（you）雅（bi）了（ge）</s></li>
+</ul>
+<p>Linux 的创始人——Linus Torvalds 早就意识到了这个问题，于是用一个星期的时间写出了 Git，并且把它用在了 Linux 内核源码的版本控制上，真正的诠释了那句他自己说的千古名句：</p>
+<blockquote>
+<p>Talk is cheap, show me the code!			--Linus Torvalds</p>
+</blockquote>
+<p>说来这是个版本控制系统，但其实我使用它回退版本的次数非常少，更多的是用来配合 Github 来远程协作的。</p>
+<p>所以说，如果没有更复杂的需求的话，Git 需要记的命令是非常少的，更重要的是对这个系统的理解。</p>
+<p>再说，作为一个学计算机的，Git 也是未来做项目时必备的生存技能。</p>
+<h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
+<p>本来，我认为几乎所有的 Linux 发行版会自带 Git，但事实上很多发行版并不会自带。</p>
+<p>但是，我相信绝大部分发行版的 软件仓库/默认软件源 中都会有git，所以你可以用自己发行版的包管理器来安装 Git。</p>
+<p>如果你是 Windows，那么 <s>快去用 Linux ！</s> 可以在 <a href="https://git-scm.com/download/windows" target="_blank" rel="noopener">https://git-scm.com/download/windows</a> 这个地址下载。</p>
+<p>Mac 可以在 <a href="https://git-scm.com/download/mac" target="_blank" rel="noopener">https://git-scm.com/download/mac</a> 这里下载。</p>
+<h1 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h1>
+<p>由于 Windows 下自带的那个 Git GUI 对我来说就是个废物，作为每天用命令行 Git 的我上手后根本不知道如何使用，说是 GUI ，但对新手非常不友好。</p>
+<p>再加上 Windows 下的 Git Bash 是 Windows 下 Bash 模拟器的典范，所以这个系列只有命令行，没有 GUI。</p>
+<h2 id="用户配置"><a class="markdownIt-Anchor" href="#用户配置"></a> 用户配置</h2>
+<p>即使 Git 只有你一个人离线使用，你也要首先告诉 Git 你是谁，所以就有了下面这两句：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"dong628"</span>  <span class="comment">#名称</span></span><br><span class="line">git config --global user.email 1816750728@qq.com   <span class="comment">#邮箱</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建一个仓库"><a class="markdownIt-Anchor" href="#创建一个仓库"></a> 创建一个仓库</h2>
+<p>仓库（Repository），可以看作是一个由 Git 管理的文件夹，有了仓库，Git 就可以跟踪其中的文件，记录版本变化。</p>
+<p>要想把一个文件夹变成一个 Git 仓库，只需要在这个文件夹中键入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>在 Windows 下，如果打开了显示隐藏文件，那么在那个文件夹中应该可以看到 .git 目录，这是 Git 用来存放历史版本的地方。对于 GNU/Linux 系统，可以使用 <code>ls -a</code> 命令查找到这个文件夹</p>
+<p><img src="https://i.loli.net/2020/08/21/dwHsNGfSqbrtEZB.jpg" alt="Screenshot_20200821_095333.jpg" /></p>
+<p>当你建立好仓库后，使用 <code>git status</code> 命令可以查看这个仓库的状态</p>
+<p><img src="https://i.loli.net/2020/08/21/7YnE3kO4mLhf9QZ.jpg" alt="Screenshot_20200821_100048.jpg" /></p>
+<h2 id="添加追踪文件"><a class="markdownIt-Anchor" href="#添加追踪文件"></a> 添加追踪文件</h2>
+<p>并不是文件夹中所有的文件都要被 Git 跟踪。事实上，即使你在这个文件夹中写了一堆文件，如果不运行任何命令，Git 是不会注意到这些文件的任何变化的，仓库也会是空空如也。</p>
+<p>当这个文件夹中新增了文件，Git 就会检测到这个文件没有被跟踪，从而在运行 <code>git status</code> 命令后给出这样的提示：</p>
+<p><img src="https://i.loli.net/2020/08/21/CFlMSUNmGyxIfhK.jpg" alt="Screenshot_20200821_100624.jpg" /></p>
+<p>就像这段文字的提示一样， <code>git add</code> 命令主要有两个作用：</p>
+<ol>
+<li>将未跟踪的文件添加跟踪</li>
+<li>将工作区的修改提交到暂存区</li>
+</ol>
+<p>其实1和2本质上是一样的，为此，要先来介绍一下 Git 中的暂存区域。</p>
+<p>暂存区，顾名思义，暂时存放文件的区域。一个 Git 仓库中有三个区域，分别时工作区、暂存区、版本库。其中，只有版本库存放了所有版本，工作区和暂存区都是只会存放一个版本的。其中，暂存区可以看作是一个存放着所有你 add 过的文件，并且可以随时把这些文件一次性打包，作为一个新版本放入版本库的。</p>
+<p>所以，当执行了 <code>git add &lt;文件名&gt;</code> 后，运行 <code>git status</code> 就会有这样的输出：</p>
+<p><img src="https://i.loli.net/2020/08/21/1YGbQNCMmiuZ3Tg.jpg" alt="Screenshot_20200821_102028.jpg" /></p>
+<p>可以看到，文件已经被 Git 追踪，如果不信，可以修改这个文件，再运行 <code>git status</code> 试试：</p>
+<p><img src="https://i.loli.net/2020/08/21/xAoLkV4u89ROMWy.jpg" alt="Screenshot_20200821_102343.jpg" /></p>
+<p>可以看到，Git 已经检测到了文件的更改。</p>
+<h2 id="当工作区和暂存区出现偏离"><a class="markdownIt-Anchor" href="#当工作区和暂存区出现偏离"></a> 当工作区和暂存区出现偏离</h2>
+<p>当提交到暂存区的文件在工作去被修改时，Git 会检测到文件被修改了，并且给用户两个选择</p>
+<ol>
+<li>将工作区的新文件提交到暂存区 ( <code>git add</code>命令)</li>
+<li>将暂存区的文件恢复到工作区 ( <code>git restore</code> 命令)</li>
+</ol>
+<p>如果工作区的这个修改是你不小心改掉了一些什么东西，那就可以使用第二条命令来恢复工作区。</p>
+<p>如果这是一个正确的改动，并且你想要更新暂存区里的文件，那么可以使用第一条命令。</p>
+<p>但其实这两个命令都是具有危险性的，因为它们都会删除一些版本呢，那么有没有什么方法可以同时保留这两个版本呢？</p>
+<h2 id="将暂存区的文件提交到仓库"><a class="markdownIt-Anchor" href="#将暂存区的文件提交到仓库"></a> 将暂存区的文件提交到仓库</h2>
+<p>当你认为暂存区里的这些文件已经是一个成型的版本，需要保存起来以便回溯时，就需要将暂存区中的文件打包成一个版本，放入版本仓库。</p>
+<p>当遇到上面的情况，也就是工作区和暂存区发生了偏离，Git 只告诉你可以保存一个，但没有告诉你两个都要的方法。</p>
+<p>为此，我们可以使用下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">"&lt;本次提交的注释&gt;"</span></span><br><span class="line">git add test.cpp</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/08/21/dKusne2bPINoU8W.jpg" alt="Screenshot_20200821_104620.jpg" /></p>
+<p>这样，我们成功地将暂存区里的版本提交到了版本库中，为此，你可以使用 <code>git log</code> 来查看版本库中存放的版本数据：</p>
+<p><img src="https://i.loli.net/2020/08/21/VyQ4mYoNFRPz8re.jpg" alt="Screenshot_20200821_104941.jpg" /></p>
+<p>-&gt; to be continued…</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -117,269 +505,6 @@
       <tags>
         <tag>算法</tag>
         <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Archlinux 下上网课</title>
-    <url>/2020/02/16/%E5%9C%A8Archlinux%E4%B8%8B%E4%B8%8A%E7%BD%91%E8%AF%BE/</url>
-    <content><![CDATA[<p>最近，新型冠状病毒肺炎肆虐，学生们不得不延长假期，在家上网课。但有一个大问题：我们没有书。</p>
-<p>于是，我们的老师给我们发了PDF格式的电子书，大概长这样：</p>
-<a id="more"></a>
-<p><img src="https://i.loli.net/2020/02/16/lZNujsFxLT7zRYD.png" alt="Screenshot_20200216_155502.png" /></p>
-<p>我们当然可以把它打印出来，但那样浪费资源，关键是在这个谁都出不了门的时期，又有哪些人可以在家里打印这些资料呢？</p>
-<p>于是我就想到，我们可以在电脑上看书和记笔记。而我正好有一块wacom的数位板，也可以在上面记笔记。</p>
-<h2 id="钉钉"><a class="markdownIt-Anchor" href="#钉钉"></a> 钉钉</h2>
-<p>由于钉钉并没有原生支持Linux，于是只能使用其它的办法。目前，如果想要在linux上运行windows程序，wine虽然已经很成熟了，但虚拟机更加稳定，而且可以适应几乎所以程序，于是我在vbox中创建了一个win10虚拟机，安装钉钉。这样就可以在虚拟机中上直播课了。</p>
-<p>而且这么做还有一个好处：</p>
-<p>众所周知，钉钉在直播开始时，都会告诉观看者：你的摄像头是全程关闭的。就像这样：</p>
-<p><img src="https://i.loli.net/2020/02/16/uXnNK4aBte1Y32g.jpg" alt="Screenshot_20200216-160930_1_1.jpg" /></p>
-<p>尽管如此，网上还是有人说老师可以调用学生的摄像头（尽管钉钉官方好像是辟谣了），并且在win10里，并不是所有的软件都可以在设置中关闭摄像头权限的，比如钉钉。</p>
-<p>于是有些人使用物理屏蔽（堵摄像头啥的），而使用虚拟机就可以彻底杜绝它使用摄像头了。</p>
-<h2 id="pdf"><a class="markdownIt-Anchor" href="#pdf"></a> PDF</h2>
-<p>要想在PDF上记笔记，我们需要一款可以在PDF上批注的软件。</p>
-<p>KDE自带的PDF工具 Okular 虽然右边有“批注”选项，但那个批注功能有和没有一样，点一次写一笔，完全不能用。</p>
-<p>于是，只能自己找其他软件。</p>
-<p>目前，可以批注并且兼容linux的PDF的阅读器，我找到了两款： MasterPDF editor 和 Foxit。</p>
-<p>提起 Foxit ，相信很多人都不陌生，是windows下的老牌PDF阅读器，但在linux下，有一些文件的页面会被莫名拉长，而 MasterPDF editor 就并没有这个问题，但它是商业软件，免费版会在编辑后加上水印，但不是很重。只能说，鱼与熊掌不可兼得吧。</p>
-<p>这两个软件，一个在<a href="https://aur.archlinux.org/packages/foxitreader/" target="_blank" rel="noopener">AUR源</a>里有，另一个在<a href="https://code-industry.net/free-pdf-editor/" target="_blank" rel="noopener">官网</a>可以下到linux版。</p>
-<h2 id="wacom-和-屏幕"><a class="markdownIt-Anchor" href="#wacom-和-屏幕"></a> Wacom 和 屏幕</h2>
-<p><a href="https://www.archlinux.org/packages/?name=xf86-input-wacom" target="_blank" rel="noopener">xf86-input-wacom</a>是wacom数位板在Arch下的驱动，使用<code>sudo pacman -S xf86-input-wacom</code>安装。</p>
-<p>这样，就可以在arch下—愉快地—上网课了。</p>
-<p>但我还有一块15寸的4k副屏，我可以将它竖起来看电子书：</p>
-<p><img src="https://i.loli.net/2020/02/16/lUE1OZpKnjukzi5.jpg" alt="IMG_20200216_164757.jpg" /></p>
-<p>那么怎样将这块屏幕和数位板利用上呢？</p>
-<h3 id="屏幕映射"><a class="markdownIt-Anchor" href="#屏幕映射"></a> 屏幕映射</h3>
-<p>在windows10下，如果你在多屏下使用数位版，windows会以 一个可以完整包含所有显示器显示范围的矩形 的四个定点，映射到数位板的上下左右四个点上。通俗地来说，windows10的wacom驱动无法将数位板映射到具体的某一块屏幕上。但是linux可以。</p>
-<p>先是使用<code>xsetwacom --list devices</code> 查看数位板的id：</p>
-<p><img src="https://i.loli.net/2020/02/16/lqbFYpdkHEsvhuf.png" alt="Screenshot_20200216_170418.png" /></p>
-<p>此时，数位板（stylus）的id为23</p>
-<p>如果你正常地配置好了显卡，使用命令 <code>xrandr</code> 找到你的那块屏幕：</p>
-<p><img src="https://i.loli.net/2020/02/16/QHCAz1JRIsouBXn.png" alt="Screenshot_20200216_170859.png" /></p>
-<p>比如我的外接屏幕是接在HDMI口上的，那么HDMI-0 就是我的屏幕，而后面的那一串形如“1080x1920+1920+0”是之后配置映射所用到的，确定你的屏幕的信息。</p>
-<p>然后，使用<code>xsetwacom --set &lt;数位板id&gt; MapToOutput &quot;&lt;你的屏幕&gt;&quot;</code>使屏幕映射到数位板</p>
-<h3 id="旋转数位板"><a class="markdownIt-Anchor" href="#旋转数位板"></a> 旋转数位板</h3>
-<p>在windows10下，你无法将数位板竖起来使用，但在linux下，你可以将竖起来的数位板映射到一块竖着的屏幕上。</p>
-<p>在映射配置好的情况下，使用<code>xsetwacom --set &lt;数位板id&gt; Rotate cw</code>用来顺时针旋转数位板。</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>［杂谈］一个故事的开始</title>
-    <url>/2020/07/06/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
-    <content><![CDATA[<h2 id="这是一个结束的开始"><a class="markdownIt-Anchor" href="#这是一个结束的开始"></a> 这是一个结束的开始</h2>
-<p>还有不到一年，初中生活就要结束了。还有不到一年，我们就要参加中考了。今天（2020年7月6日）早上，去学校参加了颁奖典礼。会上，老师多次和我们强调：我们的时间已经不多了。但学生代表pyt（好像是叫这个名字？）的发言中，详细计算了我们距离中考还有多少天，多少小时，多少分钟（尽管好像计算错了）……虽然我们即将面临的是一场至关重要的考试，但我们还有充足的时间准备。</p>
-<a id="more"></a>
-<p>这一学期开学以来，学习立马紧张了起来，各种考试接踵而来，学习的压力重重地压在了我们的头上。而当进入暑假，这场学习上的竞争正式开始了。上午的颁奖典礼中，有一个班级对抗赛颁奖的环节，一个年级16个班，8个班赢了，8个班输了（我们属于输的）。这些班的代表上台发表感言，并且输的班要给对方赠送礼物。在凤凰双语那10个班颁奖的过程中，现场充斥着一股“火药味”（高中部日常看淡成绩[捂脸]）。学习气氛似乎充满了整个学校。</p>
-<p>11月，NOIP2020也要拉开帷幕，距离我上次大量刷题已经过去了进一年。去年我已经规划好，要在这个暑假继续大量刷题、写博客，对于我的算法学习而言，这也是一个至关重要的暑假。</p>
-<p><img src="https://s1.ax1x.com/2020/07/06/UiHG2n.jpg" alt="UiHG2n.jpg" /></p>
-<p>结束，指的是我们的初中生活即将结束。距离中考还有一年，我们的初中生活即将结束，同时，NOIP2020也将是我初中阶段的最后一场信息学奥赛。</p>
-<p>开始，指的是我即将迈入的暑假，暑假结束后的两个学期，我们必将继续拼搏，而这个暑假是这个过程的开始。</p>
-<h2 id="这是一个开始的结束"><a class="markdownIt-Anchor" href="#这是一个开始的结束"></a> 这是一个开始的结束</h2>
-<p>这个暑假，我早就蓄谋已久。学期快要结束时，我就在思考这个暑假应该怎么过。在竞赛方面，去年我计划休息了一年，等到暑假冲击NOIP2020。近几年关于竞赛的政策飘忽不定，大约两个月前，大学自主招生被取消。这直接导致了许多竞赛生几年来的努力白费，对许多竞赛生的心态是一个巨大的打击。但当时我已经没有过多关注竞赛，反而对我的心态没有什么打击。暑假到了，冲击NOIP2020的时候也到了。暑假的开始，计划阶段 即将结束，这是一个开始的结束。</p>
-<p>这个暑假，我主要学习的是《算法竞赛进阶指南》，从第一章开始，坚持每天刷题，有比较好（或者做了好长时间不过）的题，或者对我启发比较大的事，我会尽量以博客的形式总结。</p>
-<p>对于文化课，我依然坚持不参加任何课外班。其实老师布置的任务已经够多了，认真完成作业，就足以在新的学期中跟紧老师们的步伐。</p>
-<p><img src="https://s1.ax1x.com/2020/07/06/UiHACd.jpg" alt="UiHACd.jpg" /></p>
-<p><img src="https://s1.ax1x.com/2020/07/06/UiHF4H.jpg" alt="UiHF4H.jpg" /></p>
-<p><img src="https://s1.ax1x.com/2020/07/06/UiHiUe.jpg" alt="UiHiUe.jpg" /></p>
-<p>同时，我会坚持体育锻炼，中考体育也是一个大项目，需要持之以恒的练习，待暑假结束，我将王者归来。</p>
-<p>开始，指的是我对于暑假的计划，是暑假的开端。这个开端即将结束，我将要正式步入这个充实的暑假。</p>
-]]></content>
-      <tags>
-        <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浅谈Linux分区和挂载（点）</title>
-    <url>/2020/01/04/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h2>
-<p>在windows下，分区是有明显的界限的，就比如这样：</p>
-<p><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg" alt="" /></p>
-<p>在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。</p>
-<a id="more"></a>
-<h1 id="linux分区就是文件夹"><a class="markdownIt-Anchor" href="#linux分区就是文件夹"></a> Linux——分区就是文件夹</h1>
-<p>其实这么说并不准确，因为Linux下“分区”的概念是比较模糊的。</p>
-<p><img src="https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg" alt=" " title="Linux下的目录树" /></p>
-<p>Linux是以树的结构存储文件的。不管你的电脑中有几块硬盘（即便没有），也不管硬盘分了几个区，Linux都会给你整出来个根目录，也就是上图中最顶层的“/”。一旦你安装了Linux，它就会在根目录下创建几个文件夹，这些文件夹的名字是“root”、“home”、“dev”等等。路径分别是“/root”、“/home”、“/dev”等。</p>
-<p>众所周知，存储文件需要硬盘。Linux这波操作光搞了个目录，但是与硬盘和分区没有任何关系，那么这些文件夹和之后要写入的文件存在哪里啊？这就引入了Linux下“挂载”的概念。</p>
-<blockquote>
-<p>分区就是个文件夹！</p>
-</blockquote>
-<p>在linux下，你可以像windows一样创建分区，但是并不像windows一样，创建完就给你显示在“此电脑”中（默认是这样的，也可以设置不显示）。但是在Linux下，要想使用一个分区，必须先要挂载。</p>
-<p>前面说过，Linux下的根目录里是要存东西的，要想存东西，就要有硬盘。所以Linux的做法是：将根目录下的某一部分（也有可能是全部）与分区建立对应关系。</p>
-<p>打个比方，打开你的文件管理器，在里面的地址栏中输入“/”，然后在空白区域右击，选择“属性”。</p>
-<p><img src="https://i.loli.net/2020/01/04/9vsoRilzYA4uCHM.png" alt="Screenshot_20200104_154532.png" /></p>
-<p>然后你应该可以看到挂载点和挂载的分区。其中，分区并不像Windows那样以盘符表示，而是一个文件。关于这个文件的意义，我们以后再说。</p>
-<p><img src="https://i.loli.net/2020/01/04/hfXDUelGJ2LYqnb.png" alt="Screenshot_20200104_153959.png" /></p>
-<p>而这个挂载点就是根目录“/”，也就是说，根目录下的所有文件，都存在了这个分区里？</p>
-<p>其实并不是这样的，这个分区只是和根目录建立了一个对应关系，并不代表根目录中所有文件都存在了这个分区中。</p>
-<p>再举个例子，插上你的U盘，如果你用的是KDE、GNOME这样的桌面环境，应该可以通过简单的动动鼠标，进入这个U盘。</p>
-<p><img src="https://i.loli.net/2020/01/04/pSGx4mnEBcYgtlZ.png" alt="Screenshot_20200104_160153-1.png" /></p>
-<p>而这时，点击文件管理器中的地址栏，你会得到一个路径，就像这样：</p>
-<p><img src="https://i.loli.net/2020/01/04/a9JxvENR8B5yMCo.png" alt="Screenshot_20200104_160310.png" /></p>
-<p>然后，在根目录下，按照这个目录，打开这个文件夹。</p>
-<p>比如，我的是“/run/media/archer/7BD2-F1FA/”，于是我现在根目录下找到“run”文件夹，打开，再找到“media”文件夹，打开，在找到并打开“archer”文件夹（我的用户名），然后打开“7BD2-F1FA”文件夹。</p>
-<p>然后，你就会发现：</p>
-<blockquote>
-<p>这不就是我U盘里的东西吗</p>
-</blockquote>
-<p><img src="https://i.loli.net/2020/01/04/3xwlDZvz4bB7H1P.png" alt="Screenshot_20200104_160941.png" /></p>
-<p>在页面的空白处，右击，点击“属性”。“挂载点”那一栏写的就是你刚才打开的文件夹的路径，而“挂载自”一栏也是 /dev 目录下的一个文件，sd**代表这是一个分区。</p>
-<p>这时，你可能就会发现：</p>
-<blockquote>
-<p>这个U盘（准确地说是这个分区）就是一个文件夹！！</p>
-</blockquote>
-<p>没错，分区本身，在Linux下是一个在 /dev 目录下的文件，你可以把它挂载到目录树的一个文件夹下，你才可以访问这个分区中的文件。</p>
-<p>这个实验也表明了，Linux下的挂载点是可以嵌套的。你可以将任何一个分区挂载到任何一个目录（除了根目录必须作为一个挂载点挂载磁盘），这就为Linux的文件管理提供了无限的可能。比如说，我的Linux目录树是这样的：</p>
-<p><img src="https://i.loli.net/2020/01/04/y7UbeZNcl3JxVwp.jpg" alt="003vPl7Rty6E8kZRlAEdc690_1.jpg" /></p>
-<p>至于我为什么要把 /home 文件夹里的内容存到一个单独的分区里，这个以后再说。</p>
-<h2 id="在linux下如何查看我的分区情况"><a class="markdownIt-Anchor" href="#在linux下如何查看我的分区情况"></a> 在Linux下如何查看我的分区情况</h2>
-<p>Linux下，有一个分区工具叫做 fdisk ，你可以以root用户运行以下命令查看分区情况：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fdisk -l</span><br></pre></td></tr></table></figure>
-<p>就像这样：</p>
-<p><img src="https://i.loli.net/2020/01/04/LByAR2Nagv9JrxH.png" alt="Screenshot_20200104_163440-1.png" /></p>
-<p>其中&quot;nvme&quot;开头的是NVMe协议的硬盘（一般是固态），而sd开头的是通过SATA、SCSI、USB这些接口传输数据的存储设备，loop开头一般是光盘。</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>「题解」HNOI2003 激光炸弹</title>
-    <url>/2020/07/07/%EF%BC%BB%E9%A2%98%E8%A7%A3%EF%BC%BDHNOI2003%20%E6%BF%80%E5%85%89%E7%82%B8%E5%BC%B9/</url>
-    <content><![CDATA[<h2 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h2>
-<p>基本的二维前缀和，把从（0,0）到任何一个点围成的矩形中所有的价值计算出来，然后再通过容斥原理算出所有可能正方形中的价值之和。</p>
-<p>如果把初始的地图存入A数组，那么它的二位前缀和S就是：</p>
-<p>$S[i][j]=\sum_{x=1}^{i} \sum_{y=1}^{j} A[x][y] $</p>
-<p>根据容斥原理，有：</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>+</mo><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo>+</mo><mi>A</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>−</mo><mi>S</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">S[i][j] = s[i-1][j]+s[i][j-1]+A[i][j]-S[i-1][j-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></p>
-<p>这样，就可以利用上述递推式推出S数组。</p>
-<a id="more"></a>
-<p>同时，对于任意一个边长为R，最靠近原点的顶点为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>的正方形，其内部所有点的价值之和为：</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo>+</mo><mi>R</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>y</mi><mo>+</mo><mi>R</mi><mo stretchy="false">]</mo><mo>−</mo><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo>+</mo><mi>R</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>y</mi><mo stretchy="false">]</mo><mo>−</mo><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>y</mi><mo>+</mo><mi>R</mi><mo stretchy="false">]</mo><mo>+</mo><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>y</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">S[x+R][y+R]-S[x+R][y]-S[x][y+R]+S[x][y]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">]</span></span></span></span></p>
-<p>这样，就可以以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的时间复杂度解题。</p>
-<h2 id="我踩过的坑"><a class="markdownIt-Anchor" href="#我踩过的坑"></a> 我踩过的坑</h2>
-<ol>
-<li>
-<p>这题有125MB的空间限制，根据上述递推式，只需要一个数组就可以完成，开两个范围为5000的二位数组貌似过不了。。</p>
-</li>
-<li>
-<p>数据规模约定中，n最大可以到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>，然而并没有那么大的地图，相当于“全图轰炸”，此时效果与<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>5</mn><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">n=5*10^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>效果相同，可以直接替换。数组开到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>的话会爆空间的。</p>
-</li>
-<li>
-<p>数组稍微开大一点点。</p>
-</li>
-<li>
-<p>最重要的一点，数据要从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>开始存，也就是说，边界应该为0,这样才能保证边界的数可以被正确计算</p>
-</li>
-</ol>
-<p>我一开始没有注意第3点，之后在洛谷得了90分，被这样一个数据卡住了：</p>
-<p><img src="https://s1.ax1x.com/2020/07/07/UFjZ6J.jpg" alt="UFjZ6J.jpg" /></p>
-<p>可以看到，全是第0列的点。。</p>
-<p>之后自己造了一个数据，成功发现了这个问题：</p>
-<p><img src="https://s1.ax1x.com/2020/07/07/UFjR7q.jpg" alt="UFjR7q.jpg" /></p>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">5002</span>;</span><br><span class="line"><span class="keyword">int</span> s[MAX+<span class="number">5</span>][MAX+<span class="number">5</span>], n, r, summ, maxx, x, y, w;</span><br><span class="line"><span class="keyword">int</span> xmax, ymax;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("data.in", "r", stdin);</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;r);</span><br><span class="line">	<span class="keyword">if</span>(r&gt;<span class="number">5000</span>) r=<span class="number">5000</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;x, &amp;y, &amp;w);</span><br><span class="line"><span class="comment">//		xmax = xmax&gt;x?xmax:x;</span></span><br><span class="line"><span class="comment">//		ymax = ymax&gt;y?ymax:y;</span></span><br><span class="line">		s[x+<span class="number">1</span>][y+<span class="number">1</span>] += w;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">/*	for(int i=1; i&lt;=MAX+2; i++)&#123;</span></span><br><span class="line"><span class="comment">		s[i][0] += s[i-1][0];</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	for(int i=1; i&lt;=MAX+2; i++)&#123;</span></span><br><span class="line"><span class="comment">		s[0][i] += s[0][i-1];</span></span><br><span class="line"><span class="comment">	&#125;*/</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=MAX+<span class="number">2</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=MAX+<span class="number">2</span>; j++)&#123;</span><br><span class="line">			s[i][j] += s[i<span class="number">-1</span>][j]+s[i][j<span class="number">-1</span>]-s[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=MAX-r; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=MAX-r; j++)&#123;</span><br><span class="line">			summ = s[i+r][j+r]-s[i+r][j]-s[i][j+r]+s[i][j];</span><br><span class="line">			maxx = maxx&gt;summ?maxx:summ;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	maxx = maxx&gt;s[r][r]?maxx:s[r][r];</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, maxx);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>［杂谈］一个故事的结束</title>
-    <url>/2020/07/05/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E7%BB%93%E6%9D%9F/</url>
-    <content><![CDATA[<p>７月２日，期末考试的尘埃落定又标志这我一个学期的结束。看到朋友圈里许多同学都写下了自己对这个学期的总结，于是我也来趁着这个初二年级的结束来对我之前的学习做个总结（原谅我文笔不太好。。）。我上次写总结已经是2019年的暑假结束了，那么这次就写一些从那时到现在我的一系列故事吧。</p>
-<p>回想起这个学期，大部分时间都在网课中度过，开学之后就是各种考试。但直到学校给我们施加上前所未有的压力后，我才意识到，一年后的我们，就要接受义务教育阶段最重要的考试——中考 了。过去的几个学期中，我在八年级时的变化是最大的。</p>
-<a id="more"></a>
-<p>这是一次对自我的更深刻的认知。八年级的我接触到了更广阔的世界，了解到了更多的人。从2019年9月开始，我几乎没有再学习新的算法，我在算法竞赛上几乎毫无进展。这一方面是因为开学后的时间变少，另一方面是因为我在逐渐调整对自我的认知。</p>
-<p><img src="https://i.loli.net/2020/07/05/2bQapdrKRICD4jm.jpg" alt="Screenshot_20200705_101620.jpg" /></p>
-<h2 id="八月底的决定"><a class="markdownIt-Anchor" href="#八月底的决定"></a> 八月底的决定</h2>
-<p>以下内容连接我的暑假总结（<a href="https://www.luogu.com.cn/blog/tfls-djl/post-shu-jia-zong-jie-yi-ge-guan-yu-jian-chi-di-gu-shi%EF%BC%89%EF%BC%8C%E8%AF%B7%E7%BB%93%E5%90%88%E9%A3%9F%E7%94%A8%E3%80%82" target="_blank" rel="noopener">https://www.luogu.com.cn/blog/tfls-djl/post-shu-jia-zong-jie-yi-ge-guan-yu-jian-chi-di-gu-shi），请结合食用。</a></p>
-<p>去年的暑假，我坚持每天更新一篇博客，也刷了非常多的题，其中大部分是关于搜索的。在这期间，我参加了一些学校组织的比赛。我当时只学了不到一年的竞赛，只有普及组省二的水平，连动态规划都不会。。但令我吃惊的是，这些比赛我都取得了比较好的成绩，比许多学得时间比我长，算法储备也比我丰富的多的初三、高一的同学排名都要靠前。我认为这是因为我在其他许多方面的知识储备占了优势，而且我还有许多时间来学竞赛（其实SX这么弱，高中开始学确实不晚。。），于是我作出了一个影响深远的决定：放慢学习算法竞赛的速度。</p>
-<h2 id="新的领域"><a class="markdownIt-Anchor" href="#新的领域"></a> 新的领域</h2>
-<p>9月我接触到了ArchLinux，便疯狂沉迷其中。这是一个相当难以驾驭的GNU/Linux发行版，是进阶的必经之路（当然我主要是觉得它挺有意思的）。<s>于是我就装一个系统装了半年。。</s></p>
-<p>这是一个相当复杂的工程。虽然官方有详细的wiki和教程，但每台电脑的具体情况是不同的，不可能把所有机型都考虑到。再加上我对Linux的认识只有用了不到一年的Ubuntu，于是在这条路上困难重重。在虚拟机上完全没有问题的系统撞到实体机上就会出问题，还几次把我的引导分区搞坏，导致电脑无法正常启动……我完全低估了这个新的领域的难度……于是，在八年级上半学期，我大部分空闲时间都在折腾Linux。</p>
-<p><img src="https://i.loli.net/2020/07/05/BMYdKuPUvci2yz8.jpg" alt="Screenshot_20200705-173106.jpg" /></p>
-<p>由于在其它领域花费时间过多，还有各种各样的环境问题，我对算法竞赛的学习在一个学期里停滞不前……而11月，我就要参加CSP2019了，这是信息学奥赛中最重要的比赛。比赛分为普及组和提高组、18年我已经参加过NOIP（CSP的前身）普及组了，19年我想要参加提高组。但教练觉得我的水平不够，想让我拿到一等奖后再参加提高（18年我拿了二等奖）。。于是我又陷入了无限的反思中……最后，我同意去参加普及组，但当时为时已晚，没有办法再改了~~（然后我就有拿了个省二）~~……</p>
-<p>这几件事为什么我要一起说呢。。因为它们造成了我心态的一次大的改变……我感受到了前所未有的**“孤独”**</p>
-<p>Linux在中国是一个很小的圈子，没有多少人会因为兴趣而折腾这些没什么用的东西……这就导致我遇到的大部分问题都不知道该怎么解决…之前学算法竞赛时，如果遇到哪些题不会，百度一下就会找到题解，如果学校有竞赛队的话，还可以去问老师同学。但我并没有找见许多在系统上和我遇到同样问题的人，我的兴趣也在系统的一次次error中消磨……我多次想要放弃，但最后还是坚持了下来。算法方面，几个月的毫无进展对我的心态无疑是一个巨大的打击。遇到问题就会变得非常着急，心态不好又会导致更多的问题……我似乎陷入了这个恶性循环中……</p>
-<p>那么这些看起来这么负面的东西有带给我了什么启发呢？</p>
-<p>首先是英语水平的巨大提升。那段时间，我上Google和查英文wiki的时间大幅增加，这导致我英语的阅读量有了飞跃。当我真正用到这些东西的时候，应试就不是什么困难的事了，于是在八上期末考试中，我拿到了英语单科的年级第一。</p>
-<p>其次是心态的变化，也带给了我许多感悟。我承受许多打击的能力变强（因为我在这期间遭受了太多打击。。），对待很多事情也变得非常“佛系”。我意识到，不管是文化课还是竞赛还是其他奇怪的知识的学习中，心态是至关重要的，心态不好就会陷入恶性循环中。</p>
-<p>最后是对Linux系统的认识有了质的飞跃。GNU/Linux系统中处处充满着“自由”，可以自由地修改源代码再分发，可以自由地修改系统中的任何配置，甚至可以随意“破坏”系统中的任何事物。正如那句名言：</p>
-<blockquote>
-<p>Unix（Linux的父分支）的目的并不是阻止用户做傻事，因为那样也会阻止他们做聪明的事。	——Doug Gwyn</p>
-</blockquote>
-<p><img src="https://i.loli.net/2020/07/05/H54MJvipG9Bmetr.jpg" alt="Screenshot_20200705-173210_1.jpg" /></p>
-<p>这样的情况一直持续到了寒假结束，直到新学期我才真正走出这个阶段。</p>
-<h2 id="前所未有的压力"><a class="markdownIt-Anchor" href="#前所未有的压力"></a> 前所未有的压力</h2>
-<p>受疫情影响，我们被迫在家上了三个月的网课。在这期间我重装了系统，并且每天运行“sudo pacman -Syu”（更新系统的命令），稳定运行到现在（7月5日）。虽然没有了每天和老师的见面，但钉钉动听的提示音还是能让我整天提心吊胆。进入新学期，我们的压力明显增大，每天的网课和作业让我对这一点有了深刻体会——即便是网课，也要比上个学期紧张。</p>
-<p><img src="https://i.loli.net/2020/07/05/Dua3F5CHloRmWMg.jpg" alt="Screenshot_20200705-220834_1.jpg" /></p>
-<p>而在开学后，我才发觉——网课真是太轻松了。。每周上六节课，每天的最后一节自习课考试，几乎没有了自习课看闲书的时间。班里一共52个人，有大约40个人参加了晚自习，每天9点才能下课，作业经常写到10点半。学校对手机有了严格的管控，建议我们每个人把手机上交年级组，以督促我们学习。前所未有的压力，压在了我们每个人的头上。这时，我才猛地意识到：我们还有一年就要中考了。</p>
-<h2 id="结束了"><a class="markdownIt-Anchor" href="#结束了"></a> 结束了？</h2>
-<p><img src="https://i.loli.net/2020/07/05/N6YzG3CQHtmS7Oq.jpg" alt="游戏Minecraft中的进度“结束了？”" /></p>
-<p>升入初二年级后，我发生了巨大的变化。将近一年过去了，我的这个充满着思考、无奈、彷徨、收获的故事也是时候该结束了。接下来的暑假，将会是又一个崭新的故事……</p>
-<p>敬请期待……</p>
-]]></content>
-      <tags>
-        <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>「NOI Online 提高组 」T3 最小环 70分题解</title>
-    <url>/2020/03/13/%E6%9C%80%E5%B0%8F%E7%8E%AF70%E5%88%86%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.cok.cn/problek/P6187" target="_blank" rel="noopener">题目链接</a></p>
-<p><img src="https://i.loli.net/2020/03/09/kp7TWLjf61FaYvt.jpg" alt="c67625086b63f624199efc639044ebf81b4ca37e.jpg" /></p>
-<p>这篇文章中， “基本思路”部分会详细介绍我最真实的推理过程，可能会有些啰嗦，还会包括一些显而易见随手推一推就能推出来的结论的证明，这些结论我已经用粗体字标注出来了。</p>
-<a id="more"></a>
-<h2 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h2>
-<p>观察样例，<s>显然</s>：</p>
-<p><strong>当n可以被k整除时，整个环可以拆分成k个互不相关的环。</strong></p>
-<p>样例中，k=2时，可以将最优方案看成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">{3,1,2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">{6,4,5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span></span></span></span></span>两个集合中任意两个距离为1的数的乘积的和。</p>
-<p>当一个环中只有三个数，并且k=1（也就是要求相邻两个数乘积的和）时，三个数的位置并不会影响最终结果，因为每个数都会和另外两个数分别乘一次。<strong>所以把三个最小的数 和三个最大的数 组合在一起，就是最优解。</strong></p>
-<p>这个结论比较容易想到，以下是证明过程：</p>
-<h3 id="n6k3-时的证明"><a class="markdownIt-Anchor" href="#n6k3-时的证明"></a> n=6，k=3 时的证明</h3>
-<p>尝试把两个集合中的任意一个数互换位置。比如互换1和6，那么两个集合就会变成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo separator="true">,</mo><mn>6</mn><mo separator="true">,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">{3, 6, 2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">{1, 4, 5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span></span></span></span></span>，比较第一个集合算出的结果在这次交换后上升的值 和 第二个集合（算出的结果）在交换后下降的值，它们分别为<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \* at position 6: (6-1)\̲*̲(3+2)'>(6-1)\*(3+2)</span>和<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \* at position 6: (6-1)\̲*̲(4+5)'>(6-1)\*(4+5)</span>，不论交换哪两个数，两个式子第一个乘数都相等。而第二个乘数中，第二个集合总比第一个集合大。综上所述，第一个集合上升的值比第二个集合下降的值要小，它们的和会下降。</p>
-<p>而我们很容易把这个证明推广到正整数范围。</p>
-<h3 id="那么当n不能被k整除时呢"><a class="markdownIt-Anchor" href="#那么当n不能被k整除时呢"></a> 那么当n不能被k整除时呢？</h3>
-<p>先说结论：<strong>当k不能整除n时，只要n不变，最大值就确定</strong></p>
-<h4 id="理论"><a class="markdownIt-Anchor" href="#理论"></a> 理论</h4>
-<p>还是举个例子：</p>
-<p>比如n=7, k=3时，这个环为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>6</mn><mo separator="true">,</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">{1, 2, 3, 4, 5, 6, 7}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">7</span></span></span></span></span>时，算出的和为：</p>
-<p>$1<em>4+4</em>7+7<em>3+3</em>6+6<em>2+2</em>5+5*1$</p>
-<p>显然（其实我也不知道是为什么），没有重复和遗漏，并且按照这个顺序，<strong>我们也可以把它看成7个数的环中，相邻的两个数乘积的和</strong>，只不过是这个“相邻”指的是距离为k的两个数。</p>
-<p>和传统意义上的“相邻”（即k=1）一样，这个环上的每个数<strong>有且仅有</strong>两个数和它相乘。对于这道题，唯一的不同点在于，对于同样的一个环，k会影响其最后算出的和。但是对于本题中求的最大值，我们可以在算出k=1（因为这比较方便计算）后再去调整“相邻”</p>
-<h4 id="例子如何变换"><a class="markdownIt-Anchor" href="#例子如何变换"></a> 例子：如何变换</h4>
-<p>比如n=7，k=1时，这个环是这样的：</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>6</mn><mo separator="true">,</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">{1, 2, 3, 4, 5, 6, 7}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">7</span></span></span></span></span></p>
-<p>算出的和为：</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>∗</mo><mn>2</mn><mo>+</mo><mn>2</mn><mo>∗</mo><mn>3</mn><mo>+</mo><mn>3</mn><mo>∗</mo><mn>4</mn><mo>+</mo><mn>4</mn><mo>∗</mo><mn>5</mn><mo>+</mo><mn>5</mn><mo>∗</mo><mn>6</mn><mo>+</mo><mn>6</mn><mo>∗</mo><mn>7</mn><mo>+</mo><mn>7</mn><mo>∗</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1*2+2*3+3*4+4*5+5*6+6*7+7*1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
-<p>当k=3时，如何变换这个环，使算出来的值等于k=1是的值呢？（以下步骤使用x表示未知数）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 首先，将1（第1个数，后同理）填入任何一个位置（因为是一个环，首尾相接，绝对未知并不会影响最终结果。为方便演示，填到[0]的位置）</span><br><span class="line"></span><br><span class="line">&#123;1, x, x, x, x, x, x&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 找到与1相邻的位置，填2</span><br><span class="line"></span><br><span class="line">&#123;1, x, x, 2, x, x, x&#125; 或 &#123;1, x, x, x, 2, x, x&#125;  &#x2F;&#x2F;两种分别对应往前数和往后数，后省略，以第一种为例</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 找到另一个与2相邻的位置（即两个位置中未知的那个），填3</span><br><span class="line"></span><br><span class="line">&#123;1, x, x, 2, x, x, 3&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 以此类推，找到另一个与n相邻的未知，填(n+1)</span><br><span class="line"></span><br><span class="line">&#123;1, x, 4, 2, x, x, 3&#125;</span><br><span class="line">&#123;1, x, 4, 2, x, 5, 3&#125;</span><br><span class="line">&#123;1, 6, 4, 2, x, 5, 3&#125;</span><br><span class="line">&#123;1, 6, 4, 2, 7, 5, 3&#125;</span><br></pre></td></tr></table></figure>
-<p>相信在这个过程中，可以生动体会到上面的理论</p>
-<p>于是，将这个环代入计算，过程和结果与上面的完全一致。</p>
-<h3 id="找出最大值"><a class="markdownIt-Anchor" href="#找出最大值"></a> 找出最大值</h3>
-<p>上面说了那么多，总结起来一句话：<strong>当n与环a一定，且k不整除n时，最大值不随k变化而变化（k这时可以当作1）</strong></p>
-<p>而当k整除n时，又可以拆成k个小环，而每个子环都可以看成是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">n=(n/k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>，$ k=1$的环。</p>
-<p>这样，我们就把两种情况统一成一种了。</p>
-<p>唯一例外的是，当k为一个完全平方数，且sqrt(k)整除n时，可以看作是k=sqrt(k)</p>
-<p>现在要实现的就是，当k=1时，怎样排列可以使这个值最大。</p>
-<h4 id="实例"><a class="markdownIt-Anchor" href="#实例"></a> 实例</h4>
-<p>可以参考样例中k=1, n=6时的排列：</p>
-<p>可以发现和6相邻的为4和5，和5相邻的另一个数是3，和4相邻的另一个数是2。</p>
-<p>这样排列把最大的数放在了一起，然后从大到小排列，尽可能把大的数放在一起。我会用n=7, k=1来演示这个过程</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;x, x, x, x, x, x, x&#125; &#x2F;&#x2F;初始状态</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在任意位置放7,并且时6,5与7相邻</span><br><span class="line"></span><br><span class="line">&#123;x, x, 5, 7, 6, x, x&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在6旁边放剩余的最大的数</span><br><span class="line"></span><br><span class="line">&#123;x, x, 5, 7, 6, 4, x&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在5旁边放剩余最大的数</span><br><span class="line"></span><br><span class="line">&#123;x, 3, 5, 7, 6, 4, x&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 重复这一过程，每次将 相邻位置有空位的最大数 的 另一个位置填上剩余最大数</span><br><span class="line"></span><br><span class="line">&#123;x, 3, 5, 7, 6, 4, 2&#125;</span><br><span class="line">&#123;1, 3, 5, 7, 6, 4, 2&#125;</span><br></pre></td></tr></table></figure>
-<p>这种方法貌似时有一种贪心思想在内，要想证明这种方法有效， 可以用类似上面的证明方法，这里不再赘述。</p>
-<h4 id="实际应用与代码"><a class="markdownIt-Anchor" href="#实际应用与代码"></a> 实际应用与代码</h4>
-<p>在多举几个例子后，会发现，在代码中，并不需要使用一个数组来真正存储它，只需要实现这样一个函数：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ch</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> l)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> aa=<span class="number">0</span>;</span><br><span class="line">	aa+=a[z]*a[z+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;l<span class="number">-2</span>; i++)&#123;</span><br><span class="line">		aa+=a[z]*a[z+<span class="number">2</span>];</span><br><span class="line">		z++;</span><br><span class="line">	&#125;</span><br><span class="line">	aa+=a[z]*a[z+<span class="number">1</span>];</span><br><span class="line">	z+=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> aa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>基本原理就是上面的一大堆，自己稍微推一下就会得出这个算法。</p>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> len=<span class="number">2</span>*<span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> n, m, k, z, re;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ans, a[len];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> a&gt;b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ch</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> l)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> aa=<span class="number">0</span>;</span><br><span class="line">	aa+=a[z]*a[z+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;l<span class="number">-2</span>; i++)&#123;</span><br><span class="line">		aa+=a[z]*a[z+<span class="number">2</span>];</span><br><span class="line">		z++;</span><br><span class="line">	&#125;</span><br><span class="line">	aa+=a[z]*a[z+<span class="number">1</span>];</span><br><span class="line">	z+=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> aa;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"ring.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"ring.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld %lld"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(a, a+n, cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;k);</span><br><span class="line">		ans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>((k!=<span class="number">0</span>) &amp;&amp; ((n/k)*k!=n) &amp;&amp; (<span class="keyword">int</span>(<span class="built_in">sqrt</span>(k))*<span class="keyword">int</span>(<span class="built_in">sqrt</span>(k))==k)) k=<span class="keyword">int</span>(<span class="built_in">sqrt</span>(k));</span><br><span class="line">		<span class="keyword">if</span>(k==<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++) ans+=a[j]*a[j];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>((n/k)*k==n)&#123;</span><br><span class="line">			z=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;k; j++)&#123;</span><br><span class="line">				ans+=ch(n/k);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="comment">//		else if((n/sqrt(k))*sqrt(k)==n)&#123;</span></span><br><span class="line"><span class="comment">//			k=sqrt(k);</span></span><br><span class="line"><span class="comment">//			z=0;</span></span><br><span class="line"><span class="comment">//			for(int j=0; j&lt;k; j++)&#123;</span></span><br><span class="line"><span class="comment">//				ans+=ch(n/k);</span></span><br><span class="line"><span class="comment">//			&#125;</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(re&gt;<span class="number">0</span>) ans=re;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				z=<span class="number">0</span>;</span><br><span class="line">				ans=ch(n);</span><br><span class="line">				re=ans;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -484,43 +609,303 @@
       </tags>
   </entry>
   <entry>
-    <title>「USACO06FEB」Stall Reservations</title>
-    <url>/2020/08/02/%E3%80%8CUSACO06FEB%E3%80%8DStall%20Reservations/</url>
-    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
-<p>貌似是 USACO 原创，但我实在找不到原创的链接，只能在洛谷、 AcWing 和 POJ 上找了</p>
-<p>洛谷：<a href="https://www.luogu.com.cn/problem/P2859" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2859</a></p>
-<p>AcWing：<a href="https://www.acwing.com/problem/content/113/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/113/</a></p>
+    <title>在 Archlinux 中使用 Zsh</title>
+    <url>/2020/01/26/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/</url>
+    <content><![CDATA[<h2 id="什么是shell"><a class="markdownIt-Anchor" href="#什么是shell"></a> 什么是Shell</h2>
+<p>shell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。</p>
 <a id="more"></a>
-<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
-<p>有N头牛在畜栏中吃草。</p>
-<p>每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。</p>
-<p>给定N头牛和每头牛开始吃草的时间A以及结束吃草的时间B，每头牛在[A,B]这一时间段内都会一直吃草。</p>
-<p>当两头牛的吃草区间存在交集时（包括端点），这两头牛不能被安排在同一个畜栏吃草。</p>
-<p>求需要的最小畜栏数目和每头牛对应的畜栏方案。</p>
-<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
-<p>第1行：输入一个整数N。</p>
-<p>第2…N+1行：第i+1行输入第i头牛的开始吃草时间A以及结束吃草时间B，数之间用空格隔开。</p>
-<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
-<p>第1行：输入一个整数，代表所需最小畜栏数。</p>
-<p>第2…N+1行：第i+1行输入第i头牛被安排到的畜栏编号，编号是从1开始的 连续 整数，只要方案合法即可。</p>
-<p>（洛谷上题目描述是挤奶，AcWing上是吃草。。。）</p>
-<h1 id="基本算法"><a class="markdownIt-Anchor" href="#基本算法"></a> 基本算法</h1>
-<h2 id="贪心"><a class="markdownIt-Anchor" href="#贪心"></a> 贪心</h2>
-<p>应该是比较显而易见的一个贪心，我刚开始都不觉得自己有多贪。。</p>
-<p>按开始的时间把牛排序，然后依次放入畜栏，每次尽量放在已经使用过的畜栏中，如果没有就新建一个畜栏，cnt++。</p>
-<p>由于可以放进任意一个畜栏，可以直接选出结束时间最早的畜栏比较，如果比当前时间早就可以放入，如果比当前时间晚就新建。</p>
-<p>因此，可以通过 <code>std::priority_queue</code> 来维护一个小根堆来存放畜栏使用情况（当然手写也可以</p>
-<h2 id="priority_queue"><a class="markdownIt-Anchor" href="#priority_queue"></a> priority_queue</h2>
-<p>我一般管这个叫优先队列，它可以保证队头的元素是 最小/最大 的。</p>
-<p>对于这道题，存放畜栏的优先队列需要存放 畜栏中牛结束的时间 和 畜栏的编号，其中需要将最小值放在队首的是结束时间。因此，可以使用 <code>std::pair</code> 来作为一个单位存放。对于 pair ，每个元素进行比较时，先比较 first ，所以可以把结束时间放在 first 中。</p>
-<p>当然，手写一个node然后重载运算符来自定义比较也可以，但这就是 C++ 的进阶操作了。</p>
-<p>另外，在写的时候，一定要搞清楚队列里要存什么，思路一定要清晰（我就是因为这个被绕住了）</p>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::priority_queue;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::sort;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::greater;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pint;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50005</span>;</span><br><span class="line"><span class="keyword">int</span> n, cnt, le, ans[MAX];</span><br><span class="line">priority_queue &lt; pint, <span class="built_in">vector</span>&lt;pint&gt;, greater&lt;pint&gt; &gt; cl;</span><br><span class="line">pint tmp;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cow</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> start, <span class="built_in">end</span>, nu;</span><br><span class="line">&#125;cow[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Cow x, Cow y)</span> </span>&#123; <span class="keyword">return</span> x.start &lt; y.start; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"data.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;cow[i].start, &amp;cow[i].<span class="built_in">end</span>);</span><br><span class="line">		cow[i].nu=i;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(cow, cow+n, cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!cl.empty() &amp;&amp; cl.top().first&lt;cow[i].start)&#123;</span><br><span class="line">			ans[cow[i].nu]=cl.top().second;</span><br><span class="line">			cl.pop();</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; <span class="comment">// tmp.second=cl.size();</span></span><br><span class="line">			tmp.second=ans[cow[i].nu];</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; tmp.second=cnt;</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			ans[cow[i].nu]=cnt;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, cnt);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>壳层（shell）这个说法起源于路易斯·普赞（Louis Pouzin），他在1964年至1965年间首次提出，随后在Multics（MULTiplexed Information and Computing System）项目中首次被实现出来。</p>
+<p>Unix上的第一个Unix壳层（Unix shell）是肯·汤普逊（Ken Thompson）以Multics上的shell为范本，所写出的Thompson shell。</p>
+<p>在微软的Windows操作系统也提供了命令行壳层的功能，它们是Windows 95 / <a href="http://xn--98command-1b6nt576a.com" target="_blank" rel="noopener">98下的command.com</a>、Windows NT内核下的cmd.exe以及PowerShell；而图形界面壳层即为explorer.exe。</p>
+<p>——摘自维基百科：<a href="%5Bhttps://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4%5D(https://zh.wikipedia.org/wiki/%E6%AE%BC%E5%B1%A4)">壳层</a></p>
+</blockquote>
+<p>在Linux的命令行界面中，可以有不同的shell，常见的有：bash，ksh，zsh 等，而其中的集大成制作当属 Zsh。它有更智能的自动补全和拼写检查，可以与其他的shell共享历史记录等特性。而插件 Oh My Zsh 使得它的入门门槛降低了许多。</p>
+<p>可以使用<code>echo $SHELL</code> 命令来查看当前使用的shell。</p>
+<h2 id="如何安装zsh"><a class="markdownIt-Anchor" href="#如何安装zsh"></a> 如何安装Zsh</h2>
+<p>安装软件包<a href="https://www.archlinux.org/packages/extra/x86_64/zsh/" target="_blank" rel="noopener">zsh</a></p>
+<p>，运行命令<code>zsh</code>，根据向导配置。</p>
+<h3 id="将zsh作为你的默认终端"><a class="markdownIt-Anchor" href="#将zsh作为你的默认终端"></a> 将Zsh作为你的默认终端</h3>
+<p>列出已安装的shell：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chsh -l</span></span><br></pre></td></tr></table></figure>
+<p>设置默认shell：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chsh -s &lt;完整路径到shell&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置zsh"><a class="markdownIt-Anchor" href="#配置zsh"></a> 配置Zsh</h2>
+<h3 id="oh-my-zsh"><a class="markdownIt-Anchor" href="#oh-my-zsh"></a> Oh My Zsh</h3>
+<p>要想安装 Oh My Zsh ，运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>之后，重启电脑，就可以使用 Oh My Zsh 了</p>
+<h3 id="zshrc"><a class="markdownIt-Anchor" href="#zshrc"></a> .zshrc</h3>
+<p>.zshrc 文件是zsh的配置文件，位于home目录下，可以通过<code>ls -a</code>命令找到。可以在这个配置文件中设置别名和环境变量。比如我参考<a href="https://www.cnblogs.com/dhcn/p/11666845.html" target="_blank" rel="noopener">这篇文章</a>，配置成了这样：</p>
+<p><img src="https://i.loli.net/2020/01/26/EY6O13uKBzkqMhb.png" alt="" /></p>
+<p>在上面的<code>ZSH_THEME</code>选项中，可以更改主题，我使用的是agnoster，这个主题可以很方便地显示当前目录和git分支、仓库的情况等，所有的主题预览在<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes" target="_blank" rel="noopener">这里</a>。</p>
+<p><img src="agnoster" alt="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" /></p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Archlinux 下上网课</title>
+    <url>/2020/02/16/%E5%9C%A8Archlinux%E4%B8%8B%E4%B8%8A%E7%BD%91%E8%AF%BE/</url>
+    <content><![CDATA[<p>最近，新型冠状病毒肺炎肆虐，学生们不得不延长假期，在家上网课。但有一个大问题：我们没有书。</p>
+<p>于是，我们的老师给我们发了PDF格式的电子书，大概长这样：</p>
+<a id="more"></a>
+<p><img src="https://i.loli.net/2020/02/16/lZNujsFxLT7zRYD.png" alt="Screenshot_20200216_155502.png" /></p>
+<p>我们当然可以把它打印出来，但那样浪费资源，关键是在这个谁都出不了门的时期，又有哪些人可以在家里打印这些资料呢？</p>
+<p>于是我就想到，我们可以在电脑上看书和记笔记。而我正好有一块wacom的数位板，也可以在上面记笔记。</p>
+<h2 id="钉钉"><a class="markdownIt-Anchor" href="#钉钉"></a> 钉钉</h2>
+<p>由于钉钉并没有原生支持Linux，于是只能使用其它的办法。目前，如果想要在linux上运行windows程序，wine虽然已经很成熟了，但虚拟机更加稳定，而且可以适应几乎所以程序，于是我在vbox中创建了一个win10虚拟机，安装钉钉。这样就可以在虚拟机中上直播课了。</p>
+<p>而且这么做还有一个好处：</p>
+<p>众所周知，钉钉在直播开始时，都会告诉观看者：你的摄像头是全程关闭的。就像这样：</p>
+<p><img src="https://i.loli.net/2020/02/16/uXnNK4aBte1Y32g.jpg" alt="Screenshot_20200216-160930_1_1.jpg" /></p>
+<p>尽管如此，网上还是有人说老师可以调用学生的摄像头（尽管钉钉官方好像是辟谣了），并且在win10里，并不是所有的软件都可以在设置中关闭摄像头权限的，比如钉钉。</p>
+<p>于是有些人使用物理屏蔽（堵摄像头啥的），而使用虚拟机就可以彻底杜绝它使用摄像头了。</p>
+<h2 id="pdf"><a class="markdownIt-Anchor" href="#pdf"></a> PDF</h2>
+<p>要想在PDF上记笔记，我们需要一款可以在PDF上批注的软件。</p>
+<p>KDE自带的PDF工具 Okular 虽然右边有“批注”选项，但那个批注功能有和没有一样，点一次写一笔，完全不能用。</p>
+<p>于是，只能自己找其他软件。</p>
+<p>目前，可以批注并且兼容linux的PDF的阅读器，我找到了两款： MasterPDF editor 和 Foxit。</p>
+<p>提起 Foxit ，相信很多人都不陌生，是windows下的老牌PDF阅读器，但在linux下，有一些文件的页面会被莫名拉长，而 MasterPDF editor 就并没有这个问题，但它是商业软件，免费版会在编辑后加上水印，但不是很重。只能说，鱼与熊掌不可兼得吧。</p>
+<p>这两个软件，一个在<a href="https://aur.archlinux.org/packages/foxitreader/" target="_blank" rel="noopener">AUR源</a>里有，另一个在<a href="https://code-industry.net/free-pdf-editor/" target="_blank" rel="noopener">官网</a>可以下到linux版。</p>
+<h2 id="wacom-和-屏幕"><a class="markdownIt-Anchor" href="#wacom-和-屏幕"></a> Wacom 和 屏幕</h2>
+<p><a href="https://www.archlinux.org/packages/?name=xf86-input-wacom" target="_blank" rel="noopener">xf86-input-wacom</a>是wacom数位板在Arch下的驱动，使用<code>sudo pacman -S xf86-input-wacom</code>安装。</p>
+<p>这样，就可以在arch下—愉快地—上网课了。</p>
+<p>但我还有一块15寸的4k副屏，我可以将它竖起来看电子书：</p>
+<p><img src="https://i.loli.net/2020/02/16/lUE1OZpKnjukzi5.jpg" alt="IMG_20200216_164757.jpg" /></p>
+<p>那么怎样将这块屏幕和数位板利用上呢？</p>
+<h3 id="屏幕映射"><a class="markdownIt-Anchor" href="#屏幕映射"></a> 屏幕映射</h3>
+<p>在windows10下，如果你在多屏下使用数位版，windows会以 一个可以完整包含所有显示器显示范围的矩形 的四个定点，映射到数位板的上下左右四个点上。通俗地来说，windows10的wacom驱动无法将数位板映射到具体的某一块屏幕上。但是linux可以。</p>
+<p>先是使用<code>xsetwacom --list devices</code> 查看数位板的id：</p>
+<p><img src="https://i.loli.net/2020/02/16/lqbFYpdkHEsvhuf.png" alt="Screenshot_20200216_170418.png" /></p>
+<p>此时，数位板（stylus）的id为23</p>
+<p>如果你正常地配置好了显卡，使用命令 <code>xrandr</code> 找到你的那块屏幕：</p>
+<p><img src="https://i.loli.net/2020/02/16/QHCAz1JRIsouBXn.png" alt="Screenshot_20200216_170859.png" /></p>
+<p>比如我的外接屏幕是接在HDMI口上的，那么HDMI-0 就是我的屏幕，而后面的那一串形如“1080x1920+1920+0”是之后配置映射所用到的，确定你的屏幕的信息。</p>
+<p>然后，使用<code>xsetwacom --set &lt;数位板id&gt; MapToOutput &quot;&lt;你的屏幕&gt;&quot;</code>使屏幕映射到数位板</p>
+<h3 id="旋转数位板"><a class="markdownIt-Anchor" href="#旋转数位板"></a> 旋转数位板</h3>
+<p>在windows10下，你无法将数位板竖起来使用，但在linux下，你可以将竖起来的数位板映射到一块竖着的屏幕上。</p>
+<p>在映射配置好的情况下，使用<code>xsetwacom --set &lt;数位板id&gt; Rotate cw</code>用来顺时针旋转数位板。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「NOI Online 提高组 」T3 最小环 70分题解</title>
+    <url>/2020/03/13/%E6%9C%80%E5%B0%8F%E7%8E%AF70%E5%88%86%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.cok.cn/problek/P6187" target="_blank" rel="noopener">题目链接</a></p>
+<p><img src="https://i.loli.net/2020/03/09/kp7TWLjf61FaYvt.jpg" alt="c67625086b63f624199efc639044ebf81b4ca37e.jpg" /></p>
+<p>这篇文章中， “基本思路”部分会详细介绍我最真实的推理过程，可能会有些啰嗦，还会包括一些显而易见随手推一推就能推出来的结论的证明，这些结论我已经用粗体字标注出来了。</p>
+<a id="more"></a>
+<h2 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h2>
+<p>观察样例，<s>显然</s>：</p>
+<p><strong>当n可以被k整除时，整个环可以拆分成k个互不相关的环。</strong></p>
+<p>样例中，k=2时，可以将最优方案看成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">{3,1,2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">{6,4,5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span></span></span></span></span>两个集合中任意两个距离为1的数的乘积的和。</p>
+<p>当一个环中只有三个数，并且k=1（也就是要求相邻两个数乘积的和）时，三个数的位置并不会影响最终结果，因为每个数都会和另外两个数分别乘一次。<strong>所以把三个最小的数 和三个最大的数 组合在一起，就是最优解。</strong></p>
+<p>这个结论比较容易想到，以下是证明过程：</p>
+<h3 id="n6k3-时的证明"><a class="markdownIt-Anchor" href="#n6k3-时的证明"></a> n=6，k=3 时的证明</h3>
+<p>尝试把两个集合中的任意一个数互换位置。比如互换1和6，那么两个集合就会变成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo separator="true">,</mo><mn>6</mn><mo separator="true">,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">{3, 6, 2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">{1, 4, 5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span></span></span></span></span>，比较第一个集合算出的结果在这次交换后上升的值 和 第二个集合（算出的结果）在交换后下降的值，它们分别为<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \* at position 6: (6-1)\̲*̲(3+2)'>(6-1)\*(3+2)</span>和<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \* at position 6: (6-1)\̲*̲(4+5)'>(6-1)\*(4+5)</span>，不论交换哪两个数，两个式子第一个乘数都相等。而第二个乘数中，第二个集合总比第一个集合大。综上所述，第一个集合上升的值比第二个集合下降的值要小，它们的和会下降。</p>
+<p>而我们很容易把这个证明推广到正整数范围。</p>
+<h3 id="那么当n不能被k整除时呢"><a class="markdownIt-Anchor" href="#那么当n不能被k整除时呢"></a> 那么当n不能被k整除时呢？</h3>
+<p>先说结论：<strong>当k不能整除n时，只要n不变，最大值就确定</strong></p>
+<h4 id="理论"><a class="markdownIt-Anchor" href="#理论"></a> 理论</h4>
+<p>还是举个例子：</p>
+<p>比如n=7, k=3时，这个环为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>6</mn><mo separator="true">,</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">{1, 2, 3, 4, 5, 6, 7}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">7</span></span></span></span></span>时，算出的和为：</p>
+<p>$1<em>4+4</em>7+7<em>3+3</em>6+6<em>2+2</em>5+5*1$</p>
+<p>显然（其实我也不知道是为什么），没有重复和遗漏，并且按照这个顺序，<strong>我们也可以把它看成7个数的环中，相邻的两个数乘积的和</strong>，只不过是这个“相邻”指的是距离为k的两个数。</p>
+<p>和传统意义上的“相邻”（即k=1）一样，这个环上的每个数<strong>有且仅有</strong>两个数和它相乘。对于这道题，唯一的不同点在于，对于同样的一个环，k会影响其最后算出的和。但是对于本题中求的最大值，我们可以在算出k=1（因为这比较方便计算）后再去调整“相邻”</p>
+<h4 id="例子如何变换"><a class="markdownIt-Anchor" href="#例子如何变换"></a> 例子：如何变换</h4>
+<p>比如n=7，k=1时，这个环是这样的：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>6</mn><mo separator="true">,</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">{1, 2, 3, 4, 5, 6, 7}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">7</span></span></span></span></span></p>
+<p>算出的和为：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>∗</mo><mn>2</mn><mo>+</mo><mn>2</mn><mo>∗</mo><mn>3</mn><mo>+</mo><mn>3</mn><mo>∗</mo><mn>4</mn><mo>+</mo><mn>4</mn><mo>∗</mo><mn>5</mn><mo>+</mo><mn>5</mn><mo>∗</mo><mn>6</mn><mo>+</mo><mn>6</mn><mo>∗</mo><mn>7</mn><mo>+</mo><mn>7</mn><mo>∗</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1*2+2*3+3*4+4*5+5*6+6*7+7*1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
+<p>当k=3时，如何变换这个环，使算出来的值等于k=1是的值呢？（以下步骤使用x表示未知数）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 首先，将1（第1个数，后同理）填入任何一个位置（因为是一个环，首尾相接，绝对未知并不会影响最终结果。为方便演示，填到[0]的位置）</span><br><span class="line"></span><br><span class="line">&#123;1, x, x, x, x, x, x&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 找到与1相邻的位置，填2</span><br><span class="line"></span><br><span class="line">&#123;1, x, x, 2, x, x, x&#125; 或 &#123;1, x, x, x, 2, x, x&#125;  &#x2F;&#x2F;两种分别对应往前数和往后数，后省略，以第一种为例</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 找到另一个与2相邻的位置（即两个位置中未知的那个），填3</span><br><span class="line"></span><br><span class="line">&#123;1, x, x, 2, x, x, 3&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 以此类推，找到另一个与n相邻的未知，填(n+1)</span><br><span class="line"></span><br><span class="line">&#123;1, x, 4, 2, x, x, 3&#125;</span><br><span class="line">&#123;1, x, 4, 2, x, 5, 3&#125;</span><br><span class="line">&#123;1, 6, 4, 2, x, 5, 3&#125;</span><br><span class="line">&#123;1, 6, 4, 2, 7, 5, 3&#125;</span><br></pre></td></tr></table></figure>
+<p>相信在这个过程中，可以生动体会到上面的理论</p>
+<p>于是，将这个环代入计算，过程和结果与上面的完全一致。</p>
+<h3 id="找出最大值"><a class="markdownIt-Anchor" href="#找出最大值"></a> 找出最大值</h3>
+<p>上面说了那么多，总结起来一句话：<strong>当n与环a一定，且k不整除n时，最大值不随k变化而变化（k这时可以当作1）</strong></p>
+<p>而当k整除n时，又可以拆成k个小环，而每个子环都可以看成是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">n=(n/k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>，$ k=1$的环。</p>
+<p>这样，我们就把两种情况统一成一种了。</p>
+<p>唯一例外的是，当k为一个完全平方数，且sqrt(k)整除n时，可以看作是k=sqrt(k)</p>
+<p>现在要实现的就是，当k=1时，怎样排列可以使这个值最大。</p>
+<h4 id="实例"><a class="markdownIt-Anchor" href="#实例"></a> 实例</h4>
+<p>可以参考样例中k=1, n=6时的排列：</p>
+<p>可以发现和6相邻的为4和5，和5相邻的另一个数是3，和4相邻的另一个数是2。</p>
+<p>这样排列把最大的数放在了一起，然后从大到小排列，尽可能把大的数放在一起。我会用n=7, k=1来演示这个过程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;x, x, x, x, x, x, x&#125; &#x2F;&#x2F;初始状态</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在任意位置放7,并且时6,5与7相邻</span><br><span class="line"></span><br><span class="line">&#123;x, x, 5, 7, 6, x, x&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在6旁边放剩余的最大的数</span><br><span class="line"></span><br><span class="line">&#123;x, x, 5, 7, 6, 4, x&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 在5旁边放剩余最大的数</span><br><span class="line"></span><br><span class="line">&#123;x, 3, 5, 7, 6, 4, x&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 重复这一过程，每次将 相邻位置有空位的最大数 的 另一个位置填上剩余最大数</span><br><span class="line"></span><br><span class="line">&#123;x, 3, 5, 7, 6, 4, 2&#125;</span><br><span class="line">&#123;1, 3, 5, 7, 6, 4, 2&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法貌似时有一种贪心思想在内，要想证明这种方法有效， 可以用类似上面的证明方法，这里不再赘述。</p>
+<h4 id="实际应用与代码"><a class="markdownIt-Anchor" href="#实际应用与代码"></a> 实际应用与代码</h4>
+<p>在多举几个例子后，会发现，在代码中，并不需要使用一个数组来真正存储它，只需要实现这样一个函数：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ch</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> l)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> aa=<span class="number">0</span>;</span><br><span class="line">	aa+=a[z]*a[z+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;l<span class="number">-2</span>; i++)&#123;</span><br><span class="line">		aa+=a[z]*a[z+<span class="number">2</span>];</span><br><span class="line">		z++;</span><br><span class="line">	&#125;</span><br><span class="line">	aa+=a[z]*a[z+<span class="number">1</span>];</span><br><span class="line">	z+=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> aa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基本原理就是上面的一大堆，自己稍微推一下就会得出这个算法。</p>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> len=<span class="number">2</span>*<span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> n, m, k, z, re;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ans, a[len];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> a&gt;b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">ch</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> l)</span></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> aa=<span class="number">0</span>;</span><br><span class="line">	aa+=a[z]*a[z+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;l<span class="number">-2</span>; i++)&#123;</span><br><span class="line">		aa+=a[z]*a[z+<span class="number">2</span>];</span><br><span class="line">		z++;</span><br><span class="line">	&#125;</span><br><span class="line">	aa+=a[z]*a[z+<span class="number">1</span>];</span><br><span class="line">	z+=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> aa;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"ring.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"ring.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld %lld"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(a, a+n, cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;k);</span><br><span class="line">		ans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>((k!=<span class="number">0</span>) &amp;&amp; ((n/k)*k!=n) &amp;&amp; (<span class="keyword">int</span>(<span class="built_in">sqrt</span>(k))*<span class="keyword">int</span>(<span class="built_in">sqrt</span>(k))==k)) k=<span class="keyword">int</span>(<span class="built_in">sqrt</span>(k));</span><br><span class="line">		<span class="keyword">if</span>(k==<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++) ans+=a[j]*a[j];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>((n/k)*k==n)&#123;</span><br><span class="line">			z=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;k; j++)&#123;</span><br><span class="line">				ans+=ch(n/k);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="comment">//		else if((n/sqrt(k))*sqrt(k)==n)&#123;</span></span><br><span class="line"><span class="comment">//			k=sqrt(k);</span></span><br><span class="line"><span class="comment">//			z=0;</span></span><br><span class="line"><span class="comment">//			for(int j=0; j&lt;k; j++)&#123;</span></span><br><span class="line"><span class="comment">//				ans+=ch(n/k);</span></span><br><span class="line"><span class="comment">//			&#125;</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(re&gt;<span class="number">0</span>) ans=re;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				z=<span class="number">0</span>;</span><br><span class="line">				ans=ch(n);</span><br><span class="line">				re=ans;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>算法</tag>
-        <tag>题解 - 贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅谈Linux分区和挂载（点）</title>
+    <url>/2020/01/04/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h2>
+<p>在windows下，分区是有明显的界限的，就比如这样：</p>
+<p><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg" alt="" /></p>
+<p>在“此电脑”中的C盘、D盘、E盘等，都是分区。一般情况下，系统安装在C盘，其他分区一般用来存放资料，但是linux下的分区和windows不同。</p>
+<a id="more"></a>
+<h1 id="linux分区就是文件夹"><a class="markdownIt-Anchor" href="#linux分区就是文件夹"></a> Linux——分区就是文件夹</h1>
+<p>其实这么说并不准确，因为Linux下“分区”的概念是比较模糊的。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/06/003vPl7Rty6E8kZRlAEdc690.jpg" alt=" " title="Linux下的目录树" /></p>
+<p>Linux是以树的结构存储文件的。不管你的电脑中有几块硬盘（即便没有），也不管硬盘分了几个区，Linux都会给你整出来个根目录，也就是上图中最顶层的“/”。一旦你安装了Linux，它就会在根目录下创建几个文件夹，这些文件夹的名字是“root”、“home”、“dev”等等。路径分别是“/root”、“/home”、“/dev”等。</p>
+<p>众所周知，存储文件需要硬盘。Linux这波操作光搞了个目录，但是与硬盘和分区没有任何关系，那么这些文件夹和之后要写入的文件存在哪里啊？这就引入了Linux下“挂载”的概念。</p>
+<blockquote>
+<p>分区就是个文件夹！</p>
+</blockquote>
+<p>在linux下，你可以像windows一样创建分区，但是并不像windows一样，创建完就给你显示在“此电脑”中（默认是这样的，也可以设置不显示）。但是在Linux下，要想使用一个分区，必须先要挂载。</p>
+<p>前面说过，Linux下的根目录里是要存东西的，要想存东西，就要有硬盘。所以Linux的做法是：将根目录下的某一部分（也有可能是全部）与分区建立对应关系。</p>
+<p>打个比方，打开你的文件管理器，在里面的地址栏中输入“/”，然后在空白区域右击，选择“属性”。</p>
+<p><img src="https://i.loli.net/2020/01/04/9vsoRilzYA4uCHM.png" alt="Screenshot_20200104_154532.png" /></p>
+<p>然后你应该可以看到挂载点和挂载的分区。其中，分区并不像Windows那样以盘符表示，而是一个文件。关于这个文件的意义，我们以后再说。</p>
+<p><img src="https://i.loli.net/2020/01/04/hfXDUelGJ2LYqnb.png" alt="Screenshot_20200104_153959.png" /></p>
+<p>而这个挂载点就是根目录“/”，也就是说，根目录下的所有文件，都存在了这个分区里？</p>
+<p>其实并不是这样的，这个分区只是和根目录建立了一个对应关系，并不代表根目录中所有文件都存在了这个分区中。</p>
+<p>再举个例子，插上你的U盘，如果你用的是KDE、GNOME这样的桌面环境，应该可以通过简单的动动鼠标，进入这个U盘。</p>
+<p><img src="https://i.loli.net/2020/01/04/pSGx4mnEBcYgtlZ.png" alt="Screenshot_20200104_160153-1.png" /></p>
+<p>而这时，点击文件管理器中的地址栏，你会得到一个路径，就像这样：</p>
+<p><img src="https://i.loli.net/2020/01/04/a9JxvENR8B5yMCo.png" alt="Screenshot_20200104_160310.png" /></p>
+<p>然后，在根目录下，按照这个目录，打开这个文件夹。</p>
+<p>比如，我的是“/run/media/archer/7BD2-F1FA/”，于是我现在根目录下找到“run”文件夹，打开，再找到“media”文件夹，打开，在找到并打开“archer”文件夹（我的用户名），然后打开“7BD2-F1FA”文件夹。</p>
+<p>然后，你就会发现：</p>
+<blockquote>
+<p>这不就是我U盘里的东西吗</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/01/04/3xwlDZvz4bB7H1P.png" alt="Screenshot_20200104_160941.png" /></p>
+<p>在页面的空白处，右击，点击“属性”。“挂载点”那一栏写的就是你刚才打开的文件夹的路径，而“挂载自”一栏也是 /dev 目录下的一个文件，sd**代表这是一个分区。</p>
+<p>这时，你可能就会发现：</p>
+<blockquote>
+<p>这个U盘（准确地说是这个分区）就是一个文件夹！！</p>
+</blockquote>
+<p>没错，分区本身，在Linux下是一个在 /dev 目录下的文件，你可以把它挂载到目录树的一个文件夹下，你才可以访问这个分区中的文件。</p>
+<p>这个实验也表明了，Linux下的挂载点是可以嵌套的。你可以将任何一个分区挂载到任何一个目录（除了根目录必须作为一个挂载点挂载磁盘），这就为Linux的文件管理提供了无限的可能。比如说，我的Linux目录树是这样的：</p>
+<p><img src="https://i.loli.net/2020/01/04/y7UbeZNcl3JxVwp.jpg" alt="003vPl7Rty6E8kZRlAEdc690_1.jpg" /></p>
+<p>至于我为什么要把 /home 文件夹里的内容存到一个单独的分区里，这个以后再说。</p>
+<h2 id="在linux下如何查看我的分区情况"><a class="markdownIt-Anchor" href="#在linux下如何查看我的分区情况"></a> 在Linux下如何查看我的分区情况</h2>
+<p>Linux下，有一个分区工具叫做 fdisk ，你可以以root用户运行以下命令查看分区情况：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># fdisk -l</span><br></pre></td></tr></table></figure>
+<p>就像这样：</p>
+<p><img src="https://i.loli.net/2020/01/04/LByAR2Nagv9JrxH.png" alt="Screenshot_20200104_163440-1.png" /></p>
+<p>其中&quot;nvme&quot;开头的是NVMe协议的硬盘（一般是固态），而sd开头的是通过SATA、SCSI、USB这些接口传输数据的存储设备，loop开头一般是光盘。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>［杂谈］一个故事的开始</title>
+    <url>/2020/07/06/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
+    <content><![CDATA[<h2 id="这是一个结束的开始"><a class="markdownIt-Anchor" href="#这是一个结束的开始"></a> 这是一个结束的开始</h2>
+<p>还有不到一年，初中生活就要结束了。还有不到一年，我们就要参加中考了。今天（2020年7月6日）早上，去学校参加了颁奖典礼。会上，老师多次和我们强调：我们的时间已经不多了。但学生代表pyt（好像是叫这个名字？）的发言中，详细计算了我们距离中考还有多少天，多少小时，多少分钟（尽管好像计算错了）……虽然我们即将面临的是一场至关重要的考试，但我们还有充足的时间准备。</p>
+<a id="more"></a>
+<p>这一学期开学以来，学习立马紧张了起来，各种考试接踵而来，学习的压力重重地压在了我们的头上。而当进入暑假，这场学习上的竞争正式开始了。上午的颁奖典礼中，有一个班级对抗赛颁奖的环节，一个年级16个班，8个班赢了，8个班输了（我们属于输的）。这些班的代表上台发表感言，并且输的班要给对方赠送礼物。在凤凰双语那10个班颁奖的过程中，现场充斥着一股“火药味”（高中部日常看淡成绩[捂脸]）。学习气氛似乎充满了整个学校。</p>
+<p>11月，NOIP2020也要拉开帷幕，距离我上次大量刷题已经过去了进一年。去年我已经规划好，要在这个暑假继续大量刷题、写博客，对于我的算法学习而言，这也是一个至关重要的暑假。</p>
+<p><img src="https://s1.ax1x.com/2020/07/06/UiHG2n.jpg" alt="UiHG2n.jpg" /></p>
+<p>结束，指的是我们的初中生活即将结束。距离中考还有一年，我们的初中生活即将结束，同时，NOIP2020也将是我初中阶段的最后一场信息学奥赛。</p>
+<p>开始，指的是我即将迈入的暑假，暑假结束后的两个学期，我们必将继续拼搏，而这个暑假是这个过程的开始。</p>
+<h2 id="这是一个开始的结束"><a class="markdownIt-Anchor" href="#这是一个开始的结束"></a> 这是一个开始的结束</h2>
+<p>这个暑假，我早就蓄谋已久。学期快要结束时，我就在思考这个暑假应该怎么过。在竞赛方面，去年我计划休息了一年，等到暑假冲击NOIP2020。近几年关于竞赛的政策飘忽不定，大约两个月前，大学自主招生被取消。这直接导致了许多竞赛生几年来的努力白费，对许多竞赛生的心态是一个巨大的打击。但当时我已经没有过多关注竞赛，反而对我的心态没有什么打击。暑假到了，冲击NOIP2020的时候也到了。暑假的开始，计划阶段 即将结束，这是一个开始的结束。</p>
+<p>这个暑假，我主要学习的是《算法竞赛进阶指南》，从第一章开始，坚持每天刷题，有比较好（或者做了好长时间不过）的题，或者对我启发比较大的事，我会尽量以博客的形式总结。</p>
+<p>对于文化课，我依然坚持不参加任何课外班。其实老师布置的任务已经够多了，认真完成作业，就足以在新的学期中跟紧老师们的步伐。</p>
+<p><img src="https://s1.ax1x.com/2020/07/06/UiHACd.jpg" alt="UiHACd.jpg" /></p>
+<p><img src="https://s1.ax1x.com/2020/07/06/UiHF4H.jpg" alt="UiHF4H.jpg" /></p>
+<p><img src="https://s1.ax1x.com/2020/07/06/UiHiUe.jpg" alt="UiHiUe.jpg" /></p>
+<p>同时，我会坚持体育锻炼，中考体育也是一个大项目，需要持之以恒的练习，待暑假结束，我将王者归来。</p>
+<p>开始，指的是我对于暑假的计划，是暑假的开端。这个开端即将结束，我将要正式步入这个充实的暑假。</p>
+]]></content>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>［杂谈］一个故事的结束</title>
+    <url>/2020/07/05/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E7%BB%93%E6%9D%9F/</url>
+    <content><![CDATA[<p>７月２日，期末考试的尘埃落定又标志这我一个学期的结束。看到朋友圈里许多同学都写下了自己对这个学期的总结，于是我也来趁着这个初二年级的结束来对我之前的学习做个总结（原谅我文笔不太好。。）。我上次写总结已经是2019年的暑假结束了，那么这次就写一些从那时到现在我的一系列故事吧。</p>
+<p>回想起这个学期，大部分时间都在网课中度过，开学之后就是各种考试。但直到学校给我们施加上前所未有的压力后，我才意识到，一年后的我们，就要接受义务教育阶段最重要的考试——中考 了。过去的几个学期中，我在八年级时的变化是最大的。</p>
+<a id="more"></a>
+<p>这是一次对自我的更深刻的认知。八年级的我接触到了更广阔的世界，了解到了更多的人。从2019年9月开始，我几乎没有再学习新的算法，我在算法竞赛上几乎毫无进展。这一方面是因为开学后的时间变少，另一方面是因为我在逐渐调整对自我的认知。</p>
+<p><img src="https://i.loli.net/2020/07/05/2bQapdrKRICD4jm.jpg" alt="Screenshot_20200705_101620.jpg" /></p>
+<h2 id="八月底的决定"><a class="markdownIt-Anchor" href="#八月底的决定"></a> 八月底的决定</h2>
+<p>以下内容连接我的暑假总结（<a href="https://www.luogu.com.cn/blog/tfls-djl/post-shu-jia-zong-jie-yi-ge-guan-yu-jian-chi-di-gu-shi%EF%BC%89%EF%BC%8C%E8%AF%B7%E7%BB%93%E5%90%88%E9%A3%9F%E7%94%A8%E3%80%82" target="_blank" rel="noopener">https://www.luogu.com.cn/blog/tfls-djl/post-shu-jia-zong-jie-yi-ge-guan-yu-jian-chi-di-gu-shi），请结合食用。</a></p>
+<p>去年的暑假，我坚持每天更新一篇博客，也刷了非常多的题，其中大部分是关于搜索的。在这期间，我参加了一些学校组织的比赛。我当时只学了不到一年的竞赛，只有普及组省二的水平，连动态规划都不会。。但令我吃惊的是，这些比赛我都取得了比较好的成绩，比许多学得时间比我长，算法储备也比我丰富的多的初三、高一的同学排名都要靠前。我认为这是因为我在其他许多方面的知识储备占了优势，而且我还有许多时间来学竞赛（其实SX这么弱，高中开始学确实不晚。。），于是我作出了一个影响深远的决定：放慢学习算法竞赛的速度。</p>
+<h2 id="新的领域"><a class="markdownIt-Anchor" href="#新的领域"></a> 新的领域</h2>
+<p>9月我接触到了ArchLinux，便疯狂沉迷其中。这是一个相当难以驾驭的GNU/Linux发行版，是进阶的必经之路（当然我主要是觉得它挺有意思的）。<s>于是我就装一个系统装了半年。。</s></p>
+<p>这是一个相当复杂的工程。虽然官方有详细的wiki和教程，但每台电脑的具体情况是不同的，不可能把所有机型都考虑到。再加上我对Linux的认识只有用了不到一年的Ubuntu，于是在这条路上困难重重。在虚拟机上完全没有问题的系统撞到实体机上就会出问题，还几次把我的引导分区搞坏，导致电脑无法正常启动……我完全低估了这个新的领域的难度……于是，在八年级上半学期，我大部分空闲时间都在折腾Linux。</p>
+<p><img src="https://i.loli.net/2020/07/05/BMYdKuPUvci2yz8.jpg" alt="Screenshot_20200705-173106.jpg" /></p>
+<p>由于在其它领域花费时间过多，还有各种各样的环境问题，我对算法竞赛的学习在一个学期里停滞不前……而11月，我就要参加CSP2019了，这是信息学奥赛中最重要的比赛。比赛分为普及组和提高组、18年我已经参加过NOIP（CSP的前身）普及组了，19年我想要参加提高组。但教练觉得我的水平不够，想让我拿到一等奖后再参加提高（18年我拿了二等奖）。。于是我又陷入了无限的反思中……最后，我同意去参加普及组，但当时为时已晚，没有办法再改了~~（然后我就有拿了个省二）~~……</p>
+<p>这几件事为什么我要一起说呢。。因为它们造成了我心态的一次大的改变……我感受到了前所未有的**“孤独”**</p>
+<p>Linux在中国是一个很小的圈子，没有多少人会因为兴趣而折腾这些没什么用的东西……这就导致我遇到的大部分问题都不知道该怎么解决…之前学算法竞赛时，如果遇到哪些题不会，百度一下就会找到题解，如果学校有竞赛队的话，还可以去问老师同学。但我并没有找见许多在系统上和我遇到同样问题的人，我的兴趣也在系统的一次次error中消磨……我多次想要放弃，但最后还是坚持了下来。算法方面，几个月的毫无进展对我的心态无疑是一个巨大的打击。遇到问题就会变得非常着急，心态不好又会导致更多的问题……我似乎陷入了这个恶性循环中……</p>
+<p>那么这些看起来这么负面的东西有带给我了什么启发呢？</p>
+<p>首先是英语水平的巨大提升。那段时间，我上Google和查英文wiki的时间大幅增加，这导致我英语的阅读量有了飞跃。当我真正用到这些东西的时候，应试就不是什么困难的事了，于是在八上期末考试中，我拿到了英语单科的年级第一。</p>
+<p>其次是心态的变化，也带给了我许多感悟。我承受许多打击的能力变强（因为我在这期间遭受了太多打击。。），对待很多事情也变得非常“佛系”。我意识到，不管是文化课还是竞赛还是其他奇怪的知识的学习中，心态是至关重要的，心态不好就会陷入恶性循环中。</p>
+<p>最后是对Linux系统的认识有了质的飞跃。GNU/Linux系统中处处充满着“自由”，可以自由地修改源代码再分发，可以自由地修改系统中的任何配置，甚至可以随意“破坏”系统中的任何事物。正如那句名言：</p>
+<blockquote>
+<p>Unix（Linux的父分支）的目的并不是阻止用户做傻事，因为那样也会阻止他们做聪明的事。	——Doug Gwyn</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/07/05/H54MJvipG9Bmetr.jpg" alt="Screenshot_20200705-173210_1.jpg" /></p>
+<p>这样的情况一直持续到了寒假结束，直到新学期我才真正走出这个阶段。</p>
+<h2 id="前所未有的压力"><a class="markdownIt-Anchor" href="#前所未有的压力"></a> 前所未有的压力</h2>
+<p>受疫情影响，我们被迫在家上了三个月的网课。在这期间我重装了系统，并且每天运行“sudo pacman -Syu”（更新系统的命令），稳定运行到现在（7月5日）。虽然没有了每天和老师的见面，但钉钉动听的提示音还是能让我整天提心吊胆。进入新学期，我们的压力明显增大，每天的网课和作业让我对这一点有了深刻体会——即便是网课，也要比上个学期紧张。</p>
+<p><img src="https://i.loli.net/2020/07/05/Dua3F5CHloRmWMg.jpg" alt="Screenshot_20200705-220834_1.jpg" /></p>
+<p>而在开学后，我才发觉——网课真是太轻松了。。每周上六节课，每天的最后一节自习课考试，几乎没有了自习课看闲书的时间。班里一共52个人，有大约40个人参加了晚自习，每天9点才能下课，作业经常写到10点半。学校对手机有了严格的管控，建议我们每个人把手机上交年级组，以督促我们学习。前所未有的压力，压在了我们每个人的头上。这时，我才猛地意识到：我们还有一年就要中考了。</p>
+<h2 id="结束了"><a class="markdownIt-Anchor" href="#结束了"></a> 结束了？</h2>
+<p><img src="https://i.loli.net/2020/07/05/N6YzG3CQHtmS7Oq.jpg" alt="游戏Minecraft中的进度“结束了？”" /></p>
+<p>升入初二年级后，我发生了巨大的变化。将近一年过去了，我的这个充满着思考、无奈、彷徨、收获的故事也是时候该结束了。接下来的暑假，将会是又一个崭新的故事……</p>
+<p>敬请期待……</p>
+]]></content>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「题解」HNOI2003 激光炸弹</title>
+    <url>/2020/07/07/%EF%BC%BB%E9%A2%98%E8%A7%A3%EF%BC%BDHNOI2003%20%E6%BF%80%E5%85%89%E7%82%B8%E5%BC%B9/</url>
+    <content><![CDATA[<h2 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h2>
+<p>基本的二维前缀和，把从（0,0）到任何一个点围成的矩形中所有的价值计算出来，然后再通过容斥原理算出所有可能正方形中的价值之和。</p>
+<p>如果把初始的地图存入A数组，那么它的二位前缀和S就是：</p>
+<p>$S[i][j]=\sum_{x=1}^{i} \sum_{y=1}^{j} A[x][y] $</p>
+<p>根据容斥原理，有：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>+</mo><mi>s</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo>+</mo><mi>A</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>−</mo><mi>S</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">S[i][j] = s[i-1][j]+s[i][j-1]+A[i][j]-S[i-1][j-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></p>
+<p>这样，就可以利用上述递推式推出S数组。</p>
+<a id="more"></a>
+<p>同时，对于任意一个边长为R，最靠近原点的顶点为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>的正方形，其内部所有点的价值之和为：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo>+</mo><mi>R</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>y</mi><mo>+</mo><mi>R</mi><mo stretchy="false">]</mo><mo>−</mo><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo>+</mo><mi>R</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>y</mi><mo stretchy="false">]</mo><mo>−</mo><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>y</mi><mo>+</mo><mi>R</mi><mo stretchy="false">]</mo><mo>+</mo><mi>S</mi><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>y</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">S[x+R][y+R]-S[x+R][y]-S[x][y+R]+S[x][y]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">]</span></span></span></span></p>
+<p>这样，就可以以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的时间复杂度解题。</p>
+<h2 id="我踩过的坑"><a class="markdownIt-Anchor" href="#我踩过的坑"></a> 我踩过的坑</h2>
+<ol>
+<li>
+<p>这题有125MB的空间限制，根据上述递推式，只需要一个数组就可以完成，开两个范围为5000的二位数组貌似过不了。。</p>
+</li>
+<li>
+<p>数据规模约定中，n最大可以到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>，然而并没有那么大的地图，相当于“全图轰炸”，此时效果与<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>5</mn><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">n=5*10^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>效果相同，可以直接替换。数组开到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span>的话会爆空间的。</p>
+</li>
+<li>
+<p>数组稍微开大一点点。</p>
+</li>
+<li>
+<p>最重要的一点，数据要从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>开始存，也就是说，边界应该为0,这样才能保证边界的数可以被正确计算</p>
+</li>
+</ol>
+<p>我一开始没有注意第3点，之后在洛谷得了90分，被这样一个数据卡住了：</p>
+<p><img src="https://s1.ax1x.com/2020/07/07/UFjZ6J.jpg" alt="UFjZ6J.jpg" /></p>
+<p>可以看到，全是第0列的点。。</p>
+<p>之后自己造了一个数据，成功发现了这个问题：</p>
+<p><img src="https://s1.ax1x.com/2020/07/07/UFjR7q.jpg" alt="UFjR7q.jpg" /></p>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">5002</span>;</span><br><span class="line"><span class="keyword">int</span> s[MAX+<span class="number">5</span>][MAX+<span class="number">5</span>], n, r, summ, maxx, x, y, w;</span><br><span class="line"><span class="keyword">int</span> xmax, ymax;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("data.in", "r", stdin);</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;r);</span><br><span class="line">	<span class="keyword">if</span>(r&gt;<span class="number">5000</span>) r=<span class="number">5000</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;x, &amp;y, &amp;w);</span><br><span class="line"><span class="comment">//		xmax = xmax&gt;x?xmax:x;</span></span><br><span class="line"><span class="comment">//		ymax = ymax&gt;y?ymax:y;</span></span><br><span class="line">		s[x+<span class="number">1</span>][y+<span class="number">1</span>] += w;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">/*	for(int i=1; i&lt;=MAX+2; i++)&#123;</span></span><br><span class="line"><span class="comment">		s[i][0] += s[i-1][0];</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	for(int i=1; i&lt;=MAX+2; i++)&#123;</span></span><br><span class="line"><span class="comment">		s[0][i] += s[0][i-1];</span></span><br><span class="line"><span class="comment">	&#125;*/</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=MAX+<span class="number">2</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=MAX+<span class="number">2</span>; j++)&#123;</span><br><span class="line">			s[i][j] += s[i<span class="number">-1</span>][j]+s[i][j<span class="number">-1</span>]-s[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=MAX-r; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;=MAX-r; j++)&#123;</span><br><span class="line">			summ = s[i+r][j+r]-s[i+r][j]-s[i][j+r]+s[i][j];</span><br><span class="line">			maxx = maxx&gt;summ?maxx:summ;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	maxx = maxx&gt;s[r][r]?maxx:s[r][r];</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, maxx);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
 </search>
