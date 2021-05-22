@@ -46,230 +46,6 @@
       </tags>
   </entry>
   <entry>
-    <title>「CH0601」Genius ACM</title>
-    <url>/2020/07/26/%E3%80%8CCH0601%E3%80%8DGenius%20ACM/</url>
-    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
-<p>AcWing：<a href="https://www.acwing.com/problem/content/description/111/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/description/111/</a></p>
-<p>ContestHunter 挂了，只有 AcWing 上能找到这题了。。</p>
-<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
-<p>给定一个整数 M，对于任意一个整数集合 S，定义“校验值”如下:</p>
-<p>从集合 S 中取出 M 对数(即 2∗M个数，不能重复使用集合中的数，如果 S 中的整数不够 M 对，则取到不能取为止)，使得“每对数的差的平方”之和最大，这个最大值就称为集合 S 的“校验值”。</p>
-<a id="more"></a>
-<p>现在给定一个长度为 N 的数列 A 以及一个整数 T。</p>
-<p>我们要把 A 分成若干段，使得每一段的“校验值”都不超过 T。</p>
-<p>求最少需要分成几段。</p>
-<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
-<p>第一行输入整数 K，代表有 K 组测试数据。</p>
-<p>对于每组测试数据，第一行包含三个整数 N,M,T 。</p>
-<p>第二行包含 N 个整数，表示数列A1,A2…AN。</p>
-<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
-<p>对于每组测试数据，输出其答案，每个答案占一行。</p>
-<h2 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围"></a> 数据范围</h2>
-<p>1≤K≤12,<br />
-1≤N,M≤500000,<br />
-0≤T≤10^18,<br />
-0≤Ai≤2^20</p>
-<h2 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h2>
-<h3 id="朴素算法暴力"><a class="markdownIt-Anchor" href="#朴素算法暴力"></a> 朴素算法——暴力</h3>
-<p>从这个集合的开头开始，确定每一个划分点。</p>
-<p>采用类似贪心的方法，不考虑后面的数， 一个个向后枚举划分点。</p>
-<p>拿样例数据举例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">5 1 49</span><br><span class="line">8 2 1 7 9</span><br><span class="line">5 1 64</span><br><span class="line">8 2 1 7 9</span><br></pre></td></tr></table></figure>
-<p>先规定起始点 l 为 0，然后枚举：</p>
-<p>{8} -&gt; {8, 2} -&gt; {8, 2, 1} -&gt; {8, 2, 1, 7} -&gt; {8, 2, 1, 7, 9} -&gt;{8, 2, 1, 7}, {9}</p>
-<p>每次枚举还需要 O(n lg n) 的时间来排序，时间复杂度为 O(n^2 lg n)</p>
-<h3 id="倍增其实有点像二分"><a class="markdownIt-Anchor" href="#倍增其实有点像二分"></a> 倍增（其实有点像二分）</h3>
-<p>把枚举改成倍增</p>
-<p>显而易见，对于相同的左端 l，右端 r 越大，校验值越大（也有可能相等）。</p>
-<p>所以，校验值可以看成是具有单调性的，可以通过倍增求解。</p>
-<p>具体来说，可以确定一个右端 R 和右端增加长度 p，如果这个序列的校验值小于等于上限，那么将 p 乘以 2，并且将右端更新（R+=p），如果大于上限，就将 p 除以 2。</p>
-<p>这样，我们可以将时间复杂度降低到 O(n^2)</p>
-<h3 id="关于排序"><a class="markdownIt-Anchor" href="#关于排序"></a> 关于排序</h3>
-<p>每次求校验值时都需要排序，其实没有必要使用快速排序，可以采用归并排序，把新增的序列排好序然后再归并。时间复杂度 O(n lg n)</p>
-<p>然而我用了时间复杂度相同的二分插入排序，但是后面 TLE 了，时间限制是10s，我的程序运行了600s</p>
-<p><img src="https://i.loli.net/2020/07/26/FcR4CDdLo2WpeBJ.jpg" alt="Screenshot_20200726_132705.jpg" /></p>
-<p>应该是 vector 常数太大了吧</p>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">min</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">500005</span>;</span><br><span class="line"><span class="keyword">int</span> k, n, m;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; o, ne;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> t, a[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">genius</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;k; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%lld"</span>, &amp;n, &amp;m, &amp;t);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, genius());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">genius</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> r=<span class="number">0</span>, ans=<span class="number">0</span>, l, p;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ch;</span><br><span class="line">	<span class="keyword">while</span>(r&lt;n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(r==n<span class="number">-1</span>)&#123;</span><br><span class="line">			ans++; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		l=r; p=<span class="number">1</span>;</span><br><span class="line">		ne.<span class="built_in">clear</span>(); o.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="number">0</span> &amp;&amp; r&lt;n)&#123;</span><br><span class="line">			ch = check(r, p);</span><br><span class="line">			<span class="keyword">if</span>(ch&lt;=t)&#123;</span><br><span class="line">				r+=p; p*=<span class="number">2</span>;</span><br><span class="line">				o=ne;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> p/=<span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ans++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> r, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">	ne=o;</span><br><span class="line">	<span class="keyword">int</span> l, r1, mid;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=r; i&lt;<span class="built_in">min</span>(r+p, n); i++)&#123;</span><br><span class="line">		l=<span class="number">0</span>; r1=ne.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r1)&#123;</span><br><span class="line">			mid=(l+r1)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(ne[mid]&gt;=a[i]) r1=mid; </span><br><span class="line">			<span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ne.insert(ne.<span class="built_in">begin</span>()+l, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> s=ne.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s&gt;=(i+<span class="number">1</span>)*<span class="number">2</span>)&#123;</span><br><span class="line">			ans+=(ne[i]-ne[s-i<span class="number">-1</span>])*(ne[i]-ne[s-i<span class="number">-1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>「POJ2299」Ultra-QuickSort</title>
-    <url>/2020/07/19/%E3%80%8CPOJ2299%E3%80%8DUltra-QuickSort/</url>
-    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
-<h2 id="题目链接"><a class="markdownIt-Anchor" href="#题目链接"></a> 题目链接</h2>
-<p>UVA（洛谷有RemoteJudge）-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=20&amp;page=show_problem&amp;problem=1751" target="_blank" rel="noopener">https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=20&amp;page=show_problem&amp;problem=1751</a></p>
-<p>POJ-<a href="http://poj.org/problem?id=2299" target="_blank" rel="noopener">http://poj.org/problem?id=2299</a></p>
-<p>AcWing-<a href="https://www.acwing.com/problem/content/109/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/109/</a></p>
-<p>（不知道哪个是原创，都写上吧。。）</p>
-<a id="more"></a>
-<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
-<p>在这个问题中，您必须分析特定的排序算法----超快速排序。</p>
-<p>该算法通过交换两个相邻的序列元素来处理n个不同整数的序列，直到序列按升序排序。</p>
-<p>对于输入序列<code>9 1 0 5 4</code>，超快速排序生成输出<code>0 1 4 5 9</code>。</p>
-<p>您的任务是确定超快速排序需要执行多少交换操作才能对给定的输入序列进行排序。</p>
-<h3 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h3>
-<p>输入包括一些测试用例。</p>
-<p>每个测试用例的第一行输入整数<code>n</code>，代表该用例中输入序列的长度。</p>
-<p>接下来<code>n</code>行每行输入一个整数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>,代表用例中输入序列的具体数据，第i行的数据代表序列中第i个数。</p>
-<p>当输入用例中包含的输入序列长度为0时，输入终止，该序列无需处理。</p>
-<h3 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h3>
-<p>对于每个需要处理的输入序列，输出一个整数<code>op</code>，代表对给定输入序列进行排序所需的最小交换操作数，每个整数占一行。</p>
-<h3 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围"></a> 数据范围</h3>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo>≤</mo><mi>N</mi><mo>&lt;</mo><mn>5000000</mn><mo>≤</mo><mi>N</mi><mo>&lt;</mo><mn>500000</mn><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">0≤N&lt;5000000≤N&lt;500000,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span></span></span></span><br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo>≤</mo><msub><mi>a</mi><mi>i</mi></msub><mo>≤</mo><mn>999999999</mn></mrow><annotation encoding="application/x-tex">0≤a_i≤999999999</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7859700000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span></span></span></span></p>
-<h1 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h1>
-<h2 id="逆序对"><a class="markdownIt-Anchor" href="#逆序对"></a> 逆序对</h2>
-<p>对于数组<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> ，当其下标<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 满足<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi></mrow><annotation encoding="application/x-tex">i&lt;j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69862em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>&gt;</mo><msub><mi>a</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">a_i &gt; a_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 时，则称 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">a_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 构成逆序对。</p>
-<p>例如序列<code>9 1 0 5 4</code>中，<code>9</code>和<code>1</code>是一对逆序对，<code>9</code>和<code>0</code>也是一对逆序对。</p>
-<p>序列中，当逆序对的个数为0时，这个序列就是有序的，所以问题可以转化成“需要多少次交换可以将逆序对降为0”</p>
-<p>交换两个相邻的逆序对时，序列的逆序对会减少<code>1</code>，这是因为，那两个相邻的数不再构成逆序对，并且它们和其它数的相对位置（不讨论距离）不变，和其它数构成的逆序对也不改变。</p>
-<p>这样以来，只需要求出序列中逆序对的个数就可以知道需要交换几次。</p>
-<h2 id="归并排序"><a class="markdownIt-Anchor" href="#归并排序"></a> 归并排序</h2>
-<p>要求逆序对的个数，可以使用归并排序算法。</p>
-<p>归并排序中，将一个序列拆成两半，并且左右两边排序之后，左半边任意一个数 和 右半边任意一个数 的相对位置并没有改变。</p>
-<p>当左边的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个数大于右边第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个数时，这两个数构成逆序对。</p>
-<p>与此同时，左边的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> ，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">i+2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> ……个数都大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span>， 可以一次性统计。</p>
-<p>有关归并排序算法，可以去听小甲鱼老师的 数据结构和算法：<a href="https://www.bilibili.com/video/BV1os41117Fs?p=95" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1os41117Fs?p=95</a></p>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 500005</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[MAX], n;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span>*, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("data.in", "r", stdin);</span></span><br><span class="line">	<span class="keyword">for</span>( ; ; )&#123;</span><br><span class="line">		ans=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">		MergeSort(a, n);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(len==<span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> *l=arr, *r=arr+len/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> ls=len/<span class="number">2</span>, rs=len-len/<span class="number">2</span>;</span><br><span class="line">	MergeSort(l, ls);</span><br><span class="line">	MergeSort(r, rs);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>, ts=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> temp[MAX];</span><br><span class="line">	<span class="keyword">while</span>(i&lt;ls &amp;&amp; j&lt;rs)&#123;</span><br><span class="line">		<span class="keyword">if</span>(l[i]&gt;r[j])&#123;</span><br><span class="line">			temp[ts++] = r[j++];</span><br><span class="line">			ans += ls-i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> temp[ts++] = l[i++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(j&lt;rs) temp[ts++] = r[j++];</span><br><span class="line">	<span class="keyword">while</span>(i&lt;ls) temp[ts++] = l[i++];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;ts; x++)&#123;</span><br><span class="line">		arr[x] = temp[x];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>「USACO06FEB」Stall Reservations</title>
-    <url>/2020/08/02/%E3%80%8CUSACO06FEB%E3%80%8DStall%20Reservations/</url>
-    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
-<p>貌似是 USACO 原创，但我实在找不到原创的链接，只能在洛谷、 AcWing 和 POJ 上找了</p>
-<p>洛谷：<a href="https://www.luogu.com.cn/problem/P2859" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2859</a></p>
-<p>AcWing：<a href="https://www.acwing.com/problem/content/113/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/113/</a></p>
-<a id="more"></a>
-<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
-<p>有N头牛在畜栏中吃草。</p>
-<p>每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。</p>
-<p>给定N头牛和每头牛开始吃草的时间A以及结束吃草的时间B，每头牛在[A,B]这一时间段内都会一直吃草。</p>
-<p>当两头牛的吃草区间存在交集时（包括端点），这两头牛不能被安排在同一个畜栏吃草。</p>
-<p>求需要的最小畜栏数目和每头牛对应的畜栏方案。</p>
-<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
-<p>第1行：输入一个整数N。</p>
-<p>第2…N+1行：第i+1行输入第i头牛的开始吃草时间A以及结束吃草时间B，数之间用空格隔开。</p>
-<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
-<p>第1行：输入一个整数，代表所需最小畜栏数。</p>
-<p>第2…N+1行：第i+1行输入第i头牛被安排到的畜栏编号，编号是从1开始的 连续 整数，只要方案合法即可。</p>
-<p>（洛谷上题目描述是挤奶，AcWing上是吃草。。。）</p>
-<h1 id="基本算法"><a class="markdownIt-Anchor" href="#基本算法"></a> 基本算法</h1>
-<h2 id="贪心"><a class="markdownIt-Anchor" href="#贪心"></a> 贪心</h2>
-<p>应该是比较显而易见的一个贪心，我刚开始都不觉得自己有多贪。。</p>
-<p>按开始的时间把牛排序，然后依次放入畜栏，每次尽量放在已经使用过的畜栏中，如果没有就新建一个畜栏，cnt++。</p>
-<p>由于可以放进任意一个畜栏，可以直接选出结束时间最早的畜栏比较，如果比当前时间早就可以放入，如果比当前时间晚就新建。</p>
-<p>因此，可以通过 <code>std::priority_queue</code> 来维护一个小根堆来存放畜栏使用情况（当然手写也可以</p>
-<h2 id="priority_queue"><a class="markdownIt-Anchor" href="#priority_queue"></a> priority_queue</h2>
-<p>我一般管这个叫优先队列，它可以保证队头的元素是 最小/最大 的。</p>
-<p>对于这道题，存放畜栏的优先队列需要存放 畜栏中牛结束的时间 和 畜栏的编号，其中需要将最小值放在队首的是结束时间。因此，可以使用 <code>std::pair</code> 来作为一个单位存放。对于 pair ，每个元素进行比较时，先比较 first ，所以可以把结束时间放在 first 中。</p>
-<p>当然，手写一个node然后重载运算符来自定义比较也可以，但这就是 C++ 的进阶操作了。</p>
-<p>另外，在写的时候，一定要搞清楚队列里要存什么，思路一定要清晰（我就是因为这个被绕住了）</p>
-<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::priority_queue;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::sort;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::greater;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pint;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50005</span>;</span><br><span class="line"><span class="keyword">int</span> n, cnt, le, ans[MAX];</span><br><span class="line">priority_queue &lt; pint, <span class="built_in">vector</span>&lt;pint&gt;, greater&lt;pint&gt; &gt; cl;</span><br><span class="line">pint tmp;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cow</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> start, <span class="built_in">end</span>, nu;</span><br><span class="line">&#125;cow[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Cow x, Cow y)</span> </span>&#123; <span class="keyword">return</span> x.start &lt; y.start; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"data.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;cow[i].start, &amp;cow[i].<span class="built_in">end</span>);</span><br><span class="line">		cow[i].nu=i;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(cow, cow+n, cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!cl.empty() &amp;&amp; cl.top().first&lt;cow[i].start)&#123;</span><br><span class="line">			ans[cow[i].nu]=cl.top().second;</span><br><span class="line">			cl.pop();</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; <span class="comment">// tmp.second=cl.size();</span></span><br><span class="line">			tmp.second=ans[cow[i].nu];</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; tmp.second=cnt;</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			ans[cow[i].nu]=cnt;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, cnt);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-        <tag>题解 - 贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>「XSection立体几何」中心投影和平行投影</title>
-    <url>/2020/08/09/%E3%80%8CXSection%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95%E3%80%8D%E5%B9%B3%E8%A1%8C%E6%8A%95%E5%BD%B1%E5%92%8C%E4%B8%AD%E5%BF%83%E6%8A%95%E5%BD%B1/</url>
-    <content><![CDATA[<h1 id="投影"><a class="markdownIt-Anchor" href="#投影"></a> 投影</h1>
-<p>话说前几天我在翻北师大版九年级上册数学书时，发现这本书的第五章是“投影与视图”。（这游戏没有汉化，这使书上术语的英文名是我感到十分亲切。。）</p>
-<p>这一章的第一小节就是投影，但其实对于立体几何，书上讲得非常简单，这节的重点其实是承接上一章《图形的相似》，利用相似三角形来计算投影的位置。</p>
-<p>即使是这样，我觉得还是很有必要放一下教科书上对投影的定义的：</p>
-<blockquote>
-<p>物体在光线的照射下，会在地面或其他平面上留下它的影子，这就是投影（Projection）现象，影子所在的平面称为投影面。</p>
-</blockquote>
-<a id="more"></a>
-<p>本来，小编觉得这句话的前半句太过物理化，不像数学语言的风格。但我之后又发现 百度百科 和 Wikipedia 上都是差不多的解释，也就认了这个定义。</p>
-<p>直到我翻了翻 XSection 的术语表：</p>
-<p><img src="https://i.loli.net/2020/08/09/e7mWLX63OMaV2ru.jpg" alt="Screenshot_20200809-160822.jpg" /></p>
-<p>它的解释是这样的：</p>
-<blockquote>
-<p>A projection is a correspondence between the points of an object and a plane.</p>
-</blockquote>
-<p>翻译成中文就是：</p>
-<blockquote>
-<p>投影是对象上和平面之间点的的对应关系</p>
-</blockquote>
-<p>其中，<code>correspondence</code>这个词就用得非常妙，一开始我其它词都认识，只有这个不知道什么意思，之后上谷歌翻译查了查，Google 给我的解释是 “对应”。</p>
-<p>我认为这个术语表中的解释是非常到位的，至少在游戏中是适用且非常严谨的。</p>
-<p>在后面的关卡中，会有许多需要找出投影的任务，这类题无非分两种，一种是已知平面上的投影，求物体（object）上的点。</p>
-<p>一种是已知物体上的点，求它在已知平面上的投影。</p>
-<p>而只要掌握了这种对应关系，这两种问题都可以迎刃而解。</p>
-<h1 id="中心投影"><a class="markdownIt-Anchor" href="#中心投影"></a> 中心投影</h1>
-<p>按照数学书对投影的解释，把光源看作是一个点，也就是所有的光线都会相交在一个点上，就是中心投影。</p>
-<p>数学书上的定义如下：</p>
-<blockquote>
-<p>手电筒、路灯和台灯的光线可以看成是从一个点发出的，这样的光线所形成的投影称为中心投影。</p>
-</blockquote>
-<p>最典型的例子就是灯泡了，我们可以将它看作是一个点光源，会向各个方向发光。手电筒还并不是一个典型，因为许多手电筒发出的其实更像是平行光。</p>
-<p>在 XSection 中，它的定义是这样的：</p>
-<p><img src="https://i.loli.net/2020/08/09/J8CLe7rxq4FBaHl.jpg" alt="Screenshot_20200809-165252.jpg" /></p>
-<blockquote>
-<p>A central projection is a projection in which all projective rays passes through a given point S (the center of projetion).</p>
-</blockquote>
-<p>翻译过来就是：</p>
-<blockquote>
-<p>中心投影中的每个投射线经过一个已知的点S（投影中心）。</p>
-</blockquote>
-<h1 id="平行投影"><a class="markdownIt-Anchor" href="#平行投影"></a> 平行投影</h1>
-<p>对于平行投影，一个很有意思的点是，太阳和灯都在向各个方向发光，但人们一般把灯光看作是点光源，使用的是中心投影，而太阳光则是平行光线，使用平行投影。</p>
-<p>这主要是因为，太阳离我们太远了，物体上的任意两个点与太阳构成的三角形的那个角实在太小太小了，完全可以看作是平行的。</p>
-<p>对于平行投影，书上的定义是这样的：</p>
-<blockquote>
-<p>太阳光线可以看成平行光线，平行光线所形成的投影成为平行投影（parallel projeciton）.</p>
-</blockquote>
-<p>百度百科上说：</p>
-<blockquote>
-<p>如果把中心投影法的投射中心即光源S移至无穷远处，则各投射线成为相互平行的直线，物体投影就不受距离变化的影响，这种投射线都互相平行的投影法称为平行投影法。</p>
-</blockquote>
-<p>而 XSection 上的定义，则更加严谨和明确：</p>
-<p><img src="https://i.loli.net/2020/08/09/DuhnoCcUt13XArZ.jpg" alt="Screenshot_20200809-172043.jpg" /></p>
-<blockquote>
-<p>A parallel projection is a projection in which all projection rays are parallel to a given line.</p>
-</blockquote>
-<p>翻译成中文就是：</p>
-<blockquote>
-<p>平行投影指的是每一条投射线都与给定直线平行的投影。</p>
-</blockquote>
-<h1 id="一个例子"><a class="markdownIt-Anchor" href="#一个例子"></a> 一个例子</h1>
-<p>值得注意的是，在游戏中，所有关于投影的题都不会提示你使用中心投影法或者平行投影法。</p>
-<p>不知道各位有没有发现，在画图上，平行投影法像是画出了一个棱柱，而中心投影法像是画出了一个棱锥。</p>
-<p>这是因为棱柱的每条棱互相平行，正好符合平行投影中投射线的性质。棱锥中所有棱都会相交与一点，也符合中心投影的性质。</p>
-<p>下面来看一个例子。因为 XSection 中是无法改变视图的，再加上竖屏不方便观看，我们就用 GeoGebra 进行演示：</p>
-<p><img src="https://i.loli.net/2020/08/09/DUq6LEMoI7cbX9y.jpg" alt="Screenshot_20200809_221233.jpg" /></p>
-<p>这是 XSection 中的 3.4 题，我认为比较有代表性。题目是这样的：</p>
-<p>已知<code>I</code>、<code>H</code>两点，求线段 I、H 在底面上的投影。（过F点的直线FH和GC是相交的，原谅我忘了作交点了吧）</p>
-<p>看到这个棱锥，首先想到的一定是中心投影法，因为它相当于给定了一个点G来求投影。</p>
-<p>投影面当然是底面，这个在题目中有提到。</p>
-<p>需要说明的是，直线FH的作用是表明点H在平面BGC上。事实上，FH//BC。</p>
-<p>那么作法就非常简单了，首先连接并延长GH、GI。</p>
-<p><img src="https://i.loli.net/2020/08/09/8GsNxvmBnzocQay.jpg" alt="Screenshot_20200809_221321.jpg" /></p>
-<p>下一步，找到这两条射线和底面的交点。</p>
-<p>这里要注意的是，游戏中你是无法直接找到线和面的交点的，必须找到这个面上可以与它相交的一条线，然后点出线与线的交点（这其实也是后面很多题的难点）</p>
-<p>在这道题中，这条线就是BC。<a href="https://www.cnblogs.com/dong628/p/13415431.html" target="_blank" rel="noopener">第一节</a>中讲过，「一个平面上任意个点都是处在同一平面的」，所以，有了平面BCG，就有平面HCG，也就有交点J。</p>
-<p>于是，根据同样的方法，可以找到点I的投影点D。</p>
-<p>最后，连接DJ，完成。</p>
-<p><img src="https://i.loli.net/2020/08/09/lVJZskqnMXaSCg4.jpg" alt="Screenshot_20200809_221342.jpg" /></p>
-<p>-&gt; to be continued…</p>
-]]></content>
-      <tags>
-        <tag>XSection</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mssCTF 2020 赛后总结</title>
     <url>/2020/09/26/mssCTF%202020%20%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>这真的是我打过最惊险，最一波三折的一场比赛，尤其是决赛的最后十分钟，简直是我打过比赛中最紧张刺激的最后时刻。。</p>
@@ -398,6 +174,102 @@
       </tags>
   </entry>
   <entry>
+    <title>「CH0601」Genius ACM</title>
+    <url>/2020/07/26/%E3%80%8CCH0601%E3%80%8DGenius%20ACM/</url>
+    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
+<p>AcWing：<a href="https://www.acwing.com/problem/content/description/111/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/description/111/</a></p>
+<p>ContestHunter 挂了，只有 AcWing 上能找到这题了。。</p>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>给定一个整数 M，对于任意一个整数集合 S，定义“校验值”如下:</p>
+<p>从集合 S 中取出 M 对数(即 2∗M个数，不能重复使用集合中的数，如果 S 中的整数不够 M 对，则取到不能取为止)，使得“每对数的差的平方”之和最大，这个最大值就称为集合 S 的“校验值”。</p>
+<a id="more"></a>
+<p>现在给定一个长度为 N 的数列 A 以及一个整数 T。</p>
+<p>我们要把 A 分成若干段，使得每一段的“校验值”都不超过 T。</p>
+<p>求最少需要分成几段。</p>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>第一行输入整数 K，代表有 K 组测试数据。</p>
+<p>对于每组测试数据，第一行包含三个整数 N,M,T 。</p>
+<p>第二行包含 N 个整数，表示数列A1,A2…AN。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>对于每组测试数据，输出其答案，每个答案占一行。</p>
+<h2 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围"></a> 数据范围</h2>
+<p>1≤K≤12,<br />
+1≤N,M≤500000,<br />
+0≤T≤10^18,<br />
+0≤Ai≤2^20</p>
+<h2 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h2>
+<h3 id="朴素算法暴力"><a class="markdownIt-Anchor" href="#朴素算法暴力"></a> 朴素算法——暴力</h3>
+<p>从这个集合的开头开始，确定每一个划分点。</p>
+<p>采用类似贪心的方法，不考虑后面的数， 一个个向后枚举划分点。</p>
+<p>拿样例数据举例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">5 1 49</span><br><span class="line">8 2 1 7 9</span><br><span class="line">5 1 64</span><br><span class="line">8 2 1 7 9</span><br></pre></td></tr></table></figure>
+<p>先规定起始点 l 为 0，然后枚举：</p>
+<p>{8} -&gt; {8, 2} -&gt; {8, 2, 1} -&gt; {8, 2, 1, 7} -&gt; {8, 2, 1, 7, 9} -&gt;{8, 2, 1, 7}, {9}</p>
+<p>每次枚举还需要 O(n lg n) 的时间来排序，时间复杂度为 O(n^2 lg n)</p>
+<h3 id="倍增其实有点像二分"><a class="markdownIt-Anchor" href="#倍增其实有点像二分"></a> 倍增（其实有点像二分）</h3>
+<p>把枚举改成倍增</p>
+<p>显而易见，对于相同的左端 l，右端 r 越大，校验值越大（也有可能相等）。</p>
+<p>所以，校验值可以看成是具有单调性的，可以通过倍增求解。</p>
+<p>具体来说，可以确定一个右端 R 和右端增加长度 p，如果这个序列的校验值小于等于上限，那么将 p 乘以 2，并且将右端更新（R+=p），如果大于上限，就将 p 除以 2。</p>
+<p>这样，我们可以将时间复杂度降低到 O(n^2)</p>
+<h3 id="关于排序"><a class="markdownIt-Anchor" href="#关于排序"></a> 关于排序</h3>
+<p>每次求校验值时都需要排序，其实没有必要使用快速排序，可以采用归并排序，把新增的序列排好序然后再归并。时间复杂度 O(n lg n)</p>
+<p>然而我用了时间复杂度相同的二分插入排序，但是后面 TLE 了，时间限制是10s，我的程序运行了600s</p>
+<p><img src="https://i.loli.net/2020/07/26/FcR4CDdLo2WpeBJ.jpg" alt="Screenshot_20200726_132705.jpg" /></p>
+<p>应该是 vector 常数太大了吧</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">min</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">500005</span>;</span><br><span class="line"><span class="keyword">int</span> k, n, m;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; o, ne;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> t, a[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">genius</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;k; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%lld"</span>, &amp;n, &amp;m, &amp;t);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, genius());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">genius</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> r=<span class="number">0</span>, ans=<span class="number">0</span>, l, p;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ch;</span><br><span class="line">	<span class="keyword">while</span>(r&lt;n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(r==n<span class="number">-1</span>)&#123;</span><br><span class="line">			ans++; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		l=r; p=<span class="number">1</span>;</span><br><span class="line">		ne.<span class="built_in">clear</span>(); o.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="keyword">while</span>(p!=<span class="number">0</span> &amp;&amp; r&lt;n)&#123;</span><br><span class="line">			ch = check(r, p);</span><br><span class="line">			<span class="keyword">if</span>(ch&lt;=t)&#123;</span><br><span class="line">				r+=p; p*=<span class="number">2</span>;</span><br><span class="line">				o=ne;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> p/=<span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ans++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> r, <span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">	ne=o;</span><br><span class="line">	<span class="keyword">int</span> l, r1, mid;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=r; i&lt;<span class="built_in">min</span>(r+p, n); i++)&#123;</span><br><span class="line">		l=<span class="number">0</span>; r1=ne.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r1)&#123;</span><br><span class="line">			mid=(l+r1)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(ne[mid]&gt;=a[i]) r1=mid; </span><br><span class="line">			<span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ne.insert(ne.<span class="built_in">begin</span>()+l, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> s=ne.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s&gt;=(i+<span class="number">1</span>)*<span class="number">2</span>)&#123;</span><br><span class="line">			ans+=(ne[i]-ne[s-i<span class="number">-1</span>])*(ne[i]-ne[s-i<span class="number">-1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「POJ2299」Ultra-QuickSort</title>
+    <url>/2020/07/19/%E3%80%8CPOJ2299%E3%80%8DUltra-QuickSort/</url>
+    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
+<h2 id="题目链接"><a class="markdownIt-Anchor" href="#题目链接"></a> 题目链接</h2>
+<p>UVA（洛谷有RemoteJudge）-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=20&amp;page=show_problem&amp;problem=1751" target="_blank" rel="noopener">https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=20&amp;page=show_problem&amp;problem=1751</a></p>
+<p>POJ-<a href="http://poj.org/problem?id=2299" target="_blank" rel="noopener">http://poj.org/problem?id=2299</a></p>
+<p>AcWing-<a href="https://www.acwing.com/problem/content/109/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/109/</a></p>
+<p>（不知道哪个是原创，都写上吧。。）</p>
+<a id="more"></a>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>在这个问题中，您必须分析特定的排序算法----超快速排序。</p>
+<p>该算法通过交换两个相邻的序列元素来处理n个不同整数的序列，直到序列按升序排序。</p>
+<p>对于输入序列<code>9 1 0 5 4</code>，超快速排序生成输出<code>0 1 4 5 9</code>。</p>
+<p>您的任务是确定超快速排序需要执行多少交换操作才能对给定的输入序列进行排序。</p>
+<h3 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h3>
+<p>输入包括一些测试用例。</p>
+<p>每个测试用例的第一行输入整数<code>n</code>，代表该用例中输入序列的长度。</p>
+<p>接下来<code>n</code>行每行输入一个整数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>,代表用例中输入序列的具体数据，第i行的数据代表序列中第i个数。</p>
+<p>当输入用例中包含的输入序列长度为0时，输入终止，该序列无需处理。</p>
+<h3 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h3>
+<p>对于每个需要处理的输入序列，输出一个整数<code>op</code>，代表对给定输入序列进行排序所需的最小交换操作数，每个整数占一行。</p>
+<h3 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围"></a> 数据范围</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo>≤</mo><mi>N</mi><mo>&lt;</mo><mn>5000000</mn><mo>≤</mo><mi>N</mi><mo>&lt;</mo><mn>500000</mn><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">0≤N&lt;5000000≤N&lt;500000,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span></span></span></span><br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo>≤</mo><msub><mi>a</mi><mi>i</mi></msub><mo>≤</mo><mn>999999999</mn></mrow><annotation encoding="application/x-tex">0≤a_i≤999999999</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7859700000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span><span class="mord">9</span></span></span></span></p>
+<h1 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h1>
+<h2 id="逆序对"><a class="markdownIt-Anchor" href="#逆序对"></a> 逆序对</h2>
+<p>对于数组<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> ，当其下标<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 满足<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi></mrow><annotation encoding="application/x-tex">i&lt;j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69862em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 且<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>&gt;</mo><msub><mi>a</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">a_i &gt; a_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 时，则称 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">a_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 构成逆序对。</p>
+<p>例如序列<code>9 1 0 5 4</code>中，<code>9</code>和<code>1</code>是一对逆序对，<code>9</code>和<code>0</code>也是一对逆序对。</p>
+<p>序列中，当逆序对的个数为0时，这个序列就是有序的，所以问题可以转化成“需要多少次交换可以将逆序对降为0”</p>
+<p>交换两个相邻的逆序对时，序列的逆序对会减少<code>1</code>，这是因为，那两个相邻的数不再构成逆序对，并且它们和其它数的相对位置（不讨论距离）不变，和其它数构成的逆序对也不改变。</p>
+<p>这样以来，只需要求出序列中逆序对的个数就可以知道需要交换几次。</p>
+<h2 id="归并排序"><a class="markdownIt-Anchor" href="#归并排序"></a> 归并排序</h2>
+<p>要求逆序对的个数，可以使用归并排序算法。</p>
+<p>归并排序中，将一个序列拆成两半，并且左右两边排序之后，左半边任意一个数 和 右半边任意一个数 的相对位置并没有改变。</p>
+<p>当左边的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个数大于右边第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个数时，这两个数构成逆序对。</p>
+<p>与此同时，左边的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> ，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">i+2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> ……个数都大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span>， 可以一次性统计。</p>
+<p>有关归并排序算法，可以去听小甲鱼老师的 数据结构和算法：<a href="https://www.bilibili.com/video/BV1os41117Fs?p=95" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1os41117Fs?p=95</a></p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 500005</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[MAX], n;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span>*, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("data.in", "r", stdin);</span></span><br><span class="line">	<span class="keyword">for</span>( ; ; )&#123;</span><br><span class="line">		ans=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">		MergeSort(a, n);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(len==<span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> *l=arr, *r=arr+len/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> ls=len/<span class="number">2</span>, rs=len-len/<span class="number">2</span>;</span><br><span class="line">	MergeSort(l, ls);</span><br><span class="line">	MergeSort(r, rs);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>, ts=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> temp[MAX];</span><br><span class="line">	<span class="keyword">while</span>(i&lt;ls &amp;&amp; j&lt;rs)&#123;</span><br><span class="line">		<span class="keyword">if</span>(l[i]&gt;r[j])&#123;</span><br><span class="line">			temp[ts++] = r[j++];</span><br><span class="line">			ans += ls-i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> temp[ts++] = l[i++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(j&lt;rs) temp[ts++] = r[j++];</span><br><span class="line">	<span class="keyword">while</span>(i&lt;ls) temp[ts++] = l[i++];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;ts; x++)&#123;</span><br><span class="line">		arr[x] = temp[x];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>「POJ2965」The Pilots Brothers&#39; refrigerator</title>
     <url>/2020/08/05/%E3%80%8CPOJ2965%E3%80%8DThe%20Pilots%20Brothers&#39;%20refrigerator/</url>
     <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
@@ -440,6 +312,46 @@
       <tags>
         <tag>算法</tag>
         <tag>题解 - 状态压缩</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「USACO06FEB」Stall Reservations</title>
+    <url>/2020/08/02/%E3%80%8CUSACO06FEB%E3%80%8DStall%20Reservations/</url>
+    <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
+<p>貌似是 USACO 原创，但我实在找不到原创的链接，只能在洛谷、 AcWing 和 POJ 上找了</p>
+<p>洛谷：<a href="https://www.luogu.com.cn/problem/P2859" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2859</a></p>
+<p>AcWing：<a href="https://www.acwing.com/problem/content/113/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/113/</a></p>
+<a id="more"></a>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>有N头牛在畜栏中吃草。</p>
+<p>每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。</p>
+<p>给定N头牛和每头牛开始吃草的时间A以及结束吃草的时间B，每头牛在[A,B]这一时间段内都会一直吃草。</p>
+<p>当两头牛的吃草区间存在交集时（包括端点），这两头牛不能被安排在同一个畜栏吃草。</p>
+<p>求需要的最小畜栏数目和每头牛对应的畜栏方案。</p>
+<h2 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h2>
+<p>第1行：输入一个整数N。</p>
+<p>第2…N+1行：第i+1行输入第i头牛的开始吃草时间A以及结束吃草时间B，数之间用空格隔开。</p>
+<h2 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h2>
+<p>第1行：输入一个整数，代表所需最小畜栏数。</p>
+<p>第2…N+1行：第i+1行输入第i头牛被安排到的畜栏编号，编号是从1开始的 连续 整数，只要方案合法即可。</p>
+<p>（洛谷上题目描述是挤奶，AcWing上是吃草。。。）</p>
+<h1 id="基本算法"><a class="markdownIt-Anchor" href="#基本算法"></a> 基本算法</h1>
+<h2 id="贪心"><a class="markdownIt-Anchor" href="#贪心"></a> 贪心</h2>
+<p>应该是比较显而易见的一个贪心，我刚开始都不觉得自己有多贪。。</p>
+<p>按开始的时间把牛排序，然后依次放入畜栏，每次尽量放在已经使用过的畜栏中，如果没有就新建一个畜栏，cnt++。</p>
+<p>由于可以放进任意一个畜栏，可以直接选出结束时间最早的畜栏比较，如果比当前时间早就可以放入，如果比当前时间晚就新建。</p>
+<p>因此，可以通过 <code>std::priority_queue</code> 来维护一个小根堆来存放畜栏使用情况（当然手写也可以</p>
+<h2 id="priority_queue"><a class="markdownIt-Anchor" href="#priority_queue"></a> priority_queue</h2>
+<p>我一般管这个叫优先队列，它可以保证队头的元素是 最小/最大 的。</p>
+<p>对于这道题，存放畜栏的优先队列需要存放 畜栏中牛结束的时间 和 畜栏的编号，其中需要将最小值放在队首的是结束时间。因此，可以使用 <code>std::pair</code> 来作为一个单位存放。对于 pair ，每个元素进行比较时，先比较 first ，所以可以把结束时间放在 first 中。</p>
+<p>当然，手写一个node然后重载运算符来自定义比较也可以，但这就是 C++ 的进阶操作了。</p>
+<p>另外，在写的时候，一定要搞清楚队列里要存什么，思路一定要清晰（我就是因为这个被绕住了）</p>
+<h1 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::priority_queue;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::sort;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::greater;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pint;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50005</span>;</span><br><span class="line"><span class="keyword">int</span> n, cnt, le, ans[MAX];</span><br><span class="line">priority_queue &lt; pint, <span class="built_in">vector</span>&lt;pint&gt;, greater&lt;pint&gt; &gt; cl;</span><br><span class="line">pint tmp;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cow</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> start, <span class="built_in">end</span>, nu;</span><br><span class="line">&#125;cow[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Cow x, Cow y)</span> </span>&#123; <span class="keyword">return</span> x.start &lt; y.start; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"data.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"data.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;cow[i].start, &amp;cow[i].<span class="built_in">end</span>);</span><br><span class="line">		cow[i].nu=i;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(cow, cow+n, cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!cl.empty() &amp;&amp; cl.top().first&lt;cow[i].start)&#123;</span><br><span class="line">			ans[cow[i].nu]=cl.top().second;</span><br><span class="line">			cl.pop();</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; <span class="comment">// tmp.second=cl.size();</span></span><br><span class="line">			tmp.second=ans[cow[i].nu];</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			tmp.first=cow[i].<span class="built_in">end</span>; tmp.second=cnt;</span><br><span class="line">			cl.push(tmp);</span><br><span class="line">			ans[cow[i].nu]=cnt;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, cnt);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+        <tag>题解 - 贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -493,40 +405,91 @@
       </tags>
   </entry>
   <entry>
-    <title>「题解」CSP-S 2020 儒略日</title>
-    <url>/2020/11/10/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8DCSP-S%202020%20%E5%84%92%E7%95%A5%E6%97%A5/</url>
-    <content><![CDATA[<h2 id="谨以此篇题解纪念我那炸掉的t1"><a class="markdownIt-Anchor" href="#谨以此篇题解纪念我那炸掉的t1"></a> 谨以此篇题解，纪念我那炸掉的T1。。</h2>
-<h1 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h1>
-<p>大模拟，我写了100多行。。</p>
-<p>总之就是按照时间依次向后推进</p>
-<p>先判断使用哪一历法，当r大于等于<code>2299162</code>时，使用的是格里高利历，反之，使用儒略历。之后分类讨论。</p>
+    <title>「XSection立体几何」中心投影和平行投影</title>
+    <url>/2020/08/09/%E3%80%8CXSection%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95%E3%80%8D%E5%B9%B3%E8%A1%8C%E6%8A%95%E5%BD%B1%E5%92%8C%E4%B8%AD%E5%BF%83%E6%8A%95%E5%BD%B1/</url>
+    <content><![CDATA[<h1 id="投影"><a class="markdownIt-Anchor" href="#投影"></a> 投影</h1>
+<p>话说前几天我在翻北师大版九年级上册数学书时，发现这本书的第五章是“投影与视图”。（这游戏没有汉化，这使书上术语的英文名是我感到十分亲切。。）</p>
+<p>这一章的第一小节就是投影，但其实对于立体几何，书上讲得非常简单，这节的重点其实是承接上一章《图形的相似》，利用相似三角形来计算投影的位置。</p>
+<p>即使是这样，我觉得还是很有必要放一下教科书上对投影的定义的：</p>
+<blockquote>
+<p>物体在光线的照射下，会在地面或其他平面上留下它的影子，这就是投影（Projection）现象，影子所在的平面称为投影面。</p>
+</blockquote>
 <a id="more"></a>
-<h2 id="儒略历r2299162"><a class="markdownIt-Anchor" href="#儒略历r2299162"></a> 儒略历（r&lt;2299162）</h2>
-<p>儒略历的话，因为前4713年正好是一个闰年，我就将四年分为了一组，也就是每4年有1461天，算出经过多少年，再算出减去这些年之后还剩的天数（实际上后面都是这个思路）</p>
-<p>因为着四年中，第一年就是一个闰年，所以如果剩下的日子小于366，那就按照闰年算出月和日，反之减去366，算出多了多少年，再算日期。</p>
-<h2 id="格里高利历r2299162"><a class="markdownIt-Anchor" href="#格里高利历r2299162"></a> 格里高利历（r&gt;=2299162）</h2>
-<p>真正麻烦的是格里高利历。</p>
-<p>格里高利历又多了“百年不闰，四百年再闰”的规则，于是我将400年作为一个周期，每400年97闰，那么每400年就要经过146097天。</p>
-<p>总之，为了方便计算，先把r减去2299162。</p>
-<p>因为格里高利历开始的时间是1582年的10月15日，如果在这个日期后，但在1582年里，就要分类讨论。而1582年10月15日距离1583年正好77天，这就有了<code>77</code>这个常数。</p>
-<h3 id="1583年前"><a class="markdownIt-Anchor" href="#1583年前"></a> 1583年前</h3>
-<p>这部分的处理简单粗暴，分成了三类，分别是10月，11月，12月。每类单独算日期。</p>
-<h3 id="1583年后r77"><a class="markdownIt-Anchor" href="#1583年后r77"></a> 1583年后（r&gt;77）</h3>
-<p>我当时想着是直接快进到1600年，因为这一年正好是400的整倍数，可以作为一个周期的起点，但1583年并不是一个闰年，如果不把1600年之前的每4年组合在一起，将会十分难算。于是我打算将1584年作为一个节点。于是我将在1584年之后的日期和在这之前的日期分开计算。</p>
-<p>而当时间快进到1584年时，就可以将剩下的16年以4年一组的形式划分，这样算到1600年。</p>
-<h4 id="1600年后"><a class="markdownIt-Anchor" href="#1600年后"></a> 1600年后</h4>
-<p>当到了1600后，剩下的事情就相对简单了。</p>
-<p>首先将每146097年分成一组，这就是一个400年，首先计算出有多少个400年。</p>
-<p>然后判断剩下的日子是否属于第一个百年，因为第一个一百年有25个闰年，而剩下的三个百年中，每一百年只有24个闰年，这也是常数<code>36525</code>的由来。</p>
-<p>然后将4年确定为一个周期，确定在这100或300年中，这个日期属于哪个4年。</p>
-<p>最后，在确定这个日期是平年或是闰年，分别算出月和日。</p>
-<h1 id="代码看到最后有惊喜"><a class="markdownIt-Anchor" href="#代码看到最后有惊喜"></a> 代码（看到最后有惊喜）</h1>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> q, r, day, month, year;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> months[<span class="number">15</span>]=&#123;<span class="number">31</span>, <span class="number">28</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> monthr[<span class="number">15</span>]=&#123;<span class="number">31</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>&#125;;</span><br><span class="line"><span class="comment">//const int julian=2297591;</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> julian=<span class="number">2299162</span>;</span><br><span class="line">int Month(), Monthr();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"julian.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"julian.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;q);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> asdf=<span class="number">0</span>; asdf&lt;q; asdf++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;r);</span><br><span class="line">		r++;</span><br><span class="line">		<span class="keyword">if</span>(r&lt;julian)&#123;</span><br><span class="line">			year=(r/<span class="number">1461</span>)*<span class="number">4</span>;</span><br><span class="line">			r%=<span class="number">1461</span>;</span><br><span class="line">			<span class="keyword">if</span>(r&lt;=<span class="number">59</span>)&#123;</span><br><span class="line">				month=r&gt;<span class="number">31</span>?<span class="number">2</span>:<span class="number">1</span>;</span><br><span class="line">				day=r&gt;<span class="number">31</span>?r<span class="number">-31</span>:r;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(r&lt;=<span class="number">366</span>)&#123;</span><br><span class="line">					month=Monthr();</span><br><span class="line">					day=r;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					year+=(r<span class="number">-366</span>)/<span class="number">365</span>+<span class="number">1</span>;</span><br><span class="line">					r-=<span class="number">366</span>; r%=<span class="number">365</span>;</span><br><span class="line">					month=Month();</span><br><span class="line">					day=r;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(year&lt;<span class="number">4713</span>)</span><br><span class="line">				<span class="keyword">if</span>(day==<span class="number">0</span> &amp;&amp; month==<span class="number">1</span>)</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"31 12 %lld BC\n"</span>, <span class="number">4713</span>-year+<span class="number">1</span>);</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"%lld %lld %lld BC\n"</span>, day, month, <span class="number">4713</span>-year);</span><br><span class="line">			<span class="keyword">else</span>  </span><br><span class="line">				<span class="keyword">if</span>(day==<span class="number">0</span> &amp;&amp; month==<span class="number">1</span>)</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"31 12 %lld\n"</span>, year<span class="number">-4713</span>);</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"%lld %lld %lld\n"</span>, day, month, year<span class="number">-4713</span>+<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			r-=julian;</span><br><span class="line">			year=<span class="number">1582</span>;</span><br><span class="line">			<span class="keyword">if</span>(r&lt;=<span class="number">77</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(r&lt;=<span class="number">16</span>)&#123; month=<span class="number">10</span>; day=<span class="number">15</span>+r; &#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(r&lt;=<span class="number">46</span>)&#123; month=<span class="number">11</span>; day=r<span class="number">-16</span>; &#125;</span><br><span class="line">				<span class="keyword">else</span> &#123; month=<span class="number">12</span>; day=r<span class="number">-46</span>; &#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				r-=<span class="number">77</span>;</span><br><span class="line">				<span class="keyword">if</span>(r&lt;=<span class="number">365</span>)&#123;</span><br><span class="line">					year++;</span><br><span class="line">					month=Month();</span><br><span class="line">					day=r;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					r-=<span class="number">365</span>; year=<span class="number">1584</span>;</span><br><span class="line">					<span class="keyword">if</span>(r&lt;=<span class="number">5844</span>) &#123;</span><br><span class="line">						year+=(r/<span class="number">1461</span>)*<span class="number">4</span>;</span><br><span class="line">						r%=<span class="number">1461</span>;</span><br><span class="line">						<span class="keyword">if</span>(r&lt;=<span class="number">366</span>)&#123;</span><br><span class="line">							month=Monthr();</span><br><span class="line">							day=r;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> &#123;</span><br><span class="line">							r-=<span class="number">366</span>; year++;</span><br><span class="line">							year+=r/<span class="number">365</span>;</span><br><span class="line">							r%=<span class="number">365</span>;</span><br><span class="line">							month=Month();</span><br><span class="line">							day=r;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">else</span>&#123;</span><br><span class="line">						r-=<span class="number">5844</span>; year=<span class="number">1600</span>;</span><br><span class="line">						year+=(r/<span class="number">146097</span>)*<span class="number">400</span>;</span><br><span class="line">						r%=<span class="number">146097</span>;</span><br><span class="line">						<span class="keyword">if</span>(r&lt;=<span class="number">36525</span>)&#123;</span><br><span class="line">							year+=(r/<span class="number">1461</span>)*<span class="number">4</span>;</span><br><span class="line">							r%=<span class="number">1461</span>;</span><br><span class="line">							<span class="keyword">if</span>(r&lt;=<span class="number">366</span>)&#123; month=Monthr(); day=r; &#125;</span><br><span class="line">							<span class="keyword">else</span> &#123;</span><br><span class="line">								r-=<span class="number">366</span>; year++;</span><br><span class="line">								year+=r/<span class="number">365</span>; r%=<span class="number">365</span>;</span><br><span class="line">								month=Month(); day=r;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span>&#123;</span><br><span class="line">							r-=<span class="number">36525</span>; year+=<span class="number">100</span>;</span><br><span class="line">							year+=(r/<span class="number">36524</span>)*<span class="number">100</span>;</span><br><span class="line">							r%=<span class="number">36524</span>;</span><br><span class="line">							<span class="keyword">if</span>(r&lt;=<span class="number">1460</span>)&#123;</span><br><span class="line">								year+=r/<span class="number">365</span>;</span><br><span class="line">								r%=<span class="number">365</span>;</span><br><span class="line">								month=Month();</span><br><span class="line">								day=r;</span><br><span class="line">							&#125;</span><br><span class="line">							<span class="keyword">else</span>&#123;</span><br><span class="line">								r-=<span class="number">1460</span>; year+=<span class="number">4</span>;</span><br><span class="line">								year+=(r/<span class="number">1461</span>)*<span class="number">4</span>;</span><br><span class="line">								r%=<span class="number">1461</span>;</span><br><span class="line">								<span class="keyword">if</span>(r&lt;=<span class="number">366</span>) &#123; month=Monthr(); day=r; &#125;</span><br><span class="line">								<span class="keyword">else</span>&#123;</span><br><span class="line">									r-=<span class="number">366</span>; year++;</span><br><span class="line">									year+=r/<span class="number">365</span>;</span><br><span class="line">									r%=<span class="number">365</span>;</span><br><span class="line">									month=Month();</span><br><span class="line">									day=r;</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(day==<span class="number">0</span> &amp;&amp; month==<span class="number">1</span>)</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"31 12 %lld\n"</span>, year<span class="number">-1</span>);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%lld %lld %lld\n"</span>, day, month, year);</span><br><span class="line">		&#125;</span><br><span class="line"><span class="comment">//		printf("%d %d %d\n", day, month, year);</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Month</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">12</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(r&gt;months[i]) r-=months[i];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Monthr</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">12</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(r&gt;monthr[i]) r-=monthr[i];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">int Month(int x)&#123;</span></span><br><span class="line"><span class="comment">	if(0&lt;x &amp;&amp; x&lt;=31) return 1;</span></span><br><span class="line"><span class="comment">	if(31&lt;x &amp;&amp; x&lt;=59) return 2;</span></span><br><span class="line"><span class="comment">	if(59&lt;x &amp;&amp; x&lt;=90) return 3;</span></span><br><span class="line"><span class="comment">	if(90&lt;x &amp;&amp; x&lt;=120) return 4;</span></span><br><span class="line"><span class="comment">	if(120&lt;x &amp;&amp; x&lt;=151) return 5;</span></span><br><span class="line"><span class="comment">	if(151&lt;x &amp;&amp; x&lt;=181) return 6;</span></span><br><span class="line"><span class="comment">	if(181&lt;x &amp;&amp; x&lt;=212) return 7;</span></span><br><span class="line"><span class="comment">	if(212&lt;x &amp;&amp; x&lt;=243) return 8;</span></span><br><span class="line"><span class="comment">	if(243&lt;x &amp;&amp; x&lt;=273) return 9;</span></span><br><span class="line"><span class="comment">	if(273&lt;x &amp;&amp; x&lt;=304) return 10;</span></span><br><span class="line"><span class="comment">	if(304&lt;x &amp;&amp; x&lt;=334) return 11;</span></span><br><span class="line"><span class="comment">	if(334&lt;x &amp;&amp; x&lt;=365) return 12;</span></span><br><span class="line"><span class="comment">	if(0&lt;x &amp;&amp; x&lt;=31) return 1;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">int Monthr(int x)&#123;</span></span><br><span class="line"><span class="comment">	if(0&lt;x &amp;&amp; x&lt;=31) return 1;</span></span><br><span class="line"><span class="comment">	if(31&lt;x &amp;&amp; x&lt;=60) return 2;</span></span><br><span class="line"><span class="comment">	if(60&lt;x &amp;&amp; x&lt;=91) return 3;</span></span><br><span class="line"><span class="comment">	if(91&lt;x &amp;&amp; x&lt;=121) return 4;</span></span><br><span class="line"><span class="comment">	if(121&lt;x &amp;&amp; x&lt;=152) return 5;</span></span><br><span class="line"><span class="comment">	if(152&lt;x &amp;&amp; x&lt;=182) return 6;</span></span><br><span class="line"><span class="comment">	if(182&lt;x &amp;&amp; x&lt;=213) return 7;</span></span><br><span class="line"><span class="comment">	if(213&lt;x &amp;&amp; x&lt;=244) return 8;</span></span><br><span class="line"><span class="comment">	if(244&lt;x &amp;&amp; x&lt;=274) return 9;</span></span><br><span class="line"><span class="comment">	if(274&lt;x &amp;&amp; x&lt;=305) return 10;</span></span><br><span class="line"><span class="comment">	if(305&lt;x &amp;&amp; x&lt;=335) return 11;</span></span><br><span class="line"><span class="comment">	if(335&lt;x &amp;&amp; x&lt;=366) return 12;</span></span><br><span class="line"><span class="comment">	if(0&lt;x &amp;&amp; x&lt;=31) return 1;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
-<p>最后附上我算这些常数的过程（python控制台信息）：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ===== console log in CSP-S 2020 =====</span></span><br><span class="line"></span><br><span class="line">noilinux@ubuntu:~/Desktop/SX-00019/julian$ python</span><br><span class="line">Python 2.7.6 (default, Mar 22 2014, 22:59:38) </span><br><span class="line">[GCC 4.8.2] on linux2</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt; quit()</span><br><span class="line">noilinux@ubuntu:~/Desktop/SX-00019/julian$ python3</span><br><span class="line">Python 3.4.0 (default, Apr 11 2014, 13:05:18) </span><br><span class="line">[GCC 4.8.2] on linux</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt; 365*400+97</span><br><span class="line">146097</span><br><span class="line">&gt;&gt;&gt; 4713*365</span><br><span class="line">1720245</span><br><span class="line">&gt;&gt;&gt; 4713*365+1581*365</span><br><span class="line">2297310</span><br><span class="line">&gt;&gt;&gt; 31+28+31+30+31+30+31+31+30+4</span><br><span class="line">277</span><br><span class="line">&gt;&gt;&gt; 4713*365+1581*365+277+(4713%4+1)+(1582%4)</span><br><span class="line">2297591</span><br><span class="line">&gt;&gt;&gt; 365*4+1</span><br><span class="line">1461</span><br><span class="line">&gt;&gt;&gt; 365*3+31+28</span><br><span class="line">1154</span><br><span class="line">&gt;&gt;&gt; 31+28</span><br><span class="line">59</span><br><span class="line">&gt;&gt;&gt; 59+31</span><br><span class="line">90</span><br><span class="line">&gt;&gt;&gt; 17+30+31</span><br><span class="line">78</span><br><span class="line">&gt;&gt;&gt; 3000000-2297591</span><br><span class="line">702409</span><br><span class="line">&gt;&gt;&gt; 702409-(16+30+31)</span><br><span class="line">702332</span><br><span class="line">&gt;&gt;&gt; 4*(702332/1461)</span><br><span class="line">1922.880219028063</span><br><span class="line">&gt;&gt;&gt; 4*(702332//1461)</span><br><span class="line">1920</span><br><span class="line">&gt;&gt;&gt; 702332-4*1461</span><br><span class="line">696488</span><br><span class="line">&gt;&gt;&gt; 702332-4*1920</span><br><span class="line">694652</span><br><span class="line">&gt;&gt;&gt; 702332%1461</span><br><span class="line">1052</span><br><span class="line">&gt;&gt;&gt; 1583+1920</span><br><span class="line">3503</span><br><span class="line">&gt;&gt;&gt; 3501-1582</span><br><span class="line">1919</span><br><span class="line">&gt;&gt;&gt; 3501-1583</span><br><span class="line">1918</span><br><span class="line">&gt;&gt;&gt; 198/4</span><br><span class="line">49.5</span><br><span class="line">&gt;&gt;&gt; 1918/4</span><br><span class="line">479.5</span><br><span class="line">&gt;&gt;&gt; 1918*365+479</span><br><span class="line">700549</span><br><span class="line">&gt;&gt;&gt; 700549+17+30+31</span><br><span class="line">700627</span><br><span class="line">&gt;&gt;&gt; 3000000-700627</span><br><span class="line">2299373</span><br><span class="line">&gt;&gt;&gt; 2299373-(31+28+31+30+31+30+31+15)</span><br><span class="line">2299146</span><br><span class="line">&gt;&gt;&gt; 31+28+31+30+31+30+31+31+30+4+(1582+4713-1)*365</span><br><span class="line">2297587</span><br><span class="line">&gt;&gt;&gt; (1582+4713-1)/4</span><br><span class="line">1573.5</span><br><span class="line">&gt;&gt;&gt; 2297587+1573</span><br><span class="line">2299160</span><br><span class="line">&gt;&gt;&gt; 3000000-2299160</span><br><span class="line">700840</span><br><span class="line">&gt;&gt;&gt; 700840-77</span><br><span class="line">700763</span><br><span class="line">&gt;&gt;&gt; 4*(700763//1461)</span><br><span class="line">1916</span><br><span class="line">&gt;&gt;&gt; 1916*1461</span><br><span class="line">2799276</span><br><span class="line">&gt;&gt;&gt; 700763%1461</span><br><span class="line">944</span><br><span class="line">&gt;&gt;&gt; 700763-365</span><br><span class="line">700398</span><br><span class="line">&gt;&gt;&gt; 700398//1461</span><br><span class="line">479</span><br><span class="line">&gt;&gt;&gt; 4*479</span><br><span class="line">1916</span><br><span class="line">&gt;&gt;&gt; 700398%1461</span><br><span class="line">579</span><br><span class="line">&gt;&gt;&gt; 579-366</span><br><span class="line">213</span><br><span class="line">&gt;&gt;&gt; 1916+1584+1</span><br><span class="line">3501</span><br><span class="line">&gt;&gt;&gt; 365*4+1</span><br><span class="line">1461</span><br><span class="line">&gt;&gt;&gt; 100*365+97</span><br><span class="line">36597</span><br><span class="line">&gt;&gt;&gt; 1600-1584</span><br><span class="line">16</span><br><span class="line">&gt;&gt;&gt; 16*365+4</span><br><span class="line">5844</span><br><span class="line">&gt;&gt;&gt; 365*400+97</span><br><span class="line">146097</span><br><span class="line">&gt;&gt;&gt; 100*365+25</span><br><span class="line">36525</span><br><span class="line">&gt;&gt;&gt; 100*365+24</span><br><span class="line">36524</span><br><span class="line">&gt;&gt;&gt; 365*4</span><br><span class="line">1460</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>本来，小编觉得这句话的前半句太过物理化，不像数学语言的风格。但我之后又发现 百度百科 和 Wikipedia 上都是差不多的解释，也就认了这个定义。</p>
+<p>直到我翻了翻 XSection 的术语表：</p>
+<p><img src="https://i.loli.net/2020/08/09/e7mWLX63OMaV2ru.jpg" alt="Screenshot_20200809-160822.jpg" /></p>
+<p>它的解释是这样的：</p>
+<blockquote>
+<p>A projection is a correspondence between the points of an object and a plane.</p>
+</blockquote>
+<p>翻译成中文就是：</p>
+<blockquote>
+<p>投影是对象上和平面之间点的的对应关系</p>
+</blockquote>
+<p>其中，<code>correspondence</code>这个词就用得非常妙，一开始我其它词都认识，只有这个不知道什么意思，之后上谷歌翻译查了查，Google 给我的解释是 “对应”。</p>
+<p>我认为这个术语表中的解释是非常到位的，至少在游戏中是适用且非常严谨的。</p>
+<p>在后面的关卡中，会有许多需要找出投影的任务，这类题无非分两种，一种是已知平面上的投影，求物体（object）上的点。</p>
+<p>一种是已知物体上的点，求它在已知平面上的投影。</p>
+<p>而只要掌握了这种对应关系，这两种问题都可以迎刃而解。</p>
+<h1 id="中心投影"><a class="markdownIt-Anchor" href="#中心投影"></a> 中心投影</h1>
+<p>按照数学书对投影的解释，把光源看作是一个点，也就是所有的光线都会相交在一个点上，就是中心投影。</p>
+<p>数学书上的定义如下：</p>
+<blockquote>
+<p>手电筒、路灯和台灯的光线可以看成是从一个点发出的，这样的光线所形成的投影称为中心投影。</p>
+</blockquote>
+<p>最典型的例子就是灯泡了，我们可以将它看作是一个点光源，会向各个方向发光。手电筒还并不是一个典型，因为许多手电筒发出的其实更像是平行光。</p>
+<p>在 XSection 中，它的定义是这样的：</p>
+<p><img src="https://i.loli.net/2020/08/09/J8CLe7rxq4FBaHl.jpg" alt="Screenshot_20200809-165252.jpg" /></p>
+<blockquote>
+<p>A central projection is a projection in which all projective rays passes through a given point S (the center of projetion).</p>
+</blockquote>
+<p>翻译过来就是：</p>
+<blockquote>
+<p>中心投影中的每个投射线经过一个已知的点S（投影中心）。</p>
+</blockquote>
+<h1 id="平行投影"><a class="markdownIt-Anchor" href="#平行投影"></a> 平行投影</h1>
+<p>对于平行投影，一个很有意思的点是，太阳和灯都在向各个方向发光，但人们一般把灯光看作是点光源，使用的是中心投影，而太阳光则是平行光线，使用平行投影。</p>
+<p>这主要是因为，太阳离我们太远了，物体上的任意两个点与太阳构成的三角形的那个角实在太小太小了，完全可以看作是平行的。</p>
+<p>对于平行投影，书上的定义是这样的：</p>
+<blockquote>
+<p>太阳光线可以看成平行光线，平行光线所形成的投影成为平行投影（parallel projeciton）.</p>
+</blockquote>
+<p>百度百科上说：</p>
+<blockquote>
+<p>如果把中心投影法的投射中心即光源S移至无穷远处，则各投射线成为相互平行的直线，物体投影就不受距离变化的影响，这种投射线都互相平行的投影法称为平行投影法。</p>
+</blockquote>
+<p>而 XSection 上的定义，则更加严谨和明确：</p>
+<p><img src="https://i.loli.net/2020/08/09/DuhnoCcUt13XArZ.jpg" alt="Screenshot_20200809-172043.jpg" /></p>
+<blockquote>
+<p>A parallel projection is a projection in which all projection rays are parallel to a given line.</p>
+</blockquote>
+<p>翻译成中文就是：</p>
+<blockquote>
+<p>平行投影指的是每一条投射线都与给定直线平行的投影。</p>
+</blockquote>
+<h1 id="一个例子"><a class="markdownIt-Anchor" href="#一个例子"></a> 一个例子</h1>
+<p>值得注意的是，在游戏中，所有关于投影的题都不会提示你使用中心投影法或者平行投影法。</p>
+<p>不知道各位有没有发现，在画图上，平行投影法像是画出了一个棱柱，而中心投影法像是画出了一个棱锥。</p>
+<p>这是因为棱柱的每条棱互相平行，正好符合平行投影中投射线的性质。棱锥中所有棱都会相交与一点，也符合中心投影的性质。</p>
+<p>下面来看一个例子。因为 XSection 中是无法改变视图的，再加上竖屏不方便观看，我们就用 GeoGebra 进行演示：</p>
+<p><img src="https://i.loli.net/2020/08/09/DUq6LEMoI7cbX9y.jpg" alt="Screenshot_20200809_221233.jpg" /></p>
+<p>这是 XSection 中的 3.4 题，我认为比较有代表性。题目是这样的：</p>
+<p>已知<code>I</code>、<code>H</code>两点，求线段 I、H 在底面上的投影。（过F点的直线FH和GC是相交的，原谅我忘了作交点了吧）</p>
+<p>看到这个棱锥，首先想到的一定是中心投影法，因为它相当于给定了一个点G来求投影。</p>
+<p>投影面当然是底面，这个在题目中有提到。</p>
+<p>需要说明的是，直线FH的作用是表明点H在平面BGC上。事实上，FH//BC。</p>
+<p>那么作法就非常简单了，首先连接并延长GH、GI。</p>
+<p><img src="https://i.loli.net/2020/08/09/8GsNxvmBnzocQay.jpg" alt="Screenshot_20200809_221321.jpg" /></p>
+<p>下一步，找到这两条射线和底面的交点。</p>
+<p>这里要注意的是，游戏中你是无法直接找到线和面的交点的，必须找到这个面上可以与它相交的一条线，然后点出线与线的交点（这其实也是后面很多题的难点）</p>
+<p>在这道题中，这条线就是BC。<a href="https://www.cnblogs.com/dong628/p/13415431.html" target="_blank" rel="noopener">第一节</a>中讲过，「一个平面上任意个点都是处在同一平面的」，所以，有了平面BCG，就有平面HCG，也就有交点J。</p>
+<p>于是，根据同样的方法，可以找到点I的投影点D。</p>
+<p>最后，连接DJ，完成。</p>
+<p><img src="https://i.loli.net/2020/08/09/lVJZskqnMXaSCg4.jpg" alt="Screenshot_20200809_221342.jpg" /></p>
+<p>-&gt; to be continued…</p>
 ]]></content>
       <tags>
-        <tag>题解</tag>
+        <tag>XSection</tag>
       </tags>
   </entry>
   <entry>
@@ -603,90 +566,6 @@
 ]]></content>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Git 来管理代码</title>
-    <url>/2020/08/22/%E4%BD%BF%E7%94%A8%20Git%20%E6%9D%A5%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="关于我的代码仓库"><a class="markdownIt-Anchor" href="#关于我的代码仓库"></a> 关于我的代码仓库</h1>
-<p>如果你关注我的 Github，那你应该知道，我最近新建了一个仓库，专门用来存放我平常在OJ上刷的题的代码，地址在这里：</p>
-<p><a href="https://github.com/dong628/OhMyCodes" target="_blank" rel="noopener">https://github.com/dong628/OhMyCodes</a>（求star啊啊啊）</p>
-<p>这个仓库使用 MIT 协议开源，意味着任何人都可以复制、修改、分发（商业或非商业），并且不需要使用相同的协议。</p>
-<p>目前位置，一共有67次 commit ，记录着我从2020年5月的刷题记录。</p>
-<a id="more"></a>
-<h1 id="为什么使用-git"><a class="markdownIt-Anchor" href="#为什么使用-git"></a> 为什么使用 Git</h1>
-<p>我每天上午会去学校机房刷题，下午有时间会接着刷，于是，在这两个地方管理代码就显得很麻烦。</p>
-<p>一个朴素的策略是，用一个可移动存储介质（比如U盘）在家和学校之间拷贝代码。U盘，机房和家中的电脑同时存放着一份我刷过所有题的代码，每次我在家或学校更新，都将最新的版本拷贝到U盘上，再带到另一个地方更新那边的文件。</p>
-<p>但是这样做有许多问题：</p>
-<ul>
-<li>用U盘一个个拷贝太麻烦了</li>
-<li>万一哪天存着最新版本的设备坏了怎么办，难道要用另一个U盘备份？</li>
-<li>哪天我代码写错了，没有办法退回到上一个版本</li>
-<li><s>插上U盘 -&gt; 拖动鼠标拷贝文件 -&gt; 拔出U盘 这个操作太不（mei）优（you）雅（bi）了（ge）</s></li>
-</ul>
-<p>Linux 的创始人——Linus Torvalds 早就意识到了这个问题，于是用一个星期的时间写出了 Git，并且把它用在了 Linux 内核源码的版本控制上，真正的诠释了那句他自己说的千古名句：</p>
-<blockquote>
-<p>Talk is cheap, show me the code!			--Linus Torvalds</p>
-</blockquote>
-<p>说来这是个版本控制系统，但其实我使用它回退版本的次数非常少，更多的是用来配合 Github 来远程协作的。</p>
-<p>所以说，如果没有更复杂的需求的话，Git 需要记的命令是非常少的，更重要的是对这个系统的理解。</p>
-<p>再说，作为一个学计算机的，Git 也是未来做项目时必备的生存技能。</p>
-<h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
-<p>本来，我认为几乎所有的 Linux 发行版会自带 Git，但事实上很多发行版并不会自带。</p>
-<p>但是，我相信绝大部分发行版的 软件仓库/默认软件源 中都会有git，所以你可以用自己发行版的包管理器来安装 Git。</p>
-<p>如果你是 Windows，那么 <s>快去用 Linux ！</s> 可以在 <a href="https://git-scm.com/download/windows" target="_blank" rel="noopener">https://git-scm.com/download/windows</a> 这个地址下载。</p>
-<p>Mac 可以在 <a href="https://git-scm.com/download/mac" target="_blank" rel="noopener">https://git-scm.com/download/mac</a> 这里下载。</p>
-<h1 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h1>
-<p>由于 Windows 下自带的那个 Git GUI 对我来说就是个废物，作为每天用命令行 Git 的我上手后根本不知道如何使用，说是 GUI ，但对新手非常不友好。</p>
-<p>再加上 Windows 下的 Git Bash 是 Windows 下 Bash 模拟器的典范，所以这个系列只有命令行，没有 GUI。</p>
-<h2 id="用户配置"><a class="markdownIt-Anchor" href="#用户配置"></a> 用户配置</h2>
-<p>即使 Git 只有你一个人离线使用，你也要首先告诉 Git 你是谁，所以就有了下面这两句：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"dong628"</span>  <span class="comment">#名称</span></span><br><span class="line">git config --global user.email 1816750728@qq.com   <span class="comment">#邮箱</span></span><br></pre></td></tr></table></figure>
-<h2 id="创建一个仓库"><a class="markdownIt-Anchor" href="#创建一个仓库"></a> 创建一个仓库</h2>
-<p>仓库（Repository），可以看作是一个由 Git 管理的文件夹，有了仓库，Git 就可以跟踪其中的文件，记录版本变化。</p>
-<p>要想把一个文件夹变成一个 Git 仓库，只需要在这个文件夹中键入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>在 Windows 下，如果打开了显示隐藏文件，那么在那个文件夹中应该可以看到 .git 目录，这是 Git 用来存放历史版本的地方。对于 GNU/Linux 系统，可以使用 <code>ls -a</code> 命令查找到这个文件夹</p>
-<p><img src="https://i.loli.net/2020/08/21/dwHsNGfSqbrtEZB.jpg" alt="Screenshot_20200821_095333.jpg" /></p>
-<p>当你建立好仓库后，使用 <code>git status</code> 命令可以查看这个仓库的状态</p>
-<p><img src="https://i.loli.net/2020/08/21/7YnE3kO4mLhf9QZ.jpg" alt="Screenshot_20200821_100048.jpg" /></p>
-<h2 id="添加追踪文件"><a class="markdownIt-Anchor" href="#添加追踪文件"></a> 添加追踪文件</h2>
-<p>并不是文件夹中所有的文件都要被 Git 跟踪。事实上，即使你在这个文件夹中写了一堆文件，如果不运行任何命令，Git 是不会注意到这些文件的任何变化的，仓库也会是空空如也。</p>
-<p>当这个文件夹中新增了文件，Git 就会检测到这个文件没有被跟踪，从而在运行 <code>git status</code> 命令后给出这样的提示：</p>
-<p><img src="https://i.loli.net/2020/08/21/CFlMSUNmGyxIfhK.jpg" alt="Screenshot_20200821_100624.jpg" /></p>
-<p>就像这段文字的提示一样， <code>git add</code> 命令主要有两个作用：</p>
-<ol>
-<li>将未跟踪的文件添加跟踪</li>
-<li>将工作区的修改提交到暂存区</li>
-</ol>
-<p>其实1和2本质上是一样的，为此，要先来介绍一下 Git 中的暂存区域。</p>
-<p>暂存区，顾名思义，暂时存放文件的区域。一个 Git 仓库中有三个区域，分别时工作区、暂存区、版本库。其中，只有版本库存放了所有版本，工作区和暂存区都是只会存放一个版本的。其中，暂存区可以看作是一个存放着所有你 add 过的文件，并且可以随时把这些文件一次性打包，作为一个新版本放入版本库的。</p>
-<p>所以，当执行了 <code>git add &lt;文件名&gt;</code> 后，运行 <code>git status</code> 就会有这样的输出：</p>
-<p><img src="https://i.loli.net/2020/08/21/1YGbQNCMmiuZ3Tg.jpg" alt="Screenshot_20200821_102028.jpg" /></p>
-<p>可以看到，文件已经被 Git 追踪，如果不信，可以修改这个文件，再运行 <code>git status</code> 试试：</p>
-<p><img src="https://i.loli.net/2020/08/21/xAoLkV4u89ROMWy.jpg" alt="Screenshot_20200821_102343.jpg" /></p>
-<p>可以看到，Git 已经检测到了文件的更改。</p>
-<h2 id="当工作区和暂存区出现偏离"><a class="markdownIt-Anchor" href="#当工作区和暂存区出现偏离"></a> 当工作区和暂存区出现偏离</h2>
-<p>当提交到暂存区的文件在工作去被修改时，Git 会检测到文件被修改了，并且给用户两个选择</p>
-<ol>
-<li>将工作区的新文件提交到暂存区 ( <code>git add</code>命令)</li>
-<li>将暂存区的文件恢复到工作区 ( <code>git restore</code> 命令)</li>
-</ol>
-<p>如果工作区的这个修改是你不小心改掉了一些什么东西，那就可以使用第二条命令来恢复工作区。</p>
-<p>如果这是一个正确的改动，并且你想要更新暂存区里的文件，那么可以使用第一条命令。</p>
-<p>但其实这两个命令都是具有危险性的，因为它们都会删除一些版本呢，那么有没有什么方法可以同时保留这两个版本呢？</p>
-<h2 id="将暂存区的文件提交到仓库"><a class="markdownIt-Anchor" href="#将暂存区的文件提交到仓库"></a> 将暂存区的文件提交到仓库</h2>
-<p>当你认为暂存区里的这些文件已经是一个成型的版本，需要保存起来以便回溯时，就需要将暂存区中的文件打包成一个版本，放入版本仓库。</p>
-<p>当遇到上面的情况，也就是工作区和暂存区发生了偏离，Git 只告诉你可以保存一个，但没有告诉你两个都要的方法。</p>
-<p>为此，我们可以使用下面的命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">"&lt;本次提交的注释&gt;"</span></span><br><span class="line">git add test.cpp</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2020/08/21/dKusne2bPINoU8W.jpg" alt="Screenshot_20200821_104620.jpg" /></p>
-<p>这样，我们成功地将暂存区里的版本提交到了版本库中，为此，你可以使用 <code>git log</code> 来查看版本库中存放的版本数据：</p>
-<p><img src="https://i.loli.net/2020/08/21/VyQ4mYoNFRPz8re.jpg" alt="Screenshot_20200821_104941.jpg" /></p>
-<p>-&gt; to be continued…</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -791,6 +670,152 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 Git 来管理代码</title>
+    <url>/2020/08/22/%E4%BD%BF%E7%94%A8%20Git%20%E6%9D%A5%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="关于我的代码仓库"><a class="markdownIt-Anchor" href="#关于我的代码仓库"></a> 关于我的代码仓库</h1>
+<p>如果你关注我的 Github，那你应该知道，我最近新建了一个仓库，专门用来存放我平常在OJ上刷的题的代码，地址在这里：</p>
+<p><a href="https://github.com/dong628/OhMyCodes" target="_blank" rel="noopener">https://github.com/dong628/OhMyCodes</a>（求star啊啊啊）</p>
+<p>这个仓库使用 MIT 协议开源，意味着任何人都可以复制、修改、分发（商业或非商业），并且不需要使用相同的协议。</p>
+<p>目前位置，一共有67次 commit ，记录着我从2020年5月的刷题记录。</p>
+<a id="more"></a>
+<h1 id="为什么使用-git"><a class="markdownIt-Anchor" href="#为什么使用-git"></a> 为什么使用 Git</h1>
+<p>我每天上午会去学校机房刷题，下午有时间会接着刷，于是，在这两个地方管理代码就显得很麻烦。</p>
+<p>一个朴素的策略是，用一个可移动存储介质（比如U盘）在家和学校之间拷贝代码。U盘，机房和家中的电脑同时存放着一份我刷过所有题的代码，每次我在家或学校更新，都将最新的版本拷贝到U盘上，再带到另一个地方更新那边的文件。</p>
+<p>但是这样做有许多问题：</p>
+<ul>
+<li>用U盘一个个拷贝太麻烦了</li>
+<li>万一哪天存着最新版本的设备坏了怎么办，难道要用另一个U盘备份？</li>
+<li>哪天我代码写错了，没有办法退回到上一个版本</li>
+<li><s>插上U盘 -&gt; 拖动鼠标拷贝文件 -&gt; 拔出U盘 这个操作太不（mei）优（you）雅（bi）了（ge）</s></li>
+</ul>
+<p>Linux 的创始人——Linus Torvalds 早就意识到了这个问题，于是用一个星期的时间写出了 Git，并且把它用在了 Linux 内核源码的版本控制上，真正的诠释了那句他自己说的千古名句：</p>
+<blockquote>
+<p>Talk is cheap, show me the code!			--Linus Torvalds</p>
+</blockquote>
+<p>说来这是个版本控制系统，但其实我使用它回退版本的次数非常少，更多的是用来配合 Github 来远程协作的。</p>
+<p>所以说，如果没有更复杂的需求的话，Git 需要记的命令是非常少的，更重要的是对这个系统的理解。</p>
+<p>再说，作为一个学计算机的，Git 也是未来做项目时必备的生存技能。</p>
+<h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
+<p>本来，我认为几乎所有的 Linux 发行版会自带 Git，但事实上很多发行版并不会自带。</p>
+<p>但是，我相信绝大部分发行版的 软件仓库/默认软件源 中都会有git，所以你可以用自己发行版的包管理器来安装 Git。</p>
+<p>如果你是 Windows，那么 <s>快去用 Linux ！</s> 可以在 <a href="https://git-scm.com/download/windows" target="_blank" rel="noopener">https://git-scm.com/download/windows</a> 这个地址下载。</p>
+<p>Mac 可以在 <a href="https://git-scm.com/download/mac" target="_blank" rel="noopener">https://git-scm.com/download/mac</a> 这里下载。</p>
+<h1 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h1>
+<p>由于 Windows 下自带的那个 Git GUI 对我来说就是个废物，作为每天用命令行 Git 的我上手后根本不知道如何使用，说是 GUI ，但对新手非常不友好。</p>
+<p>再加上 Windows 下的 Git Bash 是 Windows 下 Bash 模拟器的典范，所以这个系列只有命令行，没有 GUI。</p>
+<h2 id="用户配置"><a class="markdownIt-Anchor" href="#用户配置"></a> 用户配置</h2>
+<p>即使 Git 只有你一个人离线使用，你也要首先告诉 Git 你是谁，所以就有了下面这两句：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"dong628"</span>  <span class="comment">#名称</span></span><br><span class="line">git config --global user.email 1816750728@qq.com   <span class="comment">#邮箱</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建一个仓库"><a class="markdownIt-Anchor" href="#创建一个仓库"></a> 创建一个仓库</h2>
+<p>仓库（Repository），可以看作是一个由 Git 管理的文件夹，有了仓库，Git 就可以跟踪其中的文件，记录版本变化。</p>
+<p>要想把一个文件夹变成一个 Git 仓库，只需要在这个文件夹中键入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>在 Windows 下，如果打开了显示隐藏文件，那么在那个文件夹中应该可以看到 .git 目录，这是 Git 用来存放历史版本的地方。对于 GNU/Linux 系统，可以使用 <code>ls -a</code> 命令查找到这个文件夹</p>
+<p><img src="https://i.loli.net/2020/08/21/dwHsNGfSqbrtEZB.jpg" alt="Screenshot_20200821_095333.jpg" /></p>
+<p>当你建立好仓库后，使用 <code>git status</code> 命令可以查看这个仓库的状态</p>
+<p><img src="https://i.loli.net/2020/08/21/7YnE3kO4mLhf9QZ.jpg" alt="Screenshot_20200821_100048.jpg" /></p>
+<h2 id="添加追踪文件"><a class="markdownIt-Anchor" href="#添加追踪文件"></a> 添加追踪文件</h2>
+<p>并不是文件夹中所有的文件都要被 Git 跟踪。事实上，即使你在这个文件夹中写了一堆文件，如果不运行任何命令，Git 是不会注意到这些文件的任何变化的，仓库也会是空空如也。</p>
+<p>当这个文件夹中新增了文件，Git 就会检测到这个文件没有被跟踪，从而在运行 <code>git status</code> 命令后给出这样的提示：</p>
+<p><img src="https://i.loli.net/2020/08/21/CFlMSUNmGyxIfhK.jpg" alt="Screenshot_20200821_100624.jpg" /></p>
+<p>就像这段文字的提示一样， <code>git add</code> 命令主要有两个作用：</p>
+<ol>
+<li>将未跟踪的文件添加跟踪</li>
+<li>将工作区的修改提交到暂存区</li>
+</ol>
+<p>其实1和2本质上是一样的，为此，要先来介绍一下 Git 中的暂存区域。</p>
+<p>暂存区，顾名思义，暂时存放文件的区域。一个 Git 仓库中有三个区域，分别时工作区、暂存区、版本库。其中，只有版本库存放了所有版本，工作区和暂存区都是只会存放一个版本的。其中，暂存区可以看作是一个存放着所有你 add 过的文件，并且可以随时把这些文件一次性打包，作为一个新版本放入版本库的。</p>
+<p>所以，当执行了 <code>git add &lt;文件名&gt;</code> 后，运行 <code>git status</code> 就会有这样的输出：</p>
+<p><img src="https://i.loli.net/2020/08/21/1YGbQNCMmiuZ3Tg.jpg" alt="Screenshot_20200821_102028.jpg" /></p>
+<p>可以看到，文件已经被 Git 追踪，如果不信，可以修改这个文件，再运行 <code>git status</code> 试试：</p>
+<p><img src="https://i.loli.net/2020/08/21/xAoLkV4u89ROMWy.jpg" alt="Screenshot_20200821_102343.jpg" /></p>
+<p>可以看到，Git 已经检测到了文件的更改。</p>
+<h2 id="当工作区和暂存区出现偏离"><a class="markdownIt-Anchor" href="#当工作区和暂存区出现偏离"></a> 当工作区和暂存区出现偏离</h2>
+<p>当提交到暂存区的文件在工作去被修改时，Git 会检测到文件被修改了，并且给用户两个选择</p>
+<ol>
+<li>将工作区的新文件提交到暂存区 ( <code>git add</code>命令)</li>
+<li>将暂存区的文件恢复到工作区 ( <code>git restore</code> 命令)</li>
+</ol>
+<p>如果工作区的这个修改是你不小心改掉了一些什么东西，那就可以使用第二条命令来恢复工作区。</p>
+<p>如果这是一个正确的改动，并且你想要更新暂存区里的文件，那么可以使用第一条命令。</p>
+<p>但其实这两个命令都是具有危险性的，因为它们都会删除一些版本呢，那么有没有什么方法可以同时保留这两个版本呢？</p>
+<h2 id="将暂存区的文件提交到仓库"><a class="markdownIt-Anchor" href="#将暂存区的文件提交到仓库"></a> 将暂存区的文件提交到仓库</h2>
+<p>当你认为暂存区里的这些文件已经是一个成型的版本，需要保存起来以便回溯时，就需要将暂存区中的文件打包成一个版本，放入版本仓库。</p>
+<p>当遇到上面的情况，也就是工作区和暂存区发生了偏离，Git 只告诉你可以保存一个，但没有告诉你两个都要的方法。</p>
+<p>为此，我们可以使用下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">"&lt;本次提交的注释&gt;"</span></span><br><span class="line">git add test.cpp</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/08/21/dKusne2bPINoU8W.jpg" alt="Screenshot_20200821_104620.jpg" /></p>
+<p>这样，我们成功地将暂存区里的版本提交到了版本库中，为此，你可以使用 <code>git log</code> 来查看版本库中存放的版本数据：</p>
+<p><img src="https://i.loli.net/2020/08/21/VyQ4mYoNFRPz8re.jpg" alt="Screenshot_20200821_104941.jpg" /></p>
+<p>-&gt; to be continued…</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>［杂谈］一个故事的开始</title>
+    <url>/2020/07/06/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
+    <content><![CDATA[<h2 id="这是一个结束的开始"><a class="markdownIt-Anchor" href="#这是一个结束的开始"></a> 这是一个结束的开始</h2>
+<p>还有不到一年，初中生活就要结束了。还有不到一年，我们就要参加中考了。今天（2020年7月6日）早上，去学校参加了颁奖典礼。会上，老师多次和我们强调：我们的时间已经不多了。但学生代表pyt（好像是叫这个名字？）的发言中，详细计算了我们距离中考还有多少天，多少小时，多少分钟（尽管好像计算错了）……虽然我们即将面临的是一场至关重要的考试，但我们还有充足的时间准备。</p>
+<a id="more"></a>
+<p>这一学期开学以来，学习立马紧张了起来，各种考试接踵而来，学习的压力重重地压在了我们的头上。而当进入暑假，这场学习上的竞争正式开始了。上午的颁奖典礼中，有一个班级对抗赛颁奖的环节，一个年级16个班，8个班赢了，8个班输了（我们属于输的）。这些班的代表上台发表感言，并且输的班要给对方赠送礼物。在凤凰双语那10个班颁奖的过程中，现场充斥着一股“火药味”（高中部日常看淡成绩[捂脸]）。学习气氛似乎充满了整个学校。</p>
+<p>11月，NOIP2020也要拉开帷幕，距离我上次大量刷题已经过去了进一年。去年我已经规划好，要在这个暑假继续大量刷题、写博客，对于我的算法学习而言，这也是一个至关重要的暑假。</p>
+<p><img src="https://s1.ax1x.com/2020/07/06/UiHG2n.jpg" alt="UiHG2n.jpg" /></p>
+<p>结束，指的是我们的初中生活即将结束。距离中考还有一年，我们的初中生活即将结束，同时，NOIP2020也将是我初中阶段的最后一场信息学奥赛。</p>
+<p>开始，指的是我即将迈入的暑假，暑假结束后的两个学期，我们必将继续拼搏，而这个暑假是这个过程的开始。</p>
+<h2 id="这是一个开始的结束"><a class="markdownIt-Anchor" href="#这是一个开始的结束"></a> 这是一个开始的结束</h2>
+<p>这个暑假，我早就蓄谋已久。学期快要结束时，我就在思考这个暑假应该怎么过。在竞赛方面，去年我计划休息了一年，等到暑假冲击NOIP2020。近几年关于竞赛的政策飘忽不定，大约两个月前，大学自主招生被取消。这直接导致了许多竞赛生几年来的努力白费，对许多竞赛生的心态是一个巨大的打击。但当时我已经没有过多关注竞赛，反而对我的心态没有什么打击。暑假到了，冲击NOIP2020的时候也到了。暑假的开始，计划阶段 即将结束，这是一个开始的结束。</p>
+<p>这个暑假，我主要学习的是《算法竞赛进阶指南》，从第一章开始，坚持每天刷题，有比较好（或者做了好长时间不过）的题，或者对我启发比较大的事，我会尽量以博客的形式总结。</p>
+<p>对于文化课，我依然坚持不参加任何课外班。其实老师布置的任务已经够多了，认真完成作业，就足以在新的学期中跟紧老师们的步伐。</p>
+<p><img src="https://s1.ax1x.com/2020/07/06/UiHACd.jpg" alt="UiHACd.jpg" /></p>
+<p><img src="https://s1.ax1x.com/2020/07/06/UiHF4H.jpg" alt="UiHF4H.jpg" /></p>
+<p><img src="https://s1.ax1x.com/2020/07/06/UiHiUe.jpg" alt="UiHiUe.jpg" /></p>
+<p>同时，我会坚持体育锻炼，中考体育也是一个大项目，需要持之以恒的练习，待暑假结束，我将王者归来。</p>
+<p>开始，指的是我对于暑假的计划，是暑假的开端。这个开端即将结束，我将要正式步入这个充实的暑假。</p>
+]]></content>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>「题解」CSP-S 2020 儒略日</title>
+    <url>/2020/11/10/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8DCSP-S%202020%20%E5%84%92%E7%95%A5%E6%97%A5/</url>
+    <content><![CDATA[<h2 id="谨以此篇题解纪念我那炸掉的t1"><a class="markdownIt-Anchor" href="#谨以此篇题解纪念我那炸掉的t1"></a> 谨以此篇题解，纪念我那炸掉的T1。。</h2>
+<h1 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h1>
+<p>大模拟，我写了100多行。。</p>
+<p>总之就是按照时间依次向后推进</p>
+<p>先判断使用哪一历法，当r大于等于<code>2299162</code>时，使用的是格里高利历，反之，使用儒略历。之后分类讨论。</p>
+<a id="more"></a>
+<h2 id="儒略历r2299162"><a class="markdownIt-Anchor" href="#儒略历r2299162"></a> 儒略历（r&lt;2299162）</h2>
+<p>儒略历的话，因为前4713年正好是一个闰年，我就将四年分为了一组，也就是每4年有1461天，算出经过多少年，再算出减去这些年之后还剩的天数（实际上后面都是这个思路）</p>
+<p>因为着四年中，第一年就是一个闰年，所以如果剩下的日子小于366，那就按照闰年算出月和日，反之减去366，算出多了多少年，再算日期。</p>
+<h2 id="格里高利历r2299162"><a class="markdownIt-Anchor" href="#格里高利历r2299162"></a> 格里高利历（r&gt;=2299162）</h2>
+<p>真正麻烦的是格里高利历。</p>
+<p>格里高利历又多了“百年不闰，四百年再闰”的规则，于是我将400年作为一个周期，每400年97闰，那么每400年就要经过146097天。</p>
+<p>总之，为了方便计算，先把r减去2299162。</p>
+<p>因为格里高利历开始的时间是1582年的10月15日，如果在这个日期后，但在1582年里，就要分类讨论。而1582年10月15日距离1583年正好77天，这就有了<code>77</code>这个常数。</p>
+<h3 id="1583年前"><a class="markdownIt-Anchor" href="#1583年前"></a> 1583年前</h3>
+<p>这部分的处理简单粗暴，分成了三类，分别是10月，11月，12月。每类单独算日期。</p>
+<h3 id="1583年后r77"><a class="markdownIt-Anchor" href="#1583年后r77"></a> 1583年后（r&gt;77）</h3>
+<p>我当时想着是直接快进到1600年，因为这一年正好是400的整倍数，可以作为一个周期的起点，但1583年并不是一个闰年，如果不把1600年之前的每4年组合在一起，将会十分难算。于是我打算将1584年作为一个节点。于是我将在1584年之后的日期和在这之前的日期分开计算。</p>
+<p>而当时间快进到1584年时，就可以将剩下的16年以4年一组的形式划分，这样算到1600年。</p>
+<h4 id="1600年后"><a class="markdownIt-Anchor" href="#1600年后"></a> 1600年后</h4>
+<p>当到了1600后，剩下的事情就相对简单了。</p>
+<p>首先将每146097年分成一组，这就是一个400年，首先计算出有多少个400年。</p>
+<p>然后判断剩下的日子是否属于第一个百年，因为第一个一百年有25个闰年，而剩下的三个百年中，每一百年只有24个闰年，这也是常数<code>36525</code>的由来。</p>
+<p>然后将4年确定为一个周期，确定在这100或300年中，这个日期属于哪个4年。</p>
+<p>最后，在确定这个日期是平年或是闰年，分别算出月和日。</p>
+<h1 id="代码看到最后有惊喜"><a class="markdownIt-Anchor" href="#代码看到最后有惊喜"></a> 代码（看到最后有惊喜）</h1>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> q, r, day, month, year;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> months[<span class="number">15</span>]=&#123;<span class="number">31</span>, <span class="number">28</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> monthr[<span class="number">15</span>]=&#123;<span class="number">31</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">30</span>, <span class="number">31</span>&#125;;</span><br><span class="line"><span class="comment">//const int julian=2297591;</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> julian=<span class="number">2299162</span>;</span><br><span class="line">int Month(), Monthr();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"julian.in"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"julian.out"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;q);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> asdf=<span class="number">0</span>; asdf&lt;q; asdf++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;r);</span><br><span class="line">		r++;</span><br><span class="line">		<span class="keyword">if</span>(r&lt;julian)&#123;</span><br><span class="line">			year=(r/<span class="number">1461</span>)*<span class="number">4</span>;</span><br><span class="line">			r%=<span class="number">1461</span>;</span><br><span class="line">			<span class="keyword">if</span>(r&lt;=<span class="number">59</span>)&#123;</span><br><span class="line">				month=r&gt;<span class="number">31</span>?<span class="number">2</span>:<span class="number">1</span>;</span><br><span class="line">				day=r&gt;<span class="number">31</span>?r<span class="number">-31</span>:r;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(r&lt;=<span class="number">366</span>)&#123;</span><br><span class="line">					month=Monthr();</span><br><span class="line">					day=r;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					year+=(r<span class="number">-366</span>)/<span class="number">365</span>+<span class="number">1</span>;</span><br><span class="line">					r-=<span class="number">366</span>; r%=<span class="number">365</span>;</span><br><span class="line">					month=Month();</span><br><span class="line">					day=r;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(year&lt;<span class="number">4713</span>)</span><br><span class="line">				<span class="keyword">if</span>(day==<span class="number">0</span> &amp;&amp; month==<span class="number">1</span>)</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"31 12 %lld BC\n"</span>, <span class="number">4713</span>-year+<span class="number">1</span>);</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"%lld %lld %lld BC\n"</span>, day, month, <span class="number">4713</span>-year);</span><br><span class="line">			<span class="keyword">else</span>  </span><br><span class="line">				<span class="keyword">if</span>(day==<span class="number">0</span> &amp;&amp; month==<span class="number">1</span>)</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"31 12 %lld\n"</span>, year<span class="number">-4713</span>);</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"%lld %lld %lld\n"</span>, day, month, year<span class="number">-4713</span>+<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			r-=julian;</span><br><span class="line">			year=<span class="number">1582</span>;</span><br><span class="line">			<span class="keyword">if</span>(r&lt;=<span class="number">77</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(r&lt;=<span class="number">16</span>)&#123; month=<span class="number">10</span>; day=<span class="number">15</span>+r; &#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(r&lt;=<span class="number">46</span>)&#123; month=<span class="number">11</span>; day=r<span class="number">-16</span>; &#125;</span><br><span class="line">				<span class="keyword">else</span> &#123; month=<span class="number">12</span>; day=r<span class="number">-46</span>; &#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				r-=<span class="number">77</span>;</span><br><span class="line">				<span class="keyword">if</span>(r&lt;=<span class="number">365</span>)&#123;</span><br><span class="line">					year++;</span><br><span class="line">					month=Month();</span><br><span class="line">					day=r;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					r-=<span class="number">365</span>; year=<span class="number">1584</span>;</span><br><span class="line">					<span class="keyword">if</span>(r&lt;=<span class="number">5844</span>) &#123;</span><br><span class="line">						year+=(r/<span class="number">1461</span>)*<span class="number">4</span>;</span><br><span class="line">						r%=<span class="number">1461</span>;</span><br><span class="line">						<span class="keyword">if</span>(r&lt;=<span class="number">366</span>)&#123;</span><br><span class="line">							month=Monthr();</span><br><span class="line">							day=r;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span> &#123;</span><br><span class="line">							r-=<span class="number">366</span>; year++;</span><br><span class="line">							year+=r/<span class="number">365</span>;</span><br><span class="line">							r%=<span class="number">365</span>;</span><br><span class="line">							month=Month();</span><br><span class="line">							day=r;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">else</span>&#123;</span><br><span class="line">						r-=<span class="number">5844</span>; year=<span class="number">1600</span>;</span><br><span class="line">						year+=(r/<span class="number">146097</span>)*<span class="number">400</span>;</span><br><span class="line">						r%=<span class="number">146097</span>;</span><br><span class="line">						<span class="keyword">if</span>(r&lt;=<span class="number">36525</span>)&#123;</span><br><span class="line">							year+=(r/<span class="number">1461</span>)*<span class="number">4</span>;</span><br><span class="line">							r%=<span class="number">1461</span>;</span><br><span class="line">							<span class="keyword">if</span>(r&lt;=<span class="number">366</span>)&#123; month=Monthr(); day=r; &#125;</span><br><span class="line">							<span class="keyword">else</span> &#123;</span><br><span class="line">								r-=<span class="number">366</span>; year++;</span><br><span class="line">								year+=r/<span class="number">365</span>; r%=<span class="number">365</span>;</span><br><span class="line">								month=Month(); day=r;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span>&#123;</span><br><span class="line">							r-=<span class="number">36525</span>; year+=<span class="number">100</span>;</span><br><span class="line">							year+=(r/<span class="number">36524</span>)*<span class="number">100</span>;</span><br><span class="line">							r%=<span class="number">36524</span>;</span><br><span class="line">							<span class="keyword">if</span>(r&lt;=<span class="number">1460</span>)&#123;</span><br><span class="line">								year+=r/<span class="number">365</span>;</span><br><span class="line">								r%=<span class="number">365</span>;</span><br><span class="line">								month=Month();</span><br><span class="line">								day=r;</span><br><span class="line">							&#125;</span><br><span class="line">							<span class="keyword">else</span>&#123;</span><br><span class="line">								r-=<span class="number">1460</span>; year+=<span class="number">4</span>;</span><br><span class="line">								year+=(r/<span class="number">1461</span>)*<span class="number">4</span>;</span><br><span class="line">								r%=<span class="number">1461</span>;</span><br><span class="line">								<span class="keyword">if</span>(r&lt;=<span class="number">366</span>) &#123; month=Monthr(); day=r; &#125;</span><br><span class="line">								<span class="keyword">else</span>&#123;</span><br><span class="line">									r-=<span class="number">366</span>; year++;</span><br><span class="line">									year+=r/<span class="number">365</span>;</span><br><span class="line">									r%=<span class="number">365</span>;</span><br><span class="line">									month=Month();</span><br><span class="line">									day=r;</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(day==<span class="number">0</span> &amp;&amp; month==<span class="number">1</span>)</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"31 12 %lld\n"</span>, year<span class="number">-1</span>);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%lld %lld %lld\n"</span>, day, month, year);</span><br><span class="line">		&#125;</span><br><span class="line"><span class="comment">//		printf("%d %d %d\n", day, month, year);</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Month</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">12</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(r&gt;months[i]) r-=months[i];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Monthr</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">12</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(r&gt;monthr[i]) r-=monthr[i];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">int Month(int x)&#123;</span></span><br><span class="line"><span class="comment">	if(0&lt;x &amp;&amp; x&lt;=31) return 1;</span></span><br><span class="line"><span class="comment">	if(31&lt;x &amp;&amp; x&lt;=59) return 2;</span></span><br><span class="line"><span class="comment">	if(59&lt;x &amp;&amp; x&lt;=90) return 3;</span></span><br><span class="line"><span class="comment">	if(90&lt;x &amp;&amp; x&lt;=120) return 4;</span></span><br><span class="line"><span class="comment">	if(120&lt;x &amp;&amp; x&lt;=151) return 5;</span></span><br><span class="line"><span class="comment">	if(151&lt;x &amp;&amp; x&lt;=181) return 6;</span></span><br><span class="line"><span class="comment">	if(181&lt;x &amp;&amp; x&lt;=212) return 7;</span></span><br><span class="line"><span class="comment">	if(212&lt;x &amp;&amp; x&lt;=243) return 8;</span></span><br><span class="line"><span class="comment">	if(243&lt;x &amp;&amp; x&lt;=273) return 9;</span></span><br><span class="line"><span class="comment">	if(273&lt;x &amp;&amp; x&lt;=304) return 10;</span></span><br><span class="line"><span class="comment">	if(304&lt;x &amp;&amp; x&lt;=334) return 11;</span></span><br><span class="line"><span class="comment">	if(334&lt;x &amp;&amp; x&lt;=365) return 12;</span></span><br><span class="line"><span class="comment">	if(0&lt;x &amp;&amp; x&lt;=31) return 1;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">int Monthr(int x)&#123;</span></span><br><span class="line"><span class="comment">	if(0&lt;x &amp;&amp; x&lt;=31) return 1;</span></span><br><span class="line"><span class="comment">	if(31&lt;x &amp;&amp; x&lt;=60) return 2;</span></span><br><span class="line"><span class="comment">	if(60&lt;x &amp;&amp; x&lt;=91) return 3;</span></span><br><span class="line"><span class="comment">	if(91&lt;x &amp;&amp; x&lt;=121) return 4;</span></span><br><span class="line"><span class="comment">	if(121&lt;x &amp;&amp; x&lt;=152) return 5;</span></span><br><span class="line"><span class="comment">	if(152&lt;x &amp;&amp; x&lt;=182) return 6;</span></span><br><span class="line"><span class="comment">	if(182&lt;x &amp;&amp; x&lt;=213) return 7;</span></span><br><span class="line"><span class="comment">	if(213&lt;x &amp;&amp; x&lt;=244) return 8;</span></span><br><span class="line"><span class="comment">	if(244&lt;x &amp;&amp; x&lt;=274) return 9;</span></span><br><span class="line"><span class="comment">	if(274&lt;x &amp;&amp; x&lt;=305) return 10;</span></span><br><span class="line"><span class="comment">	if(305&lt;x &amp;&amp; x&lt;=335) return 11;</span></span><br><span class="line"><span class="comment">	if(335&lt;x &amp;&amp; x&lt;=366) return 12;</span></span><br><span class="line"><span class="comment">	if(0&lt;x &amp;&amp; x&lt;=31) return 1;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br></pre></td></tr></table></figure>
+<p>最后附上我算这些常数的过程（python控制台信息）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ===== console log in CSP-S 2020 =====</span></span><br><span class="line"></span><br><span class="line">noilinux@ubuntu:~/Desktop/SX-00019/julian$ python</span><br><span class="line">Python 2.7.6 (default, Mar 22 2014, 22:59:38) </span><br><span class="line">[GCC 4.8.2] on linux2</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt; quit()</span><br><span class="line">noilinux@ubuntu:~/Desktop/SX-00019/julian$ python3</span><br><span class="line">Python 3.4.0 (default, Apr 11 2014, 13:05:18) </span><br><span class="line">[GCC 4.8.2] on linux</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt; 365*400+97</span><br><span class="line">146097</span><br><span class="line">&gt;&gt;&gt; 4713*365</span><br><span class="line">1720245</span><br><span class="line">&gt;&gt;&gt; 4713*365+1581*365</span><br><span class="line">2297310</span><br><span class="line">&gt;&gt;&gt; 31+28+31+30+31+30+31+31+30+4</span><br><span class="line">277</span><br><span class="line">&gt;&gt;&gt; 4713*365+1581*365+277+(4713%4+1)+(1582%4)</span><br><span class="line">2297591</span><br><span class="line">&gt;&gt;&gt; 365*4+1</span><br><span class="line">1461</span><br><span class="line">&gt;&gt;&gt; 365*3+31+28</span><br><span class="line">1154</span><br><span class="line">&gt;&gt;&gt; 31+28</span><br><span class="line">59</span><br><span class="line">&gt;&gt;&gt; 59+31</span><br><span class="line">90</span><br><span class="line">&gt;&gt;&gt; 17+30+31</span><br><span class="line">78</span><br><span class="line">&gt;&gt;&gt; 3000000-2297591</span><br><span class="line">702409</span><br><span class="line">&gt;&gt;&gt; 702409-(16+30+31)</span><br><span class="line">702332</span><br><span class="line">&gt;&gt;&gt; 4*(702332/1461)</span><br><span class="line">1922.880219028063</span><br><span class="line">&gt;&gt;&gt; 4*(702332//1461)</span><br><span class="line">1920</span><br><span class="line">&gt;&gt;&gt; 702332-4*1461</span><br><span class="line">696488</span><br><span class="line">&gt;&gt;&gt; 702332-4*1920</span><br><span class="line">694652</span><br><span class="line">&gt;&gt;&gt; 702332%1461</span><br><span class="line">1052</span><br><span class="line">&gt;&gt;&gt; 1583+1920</span><br><span class="line">3503</span><br><span class="line">&gt;&gt;&gt; 3501-1582</span><br><span class="line">1919</span><br><span class="line">&gt;&gt;&gt; 3501-1583</span><br><span class="line">1918</span><br><span class="line">&gt;&gt;&gt; 198/4</span><br><span class="line">49.5</span><br><span class="line">&gt;&gt;&gt; 1918/4</span><br><span class="line">479.5</span><br><span class="line">&gt;&gt;&gt; 1918*365+479</span><br><span class="line">700549</span><br><span class="line">&gt;&gt;&gt; 700549+17+30+31</span><br><span class="line">700627</span><br><span class="line">&gt;&gt;&gt; 3000000-700627</span><br><span class="line">2299373</span><br><span class="line">&gt;&gt;&gt; 2299373-(31+28+31+30+31+30+31+15)</span><br><span class="line">2299146</span><br><span class="line">&gt;&gt;&gt; 31+28+31+30+31+30+31+31+30+4+(1582+4713-1)*365</span><br><span class="line">2297587</span><br><span class="line">&gt;&gt;&gt; (1582+4713-1)/4</span><br><span class="line">1573.5</span><br><span class="line">&gt;&gt;&gt; 2297587+1573</span><br><span class="line">2299160</span><br><span class="line">&gt;&gt;&gt; 3000000-2299160</span><br><span class="line">700840</span><br><span class="line">&gt;&gt;&gt; 700840-77</span><br><span class="line">700763</span><br><span class="line">&gt;&gt;&gt; 4*(700763//1461)</span><br><span class="line">1916</span><br><span class="line">&gt;&gt;&gt; 1916*1461</span><br><span class="line">2799276</span><br><span class="line">&gt;&gt;&gt; 700763%1461</span><br><span class="line">944</span><br><span class="line">&gt;&gt;&gt; 700763-365</span><br><span class="line">700398</span><br><span class="line">&gt;&gt;&gt; 700398//1461</span><br><span class="line">479</span><br><span class="line">&gt;&gt;&gt; 4*479</span><br><span class="line">1916</span><br><span class="line">&gt;&gt;&gt; 700398%1461</span><br><span class="line">579</span><br><span class="line">&gt;&gt;&gt; 579-366</span><br><span class="line">213</span><br><span class="line">&gt;&gt;&gt; 1916+1584+1</span><br><span class="line">3501</span><br><span class="line">&gt;&gt;&gt; 365*4+1</span><br><span class="line">1461</span><br><span class="line">&gt;&gt;&gt; 100*365+97</span><br><span class="line">36597</span><br><span class="line">&gt;&gt;&gt; 1600-1584</span><br><span class="line">16</span><br><span class="line">&gt;&gt;&gt; 16*365+4</span><br><span class="line">5844</span><br><span class="line">&gt;&gt;&gt; 365*400+97</span><br><span class="line">146097</span><br><span class="line">&gt;&gt;&gt; 100*365+25</span><br><span class="line">36525</span><br><span class="line">&gt;&gt;&gt; 100*365+24</span><br><span class="line">36524</span><br><span class="line">&gt;&gt;&gt; 365*4</span><br><span class="line">1460</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>「NOI Online 提高组 」T3 最小环 70分题解</title>
     <url>/2020/03/13/%E6%9C%80%E5%B0%8F%E7%8E%AF70%E5%88%86%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<p><a href="https://www.luogu.cok.cn/problek/P6187" target="_blank" rel="noopener">题目链接</a></p>
@@ -844,31 +869,6 @@
 ]]></content>
       <tags>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>［杂谈］一个故事的开始</title>
-    <url>/2020/07/06/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
-    <content><![CDATA[<h2 id="这是一个结束的开始"><a class="markdownIt-Anchor" href="#这是一个结束的开始"></a> 这是一个结束的开始</h2>
-<p>还有不到一年，初中生活就要结束了。还有不到一年，我们就要参加中考了。今天（2020年7月6日）早上，去学校参加了颁奖典礼。会上，老师多次和我们强调：我们的时间已经不多了。但学生代表pyt（好像是叫这个名字？）的发言中，详细计算了我们距离中考还有多少天，多少小时，多少分钟（尽管好像计算错了）……虽然我们即将面临的是一场至关重要的考试，但我们还有充足的时间准备。</p>
-<a id="more"></a>
-<p>这一学期开学以来，学习立马紧张了起来，各种考试接踵而来，学习的压力重重地压在了我们的头上。而当进入暑假，这场学习上的竞争正式开始了。上午的颁奖典礼中，有一个班级对抗赛颁奖的环节，一个年级16个班，8个班赢了，8个班输了（我们属于输的）。这些班的代表上台发表感言，并且输的班要给对方赠送礼物。在凤凰双语那10个班颁奖的过程中，现场充斥着一股“火药味”（高中部日常看淡成绩[捂脸]）。学习气氛似乎充满了整个学校。</p>
-<p>11月，NOIP2020也要拉开帷幕，距离我上次大量刷题已经过去了进一年。去年我已经规划好，要在这个暑假继续大量刷题、写博客，对于我的算法学习而言，这也是一个至关重要的暑假。</p>
-<p><img src="https://s1.ax1x.com/2020/07/06/UiHG2n.jpg" alt="UiHG2n.jpg" /></p>
-<p>结束，指的是我们的初中生活即将结束。距离中考还有一年，我们的初中生活即将结束，同时，NOIP2020也将是我初中阶段的最后一场信息学奥赛。</p>
-<p>开始，指的是我即将迈入的暑假，暑假结束后的两个学期，我们必将继续拼搏，而这个暑假是这个过程的开始。</p>
-<h2 id="这是一个开始的结束"><a class="markdownIt-Anchor" href="#这是一个开始的结束"></a> 这是一个开始的结束</h2>
-<p>这个暑假，我早就蓄谋已久。学期快要结束时，我就在思考这个暑假应该怎么过。在竞赛方面，去年我计划休息了一年，等到暑假冲击NOIP2020。近几年关于竞赛的政策飘忽不定，大约两个月前，大学自主招生被取消。这直接导致了许多竞赛生几年来的努力白费，对许多竞赛生的心态是一个巨大的打击。但当时我已经没有过多关注竞赛，反而对我的心态没有什么打击。暑假到了，冲击NOIP2020的时候也到了。暑假的开始，计划阶段 即将结束，这是一个开始的结束。</p>
-<p>这个暑假，我主要学习的是《算法竞赛进阶指南》，从第一章开始，坚持每天刷题，有比较好（或者做了好长时间不过）的题，或者对我启发比较大的事，我会尽量以博客的形式总结。</p>
-<p>对于文化课，我依然坚持不参加任何课外班。其实老师布置的任务已经够多了，认真完成作业，就足以在新的学期中跟紧老师们的步伐。</p>
-<p><img src="https://s1.ax1x.com/2020/07/06/UiHACd.jpg" alt="UiHACd.jpg" /></p>
-<p><img src="https://s1.ax1x.com/2020/07/06/UiHF4H.jpg" alt="UiHF4H.jpg" /></p>
-<p><img src="https://s1.ax1x.com/2020/07/06/UiHiUe.jpg" alt="UiHiUe.jpg" /></p>
-<p>同时，我会坚持体育锻炼，中考体育也是一个大项目，需要持之以恒的练习，待暑假结束，我将王者归来。</p>
-<p>开始，指的是我对于暑假的计划，是暑假的开端。这个开端即将结束，我将要正式步入这个充实的暑假。</p>
-]]></content>
-      <tags>
-        <tag>杂谈</tag>
       </tags>
   </entry>
   <entry>
@@ -974,7 +974,7 @@
 <p>最后推荐个游戏 Pythagorea，这个据我所知可以在大部分国内的安卓应用商店下载到。这是一个对学习很有帮助的一个数学游戏，难度循序渐进。最关键的，它只有“描点”和“连线”两种操作。它对我学习解析几何有很大的帮助。</p>
 <h1 id="第一章-定点和动点"><a class="markdownIt-Anchor" href="#第一章-定点和动点"></a> 第一章 定点和动点</h1>
 <p>众所周知，两点可以确定一条直线，而两条直线可以确定一个平面。点是组成平面几何图形的基础，一个点是否为定点决定了图形是否被确定。就让我们从最基本的点的分析开始，逐步解决问题吧。</p>
-<p>需要注意的是，如果屏幕前的你没有任何基础，下面的内容看不懂是很正常的，这算是一个“快速入门”，如果要循序渐进的话，建议直接跳转到 <span id="第三章 建立平面直角坐标系">第三章 建立平面直角坐标系</span>，况且我这篇文章也是尽可能地让一些没有基础的读者可以理解的。</p>
+<p>需要注意的是，如果屏幕前的你没有任何基础，下面的内容看不懂是很正常的，这算是一个“快速入门”，如果要循序渐进的话，建议直接跳转到 [第三章 建立平面直角坐标系](#第三章 建立平面直角坐标系) ，况且我这篇文章也是尽可能地让一些没有基础的读者可以理解的。</p>
 <h2 id="11-定点"><a class="markdownIt-Anchor" href="#11-定点"></a> 1.1 定点</h2>
 <p>一般来说，在坐标系中确定了坐标的点都是定点。就像这样： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>B</mi><mo stretchy="false">(</mo><mn>3</mn><mo separator="true">,</mo><mn>5</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A(1, 1) / B(3, 5)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mopen">(</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mclose">)</span></span></span></span> ……反之，在坐标系中，定点的坐标也应该是确定并且可以被计算得到的。</p>
 <p>就拿最近的一次期末考试的第15题举例：</p>
