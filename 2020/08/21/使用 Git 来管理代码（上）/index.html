@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh_Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dong628.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="关于我的代码仓库 如果你关注我的 Github，那你应该知道，我最近新建了一个仓库，专门用来存放我平常在OJ上刷的题的代码，地址在这里： https:&#x2F;&#x2F;github.com&#x2F;dong628&#x2F;OhMyCodes（求star啊啊啊） 这个仓库使用 MIT 协议开源，意味着任何人都可以复制、修改、分发（商业或非商业），并且不需要使用相同的协议。 目前位置，一共有67次 commit ，记录着我从20">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Git 来管理代码">
+<meta property="og:url" content="http://dong628.github.io/2020/08/21/%E4%BD%BF%E7%94%A8%20Git%20%E6%9D%A5%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+<meta property="og:site_name" content="Jinglei&#39;s blog">
+<meta property="og:description" content="关于我的代码仓库 如果你关注我的 Github，那你应该知道，我最近新建了一个仓库，专门用来存放我平常在OJ上刷的题的代码，地址在这里： https:&#x2F;&#x2F;github.com&#x2F;dong628&#x2F;OhMyCodes（求star啊啊啊） 这个仓库使用 MIT 协议开源，意味着任何人都可以复制、修改、分发（商业或非商业），并且不需要使用相同的协议。 目前位置，一共有67次 commit ，记录着我从20">
+<meta property="og:image" content="https://i.loli.net/2020/08/21/dwHsNGfSqbrtEZB.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/21/7YnE3kO4mLhf9QZ.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/21/CFlMSUNmGyxIfhK.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/21/1YGbQNCMmiuZ3Tg.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/21/xAoLkV4u89ROMWy.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/21/dKusne2bPINoU8W.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/21/VyQ4mYoNFRPz8re.jpg">
+<meta property="article:published_time" content="2020-08-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-18T11:31:27.756Z">
+<meta property="article:author" content="JingleiDong">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/08/21/dwHsNGfSqbrtEZB.jpg">
+
+<link rel="canonical" href="http://dong628.github.io/2020/08/21/%E4%BD%BF%E7%94%A8%20Git%20%E6%9D%A5%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh_Hans'
+  };
+</script>
+
+  <title>使用 Git 来管理代码 | Jinglei's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Jinglei's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh_Hans">
+    <link itemprop="mainEntityOfPage" href="http://dong628.github.io/2020/08/21/%E4%BD%BF%E7%94%A8%20Git%20%E6%9D%A5%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JingleiDong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jinglei's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 Git 来管理代码
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-21 10:00:00" itemprop="dateCreated datePublished" datetime="2020-08-21T10:00:00-06:00">2020-08-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-18 05:31:27" itemprop="dateModified" datetime="2020-10-18T05:31:27-06:00">2020-10-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="关于我的代码仓库"><a class="markdownIt-Anchor" href="#关于我的代码仓库"></a> 关于我的代码仓库</h1>
+<p>如果你关注我的 Github，那你应该知道，我最近新建了一个仓库，专门用来存放我平常在OJ上刷的题的代码，地址在这里：</p>
+<p><a href="https://github.com/dong628/OhMyCodes" target="_blank" rel="noopener">https://github.com/dong628/OhMyCodes</a>（求star啊啊啊）</p>
+<p>这个仓库使用 MIT 协议开源，意味着任何人都可以复制、修改、分发（商业或非商业），并且不需要使用相同的协议。</p>
+<p>目前位置，一共有67次 commit ，记录着我从2020年5月的刷题记录。</p>
+<a id="more"></a>
+<h1 id="为什么使用-git"><a class="markdownIt-Anchor" href="#为什么使用-git"></a> 为什么使用 Git</h1>
+<p>我每天上午会去学校机房刷题，下午有时间会接着刷，于是，在这两个地方管理代码就显得很麻烦。</p>
+<p>一个朴素的策略是，用一个可移动存储介质（比如U盘）在家和学校之间拷贝代码。U盘，机房和家中的电脑同时存放着一份我刷过所有题的代码，每次我在家或学校更新，都将最新的版本拷贝到U盘上，再带到另一个地方更新那边的文件。</p>
+<p>但是这样做有许多问题：</p>
+<ul>
+<li>用U盘一个个拷贝太麻烦了</li>
+<li>万一哪天存着最新版本的设备坏了怎么办，难道要用另一个U盘备份？</li>
+<li>哪天我代码写错了，没有办法退回到上一个版本</li>
+<li><s>插上U盘 -&gt; 拖动鼠标拷贝文件 -&gt; 拔出U盘 这个操作太不（mei）优（you）雅（bi）了（ge）</s></li>
+</ul>
+<p>Linux 的创始人——Linus Torvalds 早就意识到了这个问题，于是用一个星期的时间写出了 Git，并且把它用在了 Linux 内核源码的版本控制上，真正的诠释了那句他自己说的千古名句：</p>
+<blockquote>
+<p>Talk is cheap, show me the code!			--Linus Torvalds</p>
+</blockquote>
+<p>说来这是个版本控制系统，但其实我使用它回退版本的次数非常少，更多的是用来配合 Github 来远程协作的。</p>
+<p>所以说，如果没有更复杂的需求的话，Git 需要记的命令是非常少的，更重要的是对这个系统的理解。</p>
+<p>再说，作为一个学计算机的，Git 也是未来做项目时必备的生存技能。</p>
+<h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
+<p>本来，我认为几乎所有的 Linux 发行版会自带 Git，但事实上很多发行版并不会自带。</p>
+<p>但是，我相信绝大部分发行版的 软件仓库/默认软件源 中都会有git，所以你可以用自己发行版的包管理器来安装 Git。</p>
+<p>如果你是 Windows，那么 <s>快去用 Linux ！</s> 可以在 <a href="https://git-scm.com/download/windows" target="_blank" rel="noopener">https://git-scm.com/download/windows</a> 这个地址下载。</p>
+<p>Mac 可以在 <a href="https://git-scm.com/download/mac" target="_blank" rel="noopener">https://git-scm.com/download/mac</a> 这里下载。</p>
+<h1 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h1>
+<p>由于 Windows 下自带的那个 Git GUI 对我来说就是个废物，作为每天用命令行 Git 的我上手后根本不知道如何使用，说是 GUI ，但对新手非常不友好。</p>
+<p>再加上 Windows 下的 Git Bash 是 Windows 下 Bash 模拟器的典范，所以这个系列只有命令行，没有 GUI。</p>
+<h2 id="用户配置"><a class="markdownIt-Anchor" href="#用户配置"></a> 用户配置</h2>
+<p>即使 Git 只有你一个人离线使用，你也要首先告诉 Git 你是谁，所以就有了下面这两句：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"dong628"</span>  <span class="comment">#名称</span></span><br><span class="line">git config --global user.email 1816750728@qq.com   <span class="comment">#邮箱</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建一个仓库"><a class="markdownIt-Anchor" href="#创建一个仓库"></a> 创建一个仓库</h2>
+<p>仓库（Repository），可以看作是一个由 Git 管理的文件夹，有了仓库，Git 就可以跟踪其中的文件，记录版本变化。</p>
+<p>要想把一个文件夹变成一个 Git 仓库，只需要在这个文件夹中键入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>在 Windows 下，如果打开了显示隐藏文件，那么在那个文件夹中应该可以看到 .git 目录，这是 Git 用来存放历史版本的地方。对于 GNU/Linux 系统，可以使用 <code>ls -a</code> 命令查找到这个文件夹</p>
+<p><img src="https://i.loli.net/2020/08/21/dwHsNGfSqbrtEZB.jpg" alt="Screenshot_20200821_095333.jpg" /></p>
+<p>当你建立好仓库后，使用 <code>git status</code> 命令可以查看这个仓库的状态</p>
+<p><img src="https://i.loli.net/2020/08/21/7YnE3kO4mLhf9QZ.jpg" alt="Screenshot_20200821_100048.jpg" /></p>
+<h2 id="添加追踪文件"><a class="markdownIt-Anchor" href="#添加追踪文件"></a> 添加追踪文件</h2>
+<p>并不是文件夹中所有的文件都要被 Git 跟踪。事实上，即使你在这个文件夹中写了一堆文件，如果不运行任何命令，Git 是不会注意到这些文件的任何变化的，仓库也会是空空如也。</p>
+<p>当这个文件夹中新增了文件，Git 就会检测到这个文件没有被跟踪，从而在运行 <code>git status</code> 命令后给出这样的提示：</p>
+<p><img src="https://i.loli.net/2020/08/21/CFlMSUNmGyxIfhK.jpg" alt="Screenshot_20200821_100624.jpg" /></p>
+<p>就像这段文字的提示一样， <code>git add</code> 命令主要有两个作用：</p>
+<ol>
+<li>将未跟踪的文件添加跟踪</li>
+<li>将工作区的修改提交到暂存区</li>
+</ol>
+<p>其实1和2本质上是一样的，为此，要先来介绍一下 Git 中的暂存区域。</p>
+<p>暂存区，顾名思义，暂时存放文件的区域。一个 Git 仓库中有三个区域，分别时工作区、暂存区、版本库。其中，只有版本库存放了所有版本，工作区和暂存区都是只会存放一个版本的。其中，暂存区可以看作是一个存放着所有你 add 过的文件，并且可以随时把这些文件一次性打包，作为一个新版本放入版本库的。</p>
+<p>所以，当执行了 <code>git add &lt;文件名&gt;</code> 后，运行 <code>git status</code> 就会有这样的输出：</p>
+<p><img src="https://i.loli.net/2020/08/21/1YGbQNCMmiuZ3Tg.jpg" alt="Screenshot_20200821_102028.jpg" /></p>
+<p>可以看到，文件已经被 Git 追踪，如果不信，可以修改这个文件，再运行 <code>git status</code> 试试：</p>
+<p><img src="https://i.loli.net/2020/08/21/xAoLkV4u89ROMWy.jpg" alt="Screenshot_20200821_102343.jpg" /></p>
+<p>可以看到，Git 已经检测到了文件的更改。</p>
+<h2 id="当工作区和暂存区出现偏离"><a class="markdownIt-Anchor" href="#当工作区和暂存区出现偏离"></a> 当工作区和暂存区出现偏离</h2>
+<p>当提交到暂存区的文件在工作去被修改时，Git 会检测到文件被修改了，并且给用户两个选择</p>
+<ol>
+<li>将工作区的新文件提交到暂存区 ( <code>git add</code>命令)</li>
+<li>将暂存区的文件恢复到工作区 ( <code>git restore</code> 命令)</li>
+</ol>
+<p>如果工作区的这个修改是你不小心改掉了一些什么东西，那就可以使用第二条命令来恢复工作区。</p>
+<p>如果这是一个正确的改动，并且你想要更新暂存区里的文件，那么可以使用第一条命令。</p>
+<p>但其实这两个命令都是具有危险性的，因为它们都会删除一些版本呢，那么有没有什么方法可以同时保留这两个版本呢？</p>
+<h2 id="将暂存区的文件提交到仓库"><a class="markdownIt-Anchor" href="#将暂存区的文件提交到仓库"></a> 将暂存区的文件提交到仓库</h2>
+<p>当你认为暂存区里的这些文件已经是一个成型的版本，需要保存起来以便回溯时，就需要将暂存区中的文件打包成一个版本，放入版本仓库。</p>
+<p>当遇到上面的情况，也就是工作区和暂存区发生了偏离，Git 只告诉你可以保存一个，但没有告诉你两个都要的方法。</p>
+<p>为此，我们可以使用下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"&lt;本次提交的注释&gt;"</span></span><br><span class="line">git add test.cpp</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/08/21/dKusne2bPINoU8W.jpg" alt="Screenshot_20200821_104620.jpg" /></p>
+<p>这样，我们成功地将暂存区里的版本提交到了版本库中，为此，你可以使用 <code>git log</code> 来查看版本库中存放的版本数据：</p>
+<p><img src="https://i.loli.net/2020/08/21/VyQ4mYoNFRPz8re.jpg" alt="Screenshot_20200821_104941.jpg" /></p>
+<p>-&gt; to be continued…</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/08/%E3%80%8CXSection%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95%E3%80%8D%E5%B9%B3%E8%A1%8C%E6%8A%95%E5%BD%B1%E5%92%8C%E4%B8%AD%E5%BF%83%E6%8A%95%E5%BD%B1/" rel="prev" title="「XSection立体几何」中心投影和平行投影">
+      <i class="fa fa-chevron-left"></i> 「XSection立体几何」中心投影和平行投影
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/04/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8DNowCoder7225A%20%E6%8E%92%E5%88%97/" rel="next" title="「题解」NowCoder7225A 排列">
+      「题解」NowCoder7225A 排列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于我的代码仓库"><span class="nav-text"> 关于我的代码仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么使用-git"><span class="nav-text"> 为什么使用 Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-text"> 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本命令"><span class="nav-text"> 基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户配置"><span class="nav-text"> 用户配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个仓库"><span class="nav-text"> 创建一个仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加追踪文件"><span class="nav-text"> 添加追踪文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当工作区和暂存区出现偏离"><span class="nav-text"> 当工作区和暂存区出现偏离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将暂存区的文件提交到仓库"><span class="nav-text"> 将暂存区的文件提交到仓库</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">JingleiDong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JingleiDong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+
+</body>
+</html>

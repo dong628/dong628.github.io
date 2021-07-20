@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>mssCTF 2020 赛后总结</title>
-    <url>/2020/09/26/mssCTF%202020%20%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</url>
+    <url>/2020/09/25/mssCTF%202020%20%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>这真的是我打过最惊险，最一波三折的一场比赛，尤其是决赛的最后十分钟，简直是我打过比赛中最紧张刺激的最后时刻。。</p>
 <p>由于这次比赛中，组委会要求我们全程录屏，所以我才能在比赛过去一周后复盘，写下这篇心得。。</p>
 <a id="more"></a>
@@ -130,7 +130,7 @@
   </entry>
   <entry>
     <title>LaTeX测试</title>
-    <url>/2021/05/21/LaTeX%E6%B5%8B%E8%AF%95/</url>
+    <url>/2021/05/20/LaTeX%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<p>用比较简短的公式测试一下 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.89883em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-2.904999em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord text"><span class="mord textrm sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.46782999999999997em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord text"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></p>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><msub><mi>b</mi><mn>1</mn></msub><mo>−</mo><msub><mi>b</mi><mn>2</mn></msub></mrow><mrow><msub><mi>k</mi><mn>1</mn></msub><mo>−</mo><msub><mi>k</mi><mn>2</mn></msub></mrow></mfrac></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>y</mi><mo>=</mo><msub><mi>k</mi><mn>1</mn></msub><mi>x</mi><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\left\{\begin{matrix}x=\frac{b_1-b_2}{k_1-k_2}\\ y=k_1x+b_1\end{matrix}\right.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.5413079999999995em;vertical-align:-1.020654em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">{</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5206539999999995em;"><span style="top:-3.624446em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8962079999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.03148em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.03148em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44509999999999994em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-2.339346em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.020654em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mfrac><mrow><mi>H</mi><mi>K</mi></mrow><mrow><mi>I</mi><mi>K</mi></mrow></mfrac><mo>∗</mo><mfrac><mrow><mi>J</mi><mi>K</mi></mrow><mrow><mi>H</mi><mi>L</mi></mrow></mfrac><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-\frac{HK}{IK}*\frac{JK}{HL} = -1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span><span class="mord mathdefault mtight">L</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.09618em;">J</span><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></p>
@@ -138,7 +138,7 @@
   </entry>
   <entry>
     <title>「CH0601」Genius ACM</title>
-    <url>/2020/07/26/%E3%80%8CCH0601%E3%80%8DGenius%20ACM/</url>
+    <url>/2020/07/25/%E3%80%8CCH0601%E3%80%8DGenius%20ACM/</url>
     <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
 <p>AcWing：<a href="https://www.acwing.com/problem/content/description/111/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/description/111/</a></p>
 <p>ContestHunter 挂了，只有 AcWing 上能找到这题了。。</p>
@@ -189,7 +189,7 @@
   </entry>
   <entry>
     <title>「POJ2965」The Pilots Brothers&#39; refrigerator</title>
-    <url>/2020/08/05/%E3%80%8CPOJ2965%E3%80%8DThe%20Pilots%20Brothers&#39;%20refrigerator/</url>
+    <url>/2020/08/04/%E3%80%8CPOJ2965%E3%80%8DThe%20Pilots%20Brothers&#39;%20refrigerator/</url>
     <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
 <p>AcWing：<a href="https://www.acwing.com/problem/content/118/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/118/</a></p>
 <p>VirtualJudge：<a href="https://vjudge.net/problem/POJ-2965" target="_blank" rel="noopener">https://vjudge.net/problem/POJ-2965</a></p>
@@ -234,7 +234,7 @@
   </entry>
   <entry>
     <title>「AcWing113」特殊排序</title>
-    <url>/2020/07/12/%5BAcWing113%5D%E7%89%B9%E6%AE%8A%E6%8E%92%E5%BA%8F/</url>
+    <url>/2020/07/11/%5BAcWing113%5D%E7%89%B9%E6%AE%8A%E6%8E%92%E5%BA%8F/</url>
     <content><![CDATA[<h1 id="关于题面"><a class="markdownIt-Anchor" href="#关于题面"></a> 关于题面</h1>
 <p>题目链接：<a href="https://www.acwing.com/problem/content/115/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/115/</a></p>
 <p>有N个元素，编号1.2…N，每一对元素之间的大小关系是确定的，关系具有反对称性，但不具有传递性。</p>
@@ -271,7 +271,7 @@
   </entry>
   <entry>
     <title>「POJ2299」Ultra-QuickSort</title>
-    <url>/2020/07/19/%E3%80%8CPOJ2299%E3%80%8DUltra-QuickSort/</url>
+    <url>/2020/07/18/%E3%80%8CPOJ2299%E3%80%8DUltra-QuickSort/</url>
     <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
 <h2 id="题目链接"><a class="markdownIt-Anchor" href="#题目链接"></a> 题目链接</h2>
 <p>UVA（洛谷有RemoteJudge）-<a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=20&amp;page=show_problem&amp;problem=1751" target="_blank" rel="noopener">https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=20&amp;page=show_problem&amp;problem=1751</a></p>
@@ -316,7 +316,7 @@
   </entry>
   <entry>
     <title>「USACO06FEB」Stall Reservations</title>
-    <url>/2020/08/02/%E3%80%8CUSACO06FEB%E3%80%8DStall%20Reservations/</url>
+    <url>/2020/08/01/%E3%80%8CUSACO06FEB%E3%80%8DStall%20Reservations/</url>
     <content><![CDATA[<h1 id="题目链接-题面"><a class="markdownIt-Anchor" href="#题目链接-题面"></a> 题目链接 &amp; 题面</h1>
 <p>貌似是 USACO 原创，但我实在找不到原创的链接，只能在洛谷、 AcWing 和 POJ 上找了</p>
 <p>洛谷：<a href="https://www.luogu.com.cn/problem/P2859" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2859</a></p>
@@ -356,7 +356,7 @@
   </entry>
   <entry>
     <title>「XSection立体几何」中心投影和平行投影</title>
-    <url>/2020/08/09/%E3%80%8CXSection%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95%E3%80%8D%E5%B9%B3%E8%A1%8C%E6%8A%95%E5%BD%B1%E5%92%8C%E4%B8%AD%E5%BF%83%E6%8A%95%E5%BD%B1/</url>
+    <url>/2020/08/08/%E3%80%8CXSection%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95%E3%80%8D%E5%B9%B3%E8%A1%8C%E6%8A%95%E5%BD%B1%E5%92%8C%E4%B8%AD%E5%BF%83%E6%8A%95%E5%BD%B1/</url>
     <content><![CDATA[<h1 id="投影"><a class="markdownIt-Anchor" href="#投影"></a> 投影</h1>
 <p>话说前几天我在翻北师大版九年级上册数学书时，发现这本书的第五章是“投影与视图”。（这游戏没有汉化，这使书上术语的英文名是我感到十分亲切。。）</p>
 <p>这一章的第一小节就是投影，但其实对于立体几何，书上讲得非常简单，这节的重点其实是承接上一章《图形的相似》，利用相似三角形来计算投影的位置。</p>
@@ -444,7 +444,7 @@
   </entry>
   <entry>
     <title>「题解」洛谷P3138 Load Balancing S</title>
-    <url>/2020/09/26/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8D%E6%B4%9B%E8%B0%B7P3138%20Load%20Balancing%20S/</url>
+    <url>/2020/09/25/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8D%E6%B4%9B%E8%B0%B7P3138%20Load%20Balancing%20S/</url>
     <content><![CDATA[<h1 id="题目链接"><a class="markdownIt-Anchor" href="#题目链接"></a> 题目链接</h1>
 <p>洛谷：<a href="https://www.luogu.com.cn/problem/P3138" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P3138</a></p>
 <h1 id="10pts简单的骗分"><a class="markdownIt-Anchor" href="#10pts简单的骗分"></a> 10pts：简单的骗分</h1>
@@ -477,7 +477,7 @@
   </entry>
   <entry>
     <title>「XSection立体几何」游戏简介、平面、截面</title>
-    <url>/2020/08/01/%E3%80%8CXSection%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95%E3%80%8D%E6%B8%B8%E6%88%8F%E7%AE%80%E4%BB%8B%E3%80%81%E5%B9%B3%E9%9D%A2%E3%80%81%E6%88%AA%E9%9D%A2/</url>
+    <url>/2020/07/31/%E3%80%8CXSection%E7%AB%8B%E4%BD%93%E5%87%A0%E4%BD%95%E3%80%8D%E6%B8%B8%E6%88%8F%E7%AE%80%E4%BB%8B%E3%80%81%E5%B9%B3%E9%9D%A2%E3%80%81%E6%88%AA%E9%9D%A2/</url>
     <content><![CDATA[<h1 id="horis-international-limited-制作组"><a class="markdownIt-Anchor" href="#horis-international-limited-制作组"></a> Horis International Limited 制作组</h1>
 <p>最近在玩 Euclidea 的时候，偶然发现，这个制作组在 Google Play 上还有其他的作品：</p>
 <p><img src="https://s1.ax1x.com/2020/08/01/a3DC9A.jpg" alt="a3DC9A.jpg" /></p>
@@ -527,7 +527,7 @@
   </entry>
   <entry>
     <title>「题解」CSP-S 2020 儒略日</title>
-    <url>/2020/11/10/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8DCSP-S%202020%20%E5%84%92%E7%95%A5%E6%97%A5/</url>
+    <url>/2020/11/09/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8DCSP-S%202020%20%E5%84%92%E7%95%A5%E6%97%A5/</url>
     <content><![CDATA[<h2 id="谨以此篇题解纪念我那炸掉的t1"><a class="markdownIt-Anchor" href="#谨以此篇题解纪念我那炸掉的t1"></a> 谨以此篇题解，纪念我那炸掉的T1。。</h2>
 <h1 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h1>
 <p>大模拟，我写了100多行。。</p>
@@ -564,7 +564,7 @@
   </entry>
   <entry>
     <title>「题解」NowCoder7225A 排列</title>
-    <url>/2020/09/05/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8DNowCoder7225A%20%E6%8E%92%E5%88%97/</url>
+    <url>/2020/09/04/%E3%80%8C%E9%A2%98%E8%A7%A3%E3%80%8DNowCoder7225A%20%E6%8E%92%E5%88%97/</url>
     <content><![CDATA[<p>题目链接：<a href="https://ac.nowcoder.com/acm/contest/7225/A" target="_blank" rel="noopener">https://ac.nowcoder.com/acm/contest/7225/A</a></p>
 <h1 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h1>
 <p>牛牛拿到了一个长度为N的排列和M个区间，一开始排列是1、2、3…N。</p>
@@ -603,7 +603,7 @@
   </entry>
   <entry>
     <title>使用 Git 来管理代码</title>
-    <url>/2020/08/22/%E4%BD%BF%E7%94%A8%20Git%20%E6%9D%A5%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+    <url>/2020/08/21/%E4%BD%BF%E7%94%A8%20Git%20%E6%9D%A5%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
     <content><![CDATA[<h1 id="关于我的代码仓库"><a class="markdownIt-Anchor" href="#关于我的代码仓库"></a> 关于我的代码仓库</h1>
 <p>如果你关注我的 Github，那你应该知道，我最近新建了一个仓库，专门用来存放我平常在OJ上刷的题的代码，地址在这里：</p>
 <p><a href="https://github.com/dong628/OhMyCodes" target="_blank" rel="noopener">https://github.com/dong628/OhMyCodes</a>（求star啊啊啊）</p>
@@ -687,7 +687,7 @@
   </entry>
   <entry>
     <title>在 Archlinux 中使用 Zsh</title>
-    <url>/2020/01/26/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/</url>
+    <url>/2020/01/25/%E5%9C%A8%20Archlinux%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20Zsh/</url>
     <content><![CDATA[<h2 id="什么是shell"><a class="markdownIt-Anchor" href="#什么是shell"></a> 什么是Shell</h2>
 <p>shell是操作系统的命令解释器，在计算机科学中指“为用户提供用户界面”的软件，我的理解就是系统与用户沟通的桥梁。值得一提的是，shell不仅指的是命令行界面（CLI），图形界面（GUI）也是shell的一种。</p>
 <a id="more"></a>
@@ -724,7 +724,7 @@
   </entry>
   <entry>
     <title>在 Archlinux 下上网课</title>
-    <url>/2020/02/16/%E5%9C%A8Archlinux%E4%B8%8B%E4%B8%8A%E7%BD%91%E8%AF%BE/</url>
+    <url>/2020/02/15/%E5%9C%A8Archlinux%E4%B8%8B%E4%B8%8A%E7%BD%91%E8%AF%BE/</url>
     <content><![CDATA[<p>最近，新型冠状病毒肺炎肆虐，学生们不得不延长假期，在家上网课。但有一个大问题：我们没有书。</p>
 <p>于是，我们的老师给我们发了PDF格式的电子书，大概长这样：</p>
 <a id="more"></a>
@@ -770,7 +770,7 @@
   </entry>
   <entry>
     <title>「NOI Online 提高组 」T3 最小环 70分题解</title>
-    <url>/2020/03/13/%E6%9C%80%E5%B0%8F%E7%8E%AF70%E5%88%86%E9%A2%98%E8%A7%A3/</url>
+    <url>/2020/03/12/%E6%9C%80%E5%B0%8F%E7%8E%AF70%E5%88%86%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<p><a href="https://www.luogu.cok.cn/problek/P6187" target="_blank" rel="noopener">题目链接</a></p>
 <p><img src="https://i.loli.net/2020/03/09/kp7TWLjf61FaYvt.jpg" alt="c67625086b63f624199efc639044ebf81b4ca37e.jpg" /></p>
 <p>这篇文章中， “基本思路”部分会详细介绍我最真实的推理过程，可能会有些啰嗦，还会包括一些显而易见随手推一推就能推出来的结论的证明，这些结论我已经用粗体字标注出来了。</p>
@@ -826,7 +826,7 @@
   </entry>
   <entry>
     <title>浅谈Linux分区和挂载（点）</title>
-    <url>/2020/01/04/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/</url>
+    <url>/2020/01/03/%E6%B5%85%E8%B0%88Linux%E5%88%86%E5%8C%BA%E5%92%8C%E6%8C%82%E8%BD%BD%EF%BC%88%E7%82%B9%EF%BC%89/</url>
     <content><![CDATA[<h2 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h2>
 <p>在windows下，分区是有明显的界限的，就比如这样：</p>
 <p><img src="http://h.hiphotos.baidu.com/exp/w=500/sign=dee7d1b3a144ad342ebf8787e0a30c08/b58f8c5494eef01f75ed6b9be0fe9925bd317df6.jpg" alt="" /></p>
@@ -881,7 +881,7 @@
   </entry>
   <entry>
     <title>［杂谈］一个故事的开始</title>
-    <url>/2020/07/06/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
+    <url>/2020/07/05/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E5%BC%80%E5%A7%8B/</url>
     <content><![CDATA[<h2 id="这是一个结束的开始"><a class="markdownIt-Anchor" href="#这是一个结束的开始"></a> 这是一个结束的开始</h2>
 <p>还有不到一年，初中生活就要结束了。还有不到一年，我们就要参加中考了。今天（2020年7月6日）早上，去学校参加了颁奖典礼。会上，老师多次和我们强调：我们的时间已经不多了。但学生代表pyt（好像是叫这个名字？）的发言中，详细计算了我们距离中考还有多少天，多少小时，多少分钟（尽管好像计算错了）……虽然我们即将面临的是一场至关重要的考试，但我们还有充足的时间准备。</p>
 <a id="more"></a>
@@ -906,7 +906,7 @@
   </entry>
   <entry>
     <title>「题解」HNOI2003 激光炸弹</title>
-    <url>/2020/07/07/%EF%BC%BB%E9%A2%98%E8%A7%A3%EF%BC%BDHNOI2003%20%E6%BF%80%E5%85%89%E7%82%B8%E5%BC%B9/</url>
+    <url>/2020/07/06/%EF%BC%BB%E9%A2%98%E8%A7%A3%EF%BC%BDHNOI2003%20%E6%BF%80%E5%85%89%E7%82%B8%E5%BC%B9/</url>
     <content><![CDATA[<h2 id="基本思路"><a class="markdownIt-Anchor" href="#基本思路"></a> 基本思路</h2>
 <p>基本的二维前缀和，把从（0,0）到任何一个点围成的矩形中所有的价值计算出来，然后再通过容斥原理算出所有可能正方形中的价值之和。</p>
 <p>如果把初始的地图存入A数组，那么它的二位前缀和S就是：</p>
@@ -947,7 +947,7 @@
   </entry>
   <entry>
     <title>［杂谈］一个故事的结束</title>
-    <url>/2020/07/05/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E7%BB%93%E6%9D%9F/</url>
+    <url>/2020/07/04/%EF%BC%BB%E6%9D%82%E8%B0%88%EF%BC%BD%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E7%9A%84%E7%BB%93%E6%9D%9F/</url>
     <content><![CDATA[<p>７月２日，期末考试的尘埃落定又标志这我一个学期的结束。看到朋友圈里许多同学都写下了自己对这个学期的总结，于是我也来趁着这个初二年级的结束来对我之前的学习做个总结（原谅我文笔不太好。。）。我上次写总结已经是2019年的暑假结束了，那么这次就写一些从那时到现在我的一系列故事吧。</p>
 <p>回想起这个学期，大部分时间都在网课中度过，开学之后就是各种考试。但直到学校给我们施加上前所未有的压力后，我才意识到，一年后的我们，就要接受义务教育阶段最重要的考试——中考 了。过去的几个学期中，我在八年级时的变化是最大的。</p>
 <a id="more"></a>
@@ -987,7 +987,7 @@
   </entry>
   <entry>
     <title>DJL的建系指南</title>
-    <url>/2021/05/22/DJL%E7%9A%84%E5%BB%BA%E7%B3%BB%E6%8C%87%E5%8D%97/</url>
+    <url>/2021/05/21/DJL%E7%9A%84%E5%BB%BA%E7%B3%BB%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<h1 id="前言我与解析几何"><a class="markdownIt-Anchor" href="#前言我与解析几何"></a> 前言——我与解析几何</h1>
 <p>升入初中以来，关于平面几何，我的脑海里一直存在着一连串的问题：什么是平面上的图形？如何确定一个三角形？圆的本质是什么？如何定义这一系列的几何图形？……</p>
 <p>这些问题，虽然在初中的数学学习中，通过一系列公理、定理、命题的学习逐渐解开，但这些方法过于复杂，在我看来一点也不优雅。我不止一次地问自己：“不就是一堆直线吗？三角形、矩形、平行四边形……它们的本质虽不能说是完全一致，但一定存在很多相似之处，一定存在一个通用的方法解决的”。</p>
