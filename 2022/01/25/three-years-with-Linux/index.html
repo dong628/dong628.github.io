@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh_Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dong628.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="记忆中的片段 第一次听说 Linux ，大概是在小学五六年级的时候。记忆中还是父亲先提起这个东西，考虑到我六年级下半学期已经在学 Python 了，每天高强度网上冲浪+听课+写代码，没有在网络上接触到这个这么有意思的东西，我觉得不太可能，所以那个时候我大概还没有学 Python 吧。 当时我还不知道什么是“发行版”，只是听说这个“系统”有非常多的版本可以选择。有人在百度云上整理出了当时各个发行版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我和 Linux 的三年">
+<meta property="og:url" content="http://dong628.github.io/2022/01/25/three-years-with-Linux/index.html">
+<meta property="og:site_name" content="Jinglei&#39;s blog">
+<meta property="og:description" content="记忆中的片段 第一次听说 Linux ，大概是在小学五六年级的时候。记忆中还是父亲先提起这个东西，考虑到我六年级下半学期已经在学 Python 了，每天高强度网上冲浪+听课+写代码，没有在网络上接触到这个这么有意思的东西，我觉得不太可能，所以那个时候我大概还没有学 Python 吧。 当时我还不知道什么是“发行版”，只是听说这个“系统”有非常多的版本可以选择。有人在百度云上整理出了当时各个发行版">
+<meta property="og:image" content="https://s2.loli.net/2022/01/25/GyQV6sDoM5ujrAf.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/11/27/ySwj5D694euAYJp.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/27/ogR3GjlwVTB4mi8.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/27/ZHV92J8ktpzESWC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/01/23/cO9pghaJ2DixLSz.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/01/23/jpOdT1ybIxog3UP.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/01/25/igf74Q3yq1MdADW.png">
+<meta property="article:published_time" content="2022-01-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-25T13:27:33.145Z">
+<meta property="article:author" content="JingleiDong">
+<meta property="article:tag" content="杂谈">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/01/25/GyQV6sDoM5ujrAf.jpg">
+
+<link rel="canonical" href="http://dong628.github.io/2022/01/25/three-years-with-Linux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh_Hans'
+  };
+</script>
+
+  <title>我和 Linux 的三年 | Jinglei's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Jinglei's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh_Hans">
+    <link itemprop="mainEntityOfPage" href="http://dong628.github.io/2022/01/25/three-years-with-Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JingleiDong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jinglei's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我和 Linux 的三年
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-01-25 00:00:00 / Modified: 21:27:33" itemprop="dateCreated datePublished" datetime="2022-01-25T00:00:00+08:00">2022-01-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="记忆中的片段"><a class="markdownIt-Anchor" href="#记忆中的片段"></a> 记忆中的片段</h1>
+<p>第一次听说 Linux ，大概是在小学五六年级的时候。记忆中还是父亲先提起这个东西，考虑到我六年级下半学期已经在学 Python 了，每天高强度网上冲浪+听课+写代码，没有在网络上接触到这个这么有意思的东西，我觉得不太可能，所以那个时候我大概还没有学 Python 吧。</p>
+<p>当时我还不知道什么是“发行版”，只是听说这个“系统”有非常多的版本可以选择。有人在百度云上整理出了当时各个发行版的安装镜像，我就挑了一个听说次数最多的 Ubuntu 下载。我依稀记得那个镜像写得还是 Ubuntu12.04，但事实上安装的那个似乎比那个要新很多，不知道当时是不是又去其他地方下载了一个新版的。</p>
+<a id="more"></a>
+<p>我并不知道什么是“虚拟机”，于是跟着网上的教程用U盘在物理机上装上了 Ubuntu （也有可能是用的官方的安装程序 wubi），也保留着系统预装的 Win10。</p>
+<p>装上新的系统给我带来的感觉无疑是非常新鲜的，毕竟在这之前，我还不知道，在这个世界上，还有 Windows 和 MacOS X 之外的操作系统呀。其实我一开始也正是因为在网上看到它的截图，出于好奇才尝试它的。不过当时电脑默认是从 Windows 启动的，每次开电脑要用 Ubuntu 的话，都需要在开机时进入 BIOS 选系统，再加上当时也并没有什么力量推动着我去使用它，于是它自打被安装之后就闲置在我的电脑上。</p>
+<p>在某一次调整电脑分区时，发现竟然多出来的几十GB的“未分配空间”，于是把那些空间全部格式化并入了 Windows，辛苦装好的 Linux 就这样被我从电脑上移除掉了。</p>
+<p>当时的我，还并不知道什么是 OI，对 Linux 的印象也仅仅停留在 Ubuntu 默认的那个桌面上。直到小学毕业的那个暑假，在学完一本小甲鱼的《零基础入门学习Python》后，在网上找到了《带你学C带你飞》的<a href="https://www.bilibili.com/video/av27744141" target="_blank" rel="noopener">课程</a>，准备学一学C语言。当时大概已经知道了信息学竞赛，学C语言也是因为想要参加比赛。很巧的是，课程所用的环境是装在虚拟机里的 CentOS Linux。虽然课程也推荐了 Windows 下的集成开发环境 DevC++ 和 Code::Blocks ，但也许是因为我当时没有注意到，也可能是我受到之前想学C，但被垃圾课程坑，死活装不上VC++6.0，VS又卡又不好用，导致我以偏概全， Windows 下的集成开发环境给我留下了非常不好的印象的缘故，我跟着课程一步一步在虚拟机里装上了 CentOS 。</p>
+<p><img src="https://s2.loli.net/2022/01/25/GyQV6sDoM5ujrAf.jpg" alt="Screenshot_20220125_203917" /></p>
+<p>现在看来这个过程依然并不容易（论坛上这个的教程一共出了8篇，经过剪辑的视频教程也有40多分钟），记得当时还遇到了一些困难，不过好在那是的我不光有时间，而且有热情。一点点构建这样一个操作系统，在当时来说是一件很新奇，且很有成就感的事情。</p>
+<p>现在回过头去再看那个课程，环境配置那部分似乎是专门为 OIer 设计的，或者说是专门为我设计的。。我知道了什么是虚拟机，什么是 Linux 发行版，什么是 VIM 和 GCC，甚至了解到了 GNOME 和 KDE（两种主流图形界面）。虽然到最后，我也没有怎么用过那个虚拟机，印象中大部分的代码是在 Code::Blocks 和 WSL （Windows下的Linux子系统，可以看作是另一种虚拟机）上写下的，不过这一门课无疑是在我的心中埋下了一颗种子，改变了我初中三年的 OI 生涯。</p>
+<h1 id="ubuntu-与-oi"><a class="markdownIt-Anchor" href="#ubuntu-与-oi"></a> Ubuntu 与 OI</h1>
+<p>NOIP2018 是我参加的第一场 NOIP 比赛，那场比赛的许多细节我都不记得了，脑海中只是残留着一些题面，什么“龙虎斗”“摆渡车”之类，但有一件事给了我很大的触动。校队里有位同学，因为在没有写 cstdio 头文件下，使用了 freopen 函数，造成编译错误惨遭爆零。而她所使用的 Windows 环境下的集成开发环境 DevC++，编译时会非常聪明地自动补上这个头文件，于是无法在本地发现这个问题，而评测机使用的 Linux 就不会那么“聪明”地暗暗补上头文件，导致编译错误。</p>
+<p>更重要的是，在那之前，我也不知道 freopen 函数是包含在 cstdio 头文件中的，我能通过编译只是因为使用了万能头文件，把所有可能用到的都包含进来了，属于侥幸。这件事让我意识到，本地编写代码的环境与评测环境不同，有时候是一件很致命的事情，虽然这些问题可以通过记忆一些环境差异来规避掉，但毕竟这个比赛还提供了与评测机一样的操作系统——NOI Linux 供大家选择，我认为这样才能从根本上解决这种问题。</p>
+<p>当时的我才刚上初中，心想接下来还有五年的比赛要参加，再加上我刚结束 NOIP2018，在第二年的比赛之前，完全有时间适应这样一个新的开发环境。同时，我也在几个月的 OI 学习中感受到，如果自身的知识面足够广，那么在一个领域钻研的路途就会更加轻松。于是我下决心放慢 OI 方面的脚步，熟悉这样一个新的环境，接触一些新的东西，为之后几年的比赛做准备。</p>
+<p>于是，在 2018.11.25 ，我再次在电脑上装上了 Ubuntu 系统。当时我还并无意把它作为第一引导选项，可以说装上基本上是为了再次“尝尝鲜”，但大概是因为我为了装这个系统，在 BIOS 里把 Windows 的启动顺序调得很低，以至于装上之后，电脑默认从 Ubuntu 启动了。但在安装的时候，Ubuntu 检测到了现存的 Windows10 ，所以它并没有删除 Windows，而且在启动引导器 GRUB 中增添了一个条目，使得可以很方便地在启动时切换到 Windows。尽管如此，如果要启动 Windows，还是要在开电脑时动几下手指切换条目……</p>
+<p>一开始我还是会经常切换到 Win 的，但几周过去，等我把新系统配置得差不多的时候，我发现我其实并没有那么需要 Windows，毕竟我既不用 Adobe 全家桶，当时也不玩 PC 端游戏，更没有什么小众软件需求。先前我每天在电脑上所做的，无非是用 DevC++ 写代码；用 Chrome 上网刷题、看B站、偶尔用一用网页版微信；还有 MS Office全家桶 。DevC++ 肯定不是问题，毕竟我换系统就是为了更好的代码体验；浏览器的话 Chrome 也跨平台，MS Office的话，当时的我完全可以用 WPS 替代。</p>
+<p>不久后，我又重装了系统，这回我把 Windows 的文件全部备份，然后全盘格式化安装了 Ubuntu ，算是真正的“启程”。</p>
+<p><img src="https://i.loli.net/2021/11/27/ySwj5D694euAYJp.png" alt="2018-12-23 15-42-03 的屏幕截图" /></p>
+<p><img src="https://i.loli.net/2021/11/27/ogR3GjlwVTB4mi8.png" alt="2019-01-17 21-34-06 的屏幕截图" /></p>
+<h1 id="新的开发环境"><a class="markdownIt-Anchor" href="#新的开发环境"></a> 新的开发环境</h1>
+<p>如果说，把我拉入 Linux 坑的是 CCF 的 Linux 评测机，那么，让我留在那里的，一定是 Linux 系统无与伦比的开发效率。对此，我们就不得不提到 Vim ，G++ 和 GDB 了。</p>
+<p>先前在 Windows 下，对于 C++ 开发，有宇宙最强 IDE Visual Studio，以及 CCF 比赛标配 Dev C++。但到了 Linux 环境下就不一样了，当时我还不知道自己用过的 Code::blocks 是跨平台的，VS Code 当时也没那么有名。况且在比赛中，NOI Linux 只有用不懂的 GUIDE 和 Anjuta 作为 IDE 。可能是因为之前接触过 Vim ，第一感觉这玩意用好了之后效率很高，面对这个选择时我毫不犹豫，决定一点点过渡到 Vim/G++/GDB 的开发环境。</p>
+<p>这里解释一下，Vim 是文本编辑器，和 DevC++ 这些 IDE（集成开发环境）不同，前者只具有文本编辑也就是写代码的功能，相当于 Windows 自带的记事本，而后者集成了文本编辑，代码编译/调试，项目管理等等功能。G++ 是<strong>编译器</strong>，大部分 IDE 的编译功能都是调用的 G++；GDB 是<strong>调试器</strong>，和 G++ 一样，是大部分 IDE 中自带的调试器。</p>
+<p>对我（或者是大部分 OIer）来说，<code>DevC++ = 好用一点的记事本 + G++ +GDB</code>，我这相当于是把这三件套拆开用，而且看那个记事本不惯，换成了“更高级的记事本” Vim。</p>
+<p><img src="https://i.loli.net/2021/11/27/ZHV92J8ktpzESWC.png" alt="2019-04-02 想按退格但无意点成printsc……" /></p>
+<p>Ubuntu 自带的终端是可以把背景调成半透明的，这一点我在用过 Deepin 才知道（Deepin 默认就是透明的），像上图这样一边看题一边写代码真的很爽，可惜当时的 NOI Linux 还不可以这样（现在的 NOI Linux 2.0 可以了）。事实上，最新版的 KDE 和 GNOME 这两种最主要的桌面环境自带的终端，都是可以把背景调成透明的。</p>
+<p>渐渐地，我熟悉了 Vim 的操作习惯，<code>hjkl</code>这四个键（在命令模式下控制上下左右）已经成了肌肉记忆，以至于去机房不得不用 DevC++ 时经常在屏幕上打出一串 “j” 。好在之后教练了解了我的情况，把机房本来要作为 OJ ，当时已经废弃的机器的 root 给了我，从此我的代码世界再也没有了 Windows 的身影。</p>
+<p>开发之外，作为其他的生产力工具，这台机器也完全可以胜任。我用 Kdenlive 完成了班级宣传视频的制作，用 Libre Office 和 WPS 帮助班委做了一份份 PPT ，抑或是装个 Java 和 HMCL 玩 Minecraft Java版（Ubuntu下配置这个很复杂，可以看看我这篇博客 <a href="https://www.luogu.com.cn/blog/tfls-djl/ru-he-zai-linux-zhong-an-zhuang-java" target="_blank" rel="noopener">https://www.luogu.com.cn/blog/tfls-djl/ru-he-zai-linux-zhong-an-zhuang-java</a>）</p>
+<h1 id="徘徊"><a class="markdownIt-Anchor" href="#徘徊"></a> 徘徊</h1>
+<p>不知道各位在看到上面那张我的Ubuntu系统的详细信息的时候，会不会注意到那个 CPU ，没错是赛扬，还是低压的……这玩意的主频只有1.7Ghz，低得可怜，甚至没有达到 Ubuntu 给出的最低要求 2.0Ghz。虽然我尝试过加内存，换机械硬盘的方式来给电脑续命，但我总是感觉 CPU 已经成为了瓶颈，日常操作会卡大概就是因为主频太低（听说 Linux 默认会把硬盘的东西尽可能载入到内存，而 Windows10 不会，所以 Linux 对机械硬盘比较友好）。</p>
+<p>低压CPU一般不能单独换，所以我只能换笔记本。于是在2020年的暑假，我的主力机换到了 Dell G3 3590 ，CPU是4.1Ghz的i5-9300H。现在许多笔记本在购买的时候，都会提供预装系统的选项，选 Linux 的话大概可以剩下几百块钱的 Windows 预装与激活费用，不过当时我买的时候似乎并没有这个选项。</p>
+<p>于是，我在这短暂的一个多月中，回味了一下已经大半年没有接触过的 Windows10 。Windows Terminal 还挺好用的，就是配置首选项有些麻烦，搭配 WSL 的体验已经比较接近原生Linux了，但用起来肯定没有原生方便，尤其是和 Windows 文件互通比较麻烦，性能也不好。倒是发现了 Git Bash 这个神器，以后去机房用 Windows 的话就它了（但其实也没啥用Win的机会）。为此，我还专门出了这个系列 ：<a href="https://www.luogu.com.cn/blog/tfls-djl/jiao-ni-yong-chu-linux-ti-yan-di-windows" target="_blank" rel="noopener">教你用出Linux体验的Windows</a> 。</p>
+<p>等我想起来装Ubuntu的时候，自己还是有些矛盾的。我看到了Windows的一些不足，比如装软件时那繁琐无比的操作，以及那慢得离谱的编译性能（与Linux相比），但它真的足够简单，遇到问题根本不需要折腾，百度一下就好了，虽说那些地方差，但也差不到哪里去，可以忍受。于是我在装Ubuntu的时候，并没有删掉原有的Windows，并且，这次我没有再把它设置为第一引导，成了事实上的“备用系统”。装系统的时候，本来还计划着找个时间重装，格式化整张硬盘从头开始，但另一个发行版的出现，使我离这条路越来越远。</p>
+<h1 id="archer-是如何炼成的"><a class="markdownIt-Anchor" href="#archer-是如何炼成的"></a> Archer 是如何炼成的</h1>
+<blockquote>
+<p>Keep It Simple, Stupid.</p>
+</blockquote>
+<p>在这部分开始之前，我觉得有必要向一些不知道什么是发行版的读者们科普一下。“Linux” 其实只是一个内核，单独拿出来什么也干不了（至少是对于我们这种用户来说），必须配合其他的软件才可以工作，我目前把它理解为“连接硬件和软件的媒介”，而应用软件才是真正连接到用户的，是我们能感知到的部分。所以说，所有使用 Linux 内核的系统其实都可以被叫作 Linux 系统，包括手机里运行的 Android 。所以说，“Linux系统” 只是一个统称，细分下来的不同系统就叫做 “发行版”。不同的发行版可能对内核做了不同程度的魔改，搭配不同的预装软件，以及不同的软件仓库，用来适应不同的需求。上面提到的 Ubuntu 就是 Linux 发行版之一，Arch Linux 同理。</p>
+<p>最开始接触 Arch Linux 是在一个现在叫做 <a href="https://space.bilibili.com/268630727" target="_blank" rel="noopener">飞蚊话</a> 的频道里的（当时他还叫“等我稍后补充昵称”），具体来说是这个视频 <a href="https://www.bilibili.com/video/BV1h441177Be" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1h441177Be</a> 。老实说，一开始其实是被视频中的桌面环境惊艳到了，似乎有不少入 Arch 的是奔着好看的 KDE 桌面环境来的。以及他所说的，丰富的软件源（不过我当时其实并没有感觉到 Ubuntu 的软件源有什么问题，日常使用似乎都可以满足）。最重要的是，那玩意需要折腾，而我当时认为我自己最不缺的就是时间了，对于 Linux 这个新领域也算是充满热情，仿佛是有无限的动力来折腾这些发行版。</p>
+<p>于是我在 Windows 中开了虚拟机，照着官方的 Wiki，一条命令一条命令地装系统。第一次装似乎就成功了，不过花了我几个小时的功夫，本来以为它有多难呢。</p>
+<p>于是开始准备着装到实体机上面。当时硬盘里已经有 Win10 和 Ubuntu 两个系统了，再装这一个的话，三个系统并存从技术上是完全可行的，但是未免有些浪费硬盘空间了。于是 Ubuntu 被首先驱逐出了我的电脑，一切准备就绪，接下来就是安装了。</p>
+<hr />
+<p>于是，接下来的四个多月，我都在 Archwiki、CSDN 和博客园的各种安装教程以及问题解决中挣扎，究其原因还是我太菜了……在实体机上的安装经历和在虚拟机上大相径庭，后者根本不需要在乎显卡驱动、无线网络等等各种问题。每个人的虚拟机都是差不多的，所以一个教程基本上就够了，但每个人的实体机都是不一样的，碰巧某些小众厂商（没错我指的就是你，nVIDIA！）不肯给Linux做开源驱动，市场小没办法，于是就会出现各种问题，其中驱动问题占了好多。</p>
+<p>一开始困扰我的，是安装后无法启动无线网络，导致我只能接着网线修。。后来发现是一个服务没有启动，并不是我所设想的驱动问题。之后看到装系统的时候，有两个引导并存，于是想整理一下，就删了一个，这下好了，Windows 和 Arch 统统不能用了，UEFI 启动项直接没了，修了我好长时间，在这期间我什么都不能用，真的是对人的折磨。</p>
+<p>然后就是重头戏了，显卡驱动。如果你看过 Linux 创始人 Linus Torvalds 怒喷 nVIDIA 的<a href="https://www.bilibili.com/video/BV1Wx411T7Nt" target="_blank" rel="noopener">这个视频</a>的话，你应该可以认识到显卡驱动对于这个系统来说是个多么大的难题，对于我的 Arch 来说尤其如此。Arch 安装 nVIDIA 驱动其实算比较容易的，因为它的软件仓库里已经有了打包好的私有驱动，但不知为何我的就一直装不上。其实核显也不是不能用，只是我觉得如果不把这块独显用上的话，我买这个「游戏本」也没有什么意义了。并且我有一块副屏，但我的电脑上的 HDMI 输出接口似乎是接在独显上面的，不装这个驱动等于说是把那块屏幕也废了……</p>
+<p>于是我在各种配置文件上面改了又改，在网络上搜索并且尝试着各种“民间偏方”，最后拖到了2020年还是没有解决。幸运的是，我在知乎遇到了和我同款机器同款系统的网友（还是个比我大两岁的OIer），在他的帮助下我迅速解决了这个问题。果然，机型不一样，解决这些问题的办法也是大相径庭呀。</p>
+<p>关于折腾系统那段时间的感悟的话，我实在不想在这篇文章中再赘述了，可以去我的博客园自取（<a href="https://www.cnblogs.com/dong628/p/13252259.html" target="_blank" rel="noopener">黑历史传送门</a>）</p>
+<p>最后一次重装系统，是在2020年2月10日，那是我们上网课的第一天。安装过程异常顺利，大概一个晚上就把最基本的配置搞定了吧，显卡驱动也第一时间解决了。第二天装虚拟机，感觉这个比装系统还要难，特别是一些莫名其妙的图形渲染Bug，果然，Windows才是最麻烦的挡路石呀。。</p>
+<p>之后，我也可以正常地使用数位板记笔记了，内置开源驱动就是好呀。</p>
+<h1 id="我和-arch-的两年"><a class="markdownIt-Anchor" href="#我和-arch-的两年"></a> 我和 Arch 的两年</h1>
+<blockquote>
+<p>Given enough eyeballs, all bugs are shallow.</p>
+</blockquote>
+<p>折腾 Arch 的那段时间里，我是无比怀疑自己的，这看起来根本没有什么意义，有那样的时间还不如去折腾 Windows，毕竟 Windows 其实也可以玩出来很多的花样，学好了也完全可以满足我的需求呀。事实上的确如此，而且我当时也意识到了这个问题，我所认识的 Windows，已经不是现在的这个 Windows 了（真是可笑，我才接触电脑几年呀）。“兴趣”、“理想”……一切都是虚无缥缈，当时继续坚持这个，也许最主要的原因还是一开始给自己挖了一个大坑吧。</p>
+<p>不过，现在的自己，却是越来越觉得当时的自己，做了一个无比正确的选择，确实是为未来的自己铺平了很长的一段路，而且这条路上遍布惊喜。</p>
+<h2 id="生产力"><a class="markdownIt-Anchor" href="#生产力"></a> 生产力</h2>
+<p>在开始用Ubuntu之前，我一直不太信任Linux的生产力上限，除了写代码之外，这样一个系统似乎其他的方面都比不过Windows，尤其是网络上的众矢之的——CAD、Adobe、MS Office……</p>
+<p>但自从我装上Ubuntu，这种想法就一点点在我的脑中消散了。CAD 我目前来讲根本没有需求（我的电脑性能也不允许我有这样的需求）；Adobe 即便用Windows也买不起，那玩意当时就已经订阅制了，剪视频简单点的 Kdenlive ，复杂一点达芬奇完全可以胜任了（尽管我并没有遇到这种情况，而且达芬奇在我的电脑上不知为何打不开），PS 的话不怎么用，GIMP 凑合用吧（在我发现 Krita 这个 KDE 全家桶的宝藏之前）；MS Office 虽然原来 Windows 好像送了一个，但对我而言和 WPS 区别不大吧，何况 Linux 上的 WPS 没有任何广告，应该是为数不多的，专门开发一个 Linux 版本，然后比 Windows 体验好的软件了吧，良心。</p>
+<p>换 Arch 之后，我就完全不担心生产力软件生态的问题了。KDE 全家桶真的要比 Ubuntu 自带的 GNOME 全家桶强上太多，毫不夸张地说，它改变了我对 Linux生态的认识。由于都是同一个社区写的，KDE全家桶各个软件虽然不像Adobe那样可以完美协同工作（可能也是因为没这个必要吧），但最起码设计风格非常统一，操作逻辑也不会有太大出入。所有软件都是 QT 写的，可以保证完美兼容系统主题设置，不会像Windows那样，我启用暗色模式之后，系统自己的控制面板还是白的（这个无语了真的是）。</p>
+<p>Krita 真的比 GIMP 好用太多太多，甚至在我看来，它比 Photoshop 都好用，可能只是因为在我看来，PS 的快捷键和某些操作逻辑太反直觉了吧。高一刚开学时，一个年级八个班的班旗，就是我用 Krita 在几天时间内做完的。Kdenlive 在 KDE 桌面下真的要比 GNOME 下用得舒服太多，毕竟算是原生软件吧。还有 Kate，虽然作为一个文本编辑器，它永远无法取代 Vim 在我心中的地位，但这是我见到过功能最强大的自带文本编辑器了，日常写代码完全没有问题。</p>
+<p>最后着重说一下 KDE Connect。顾名思义，在同一局域网下，它可以把电脑和手机链接起来，然后就可以互相控制对方了。可以互相发文件，也可以共享剪贴板（之前一直比较羡慕苹果全家桶的剪贴板共享，这下我也有了）。而最让我惊讶的一点是，当你在电脑上看视频的时候，突然有人给你打来电话，电脑上的视频会给你自动暂停，在我看来，生态和生产力就是在这些小细节中建立起来的。</p>
+<p>在 Arch 下，这些软件都是滚动更新的，也就是说，只要有新版本发布，包管理器 pacman 就可以在下次运行系统更新时更新它。很多时候一个bug过一周就被修了，这种惊喜的感觉是我之前用 Windows 时很少有过的。</p>
+<h2 id="自定义一切"><a class="markdownIt-Anchor" href="#自定义一切"></a> 自定义一切</h2>
+<blockquote>
+<p>Unix was not designed to stop you from doing stupid things, because that would also stop you from doing clever things. – Doug Gwyn</p>
+</blockquote>
+<p>正如上面这句话一样，Linux 和它的父亲 Unix 相同，会把尽可能多的权限赋予用户，即使有时某些操作会导致一些灾难性的后果（比如删除整个操作系统）。</p>
+<p>这点可能会带来一些由于用户操作不慎导致灾难性后果的隐患，比如 <a href="https://www.bilibili.com/video/BV1Fh411b7q3" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1Fh411b7q3</a> 这个视频中的 Linus（不是那个写内核的 Linus Torvalds ） 装软件被删掉桌面（系统都让他再三确认了，唉……），但对于我而言，它反而是带来了超高的自定义性。</p>
+<p>KDE 本身就以高度自定义性闻名，于是我把我的桌面做成了这个样子：</p>
+<p><img src="https://s2.loli.net/2022/01/23/cO9pghaJ2DixLSz.jpg" alt="Screenshot_20220123_221054" /></p>
+<p>（这个壁纸和桌面小部件真是毫无违和感呀！）（左上是 sudo 箴言，左下是二进制时钟，中右是全球COVID-19感染人数，右侧是 todo list）</p>
+<p>许多小部件都是在小部件商店中下载的第三方的小部件，虽然有时候会有比较严重的 Bug，但大部分时候还是非常好用的。</p>
+<p>但相比于桌面这些东西的个性化配置，对我来说更重要的一点是：这个系统的每一个部分仿佛你都可以触及到，它是完全透明，有你来操控的，如果有能力的话，你可以往其中添加任何的东西。</p>
+<p>比如我写了一个自动执行全盘备份的脚本，在 Windows 下你也可以写一个bat文件用来备份，但这还不够，我还是需要定时点击它，才能做到定期的备份，太麻烦了。这个时候，<code>Cron</code> 出现了，我可以用这个工具来设置定时自动执行脚本，只需要在配置文件里添加一行就好了。当然如果你还是不满足于此，可以去学 <code>systemd</code> （不过本人还没有找到比较合适的资料，最好的就是 Archwiki 了）。</p>
+<p>KDE的一些功能还可以帮助你完成其他更复杂的工作，比如我有一个git仓库，需要自动从远端更新，而我不想经常专门打开命令行来用 <code>git pull</code> 更新它。我可以使用 <code>Cron</code> 把它设置成开机启动，但问题在于，一般开机的时候，你的机器还没有连接网络，在这个时候执行命令，无疑是会失败的。所以我注意到，每次连接Wifi 时，KDE 都会在右上角弹出通知，而这个通知系统的自定义程度远超乎我的想象，你甚至可以在弹出特定通知的时候运行特定命令（也可以不弹出的情况下运行）：</p>
+<p><img src="https://s2.loli.net/2022/01/23/jpOdT1ybIxog3UP.jpg" alt="Screenshot_20220123_222515" /></p>
+<p>于是我就可以把它当作一个触发器，来触发我的许许多多的联机同步脚本。</p>
+<p>“自动化一切”这个词是我在《Linux哲学》这本书上看到的，这也算是我使用这个系统的目标之一吧，也是我心目中极客精神的诠释之一，付出一时的代价，来追求长远来看的效率与生产力。</p>
+<h1 id="尾声不止是系统"><a class="markdownIt-Anchor" href="#尾声不止是系统"></a> 尾声——不止是系统</h1>
+<p>到了现在，Linux 这个词对我的意义已经远不止是一个系统了。</p>
+<p>在我心目中，Linux 代表着一套命令行下的开发环境。Vim 作为一个几十年前的命令行工具，使用体验可以完爆 <code>DevC++</code> 、 <code>VS Code</code> 等等图形界面下的IDE/文本编辑器（前提是它们没有加 Vim 插件）。开始写一道题，把终端调成半透明，然后放在题目上方，这样不需要在浏览器和终端之间切来切去。打开 Vim 写代码，写好之后退出，然后把样例粘贴到文件里，运行，调试……一气呵成，整个过程甚至不需要碰一下鼠标。</p>
+<p>Linux 代表着不同于 Windows 的，通过软件仓库和包管理器管理和安装软件包的模式。Android 和 Windows 下，装软件的正确姿势应该是去官网下载 exe/msi/apk 安装软件/安装包（如果你的 Android 可以用 Google Play 那就另说），当然你也可以使用第三方的软件助手，只是这些软件库包含的软件参差不齐，许多无法第一时间获取最新版，而且有被夹带私货的风险。</p>
+<p>但 Linux 和 iOS 有一定的相似之处，不同的发行版通常会配备不同的软件仓库，以及其对应的软件包管理器（这也是不同发行版之间的主要区别）。当然，Linux 不可能像 iOS 那样，封闭自己，只允许来自自家软件商店的应用，但包管理器可以自动检索和下载软件包，还可以帮你自动安装所有的依赖软件，而且只需要使用一条命令就可以完成这些。像 Arch Linux 这样的发行版，官方软件源已经包含了大部分需要的软件，不够的话还可以添加第三方源（比如非常好用的 archlinuxcn），还有用户维护的 AUR 源，可以覆盖几乎所有能找到的软件了（因为如果覆盖不到完全可以自己打包上传到 AUR 上）。</p>
+<p>Linux 代表着爱好者们共享解决问题的方法的精神。Windows虽然对大部分人来说都很友好，但其实我在那里是没有什么解决问题的能力的。当然这一部分要归功于一般人在Windows下也不会遇到什么问题，但如果在百度上查找那些问题的解决方案，搜索出来的很多都是没有用的百度经验，以及一堆一模一样的，转载自同一篇文章的内容。而Linux的话，虽然如果是一些小众问题的话，还是会出现一些要不是搜不出来，要不是都转载同一篇文章的问题，但鉴于许多折腾这个的极客们，遇到一些问题就会写博客分享出来，导致大多数在系统下遇到的问题都有解决方法。起码，在我入坑Arch前，听别人说Linux因为用户少，遇到了问题不好解决这种说法是不成立的。其实大部分时候，Archwiki 都是最好用的那个，不仅限于Arch Linux系统，许多Linux生态的软件它都有很详细的介绍。</p>
+<p>Linux 代表着一种“哲学”：信任用户、数据流、一切皆文件、KISS……当所有的软件都遵守这些准则的时候，各个软件之间的设计语言趋于统一，协同工作起来也更有效率，最具代表性的就是数据流，它要求每个程序只做好一件事，然后通过文本数据流来处理复杂的任务，人们只需要通过了解这些软件怎么使用，然后把它们拼凑起来就可以实现客制化的功能，而不是重复造轮子。</p>
+<p>（点名批评设计标准不统一的 Windows，我开着暗色模式，自己家的四个软件有两个黑有两个白，就离谱）</p>
+<p><img src="https://s2.loli.net/2022/01/25/igf74Q3yq1MdADW.png" alt="批注 2021-07-12 151726" /></p>
+<p>最后，我想引用一段话来结尾，这是每一个用户在第一次运行 <code>sudo</code> （一种合法提权的工具）时，系统给出的提示，在我看来可以体现这个系统对用户的信任，以及对使用者的警示吧（上面我的桌面的截图中，便签上也写的是这段话）：</p>
+<blockquote>
+<p>We trust you have received the ususal lecture from the local System Administrator. It usually boils down to these three things:</p>
+<p>#1)  Respect the privacy of others.</p>
+<p>#2)  Think before you type.</p>
+<p>#3)  With great power comes great responsibility.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9D%82%E8%B0%88/" rel="tag"># 杂谈</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/13/%E5%BD%93%E6%88%91%E5%AE%8C%E6%88%90%E4%B8%80%E7%AF%87%E4%B8%A4%E4%B8%87%E5%AD%97%E7%9A%84%E6%95%B0%E5%AD%A6%E6%80%BB%E7%BB%93/" rel="prev" title="当我完成一篇两万字的数学总结">
+      <i class="fa fa-chevron-left"></i> 当我完成一篇两万字的数学总结
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记忆中的片段"><span class="nav-text"> 记忆中的片段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu-与-oi"><span class="nav-text"> Ubuntu 与 OI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新的开发环境"><span class="nav-text"> 新的开发环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#徘徊"><span class="nav-text"> 徘徊</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#archer-是如何炼成的"><span class="nav-text"> Archer 是如何炼成的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我和-arch-的两年"><span class="nav-text"> 我和 Arch 的两年</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#生产力"><span class="nav-text"> 生产力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义一切"><span class="nav-text"> 自定义一切</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#尾声不止是系统"><span class="nav-text"> 尾声——不止是系统</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">JingleiDong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JingleiDong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+
+</body>
+</html>
