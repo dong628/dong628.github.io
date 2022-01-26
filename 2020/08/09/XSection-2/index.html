@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh_Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dong628.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="投影 话说前几天我在翻北师大版九年级上册数学书时，发现这本书的第五章是“投影与视图”。（这游戏没有汉化，这使书上术语的英文名是我感到十分亲切。。） 这一章的第一小节就是投影，但其实对于立体几何，书上讲得非常简单，这节的重点其实是承接上一章《图形的相似》，利用相似三角形来计算投影的位置。 即使是这样，我觉得还是很有必要放一下教科书上对投影的定义的：  物体在光线的照射下，会在地面或其他平面上留下它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「XSection立体几何」中心投影和平行投影">
+<meta property="og:url" content="http://dong628.github.io/2020/08/09/XSection-2/index.html">
+<meta property="og:site_name" content="Jinglei&#39;s blog">
+<meta property="og:description" content="投影 话说前几天我在翻北师大版九年级上册数学书时，发现这本书的第五章是“投影与视图”。（这游戏没有汉化，这使书上术语的英文名是我感到十分亲切。。） 这一章的第一小节就是投影，但其实对于立体几何，书上讲得非常简单，这节的重点其实是承接上一章《图形的相似》，利用相似三角形来计算投影的位置。 即使是这样，我觉得还是很有必要放一下教科书上对投影的定义的：  物体在光线的照射下，会在地面或其他平面上留下它">
+<meta property="og:image" content="https://i.loli.net/2020/08/09/e7mWLX63OMaV2ru.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/09/J8CLe7rxq4FBaHl.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/09/DuhnoCcUt13XArZ.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/09/DUq6LEMoI7cbX9y.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/09/8GsNxvmBnzocQay.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/09/lVJZskqnMXaSCg4.jpg">
+<meta property="article:published_time" content="2020-08-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-18T11:31:20.746Z">
+<meta property="article:author" content="JingleiDong">
+<meta property="article:tag" content="XSection">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/08/09/e7mWLX63OMaV2ru.jpg">
+
+<link rel="canonical" href="http://dong628.github.io/2020/08/09/XSection-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh_Hans'
+  };
+</script>
+
+  <title>「XSection立体几何」中心投影和平行投影 | Jinglei's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Jinglei's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh_Hans">
+    <link itemprop="mainEntityOfPage" href="http://dong628.github.io/2020/08/09/XSection-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JingleiDong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jinglei's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「XSection立体几何」中心投影和平行投影
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-09T00:00:00+08:00">2020-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-18 19:31:20" itemprop="dateModified" datetime="2020-10-18T19:31:20+08:00">2020-10-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="投影"><a class="markdownIt-Anchor" href="#投影"></a> 投影</h1>
+<p>话说前几天我在翻北师大版九年级上册数学书时，发现这本书的第五章是“投影与视图”。（这游戏没有汉化，这使书上术语的英文名是我感到十分亲切。。）</p>
+<p>这一章的第一小节就是投影，但其实对于立体几何，书上讲得非常简单，这节的重点其实是承接上一章《图形的相似》，利用相似三角形来计算投影的位置。</p>
+<p>即使是这样，我觉得还是很有必要放一下教科书上对投影的定义的：</p>
+<blockquote>
+<p>物体在光线的照射下，会在地面或其他平面上留下它的影子，这就是投影（Projection）现象，影子所在的平面称为投影面。</p>
+</blockquote>
+<a id="more"></a>
+<p>本来，小编觉得这句话的前半句太过物理化，不像数学语言的风格。但我之后又发现 百度百科 和 Wikipedia 上都是差不多的解释，也就认了这个定义。</p>
+<p>直到我翻了翻 XSection 的术语表：</p>
+<p><img src="https://i.loli.net/2020/08/09/e7mWLX63OMaV2ru.jpg" alt="Screenshot_20200809-160822.jpg" /></p>
+<p>它的解释是这样的：</p>
+<blockquote>
+<p>A projection is a correspondence between the points of an object and a plane.</p>
+</blockquote>
+<p>翻译成中文就是：</p>
+<blockquote>
+<p>投影是对象上和平面之间点的的对应关系</p>
+</blockquote>
+<p>其中，<code>correspondence</code>这个词就用得非常妙，一开始我其它词都认识，只有这个不知道什么意思，之后上谷歌翻译查了查，Google 给我的解释是 “对应”。</p>
+<p>我认为这个术语表中的解释是非常到位的，至少在游戏中是适用且非常严谨的。</p>
+<p>在后面的关卡中，会有许多需要找出投影的任务，这类题无非分两种，一种是已知平面上的投影，求物体（object）上的点。</p>
+<p>一种是已知物体上的点，求它在已知平面上的投影。</p>
+<p>而只要掌握了这种对应关系，这两种问题都可以迎刃而解。</p>
+<h1 id="中心投影"><a class="markdownIt-Anchor" href="#中心投影"></a> 中心投影</h1>
+<p>按照数学书对投影的解释，把光源看作是一个点，也就是所有的光线都会相交在一个点上，就是中心投影。</p>
+<p>数学书上的定义如下：</p>
+<blockquote>
+<p>手电筒、路灯和台灯的光线可以看成是从一个点发出的，这样的光线所形成的投影称为中心投影。</p>
+</blockquote>
+<p>最典型的例子就是灯泡了，我们可以将它看作是一个点光源，会向各个方向发光。手电筒还并不是一个典型，因为许多手电筒发出的其实更像是平行光。</p>
+<p>在 XSection 中，它的定义是这样的：</p>
+<p><img src="https://i.loli.net/2020/08/09/J8CLe7rxq4FBaHl.jpg" alt="Screenshot_20200809-165252.jpg" /></p>
+<blockquote>
+<p>A central projection is a projection in which all projective rays passes through a given point S (the center of projetion).</p>
+</blockquote>
+<p>翻译过来就是：</p>
+<blockquote>
+<p>中心投影中的每个投射线经过一个已知的点S（投影中心）。</p>
+</blockquote>
+<h1 id="平行投影"><a class="markdownIt-Anchor" href="#平行投影"></a> 平行投影</h1>
+<p>对于平行投影，一个很有意思的点是，太阳和灯都在向各个方向发光，但人们一般把灯光看作是点光源，使用的是中心投影，而太阳光则是平行光线，使用平行投影。</p>
+<p>这主要是因为，太阳离我们太远了，物体上的任意两个点与太阳构成的三角形的那个角实在太小太小了，完全可以看作是平行的。</p>
+<p>对于平行投影，书上的定义是这样的：</p>
+<blockquote>
+<p>太阳光线可以看成平行光线，平行光线所形成的投影成为平行投影（parallel projeciton）.</p>
+</blockquote>
+<p>百度百科上说：</p>
+<blockquote>
+<p>如果把中心投影法的投射中心即光源S移至无穷远处，则各投射线成为相互平行的直线，物体投影就不受距离变化的影响，这种投射线都互相平行的投影法称为平行投影法。</p>
+</blockquote>
+<p>而 XSection 上的定义，则更加严谨和明确：</p>
+<p><img src="https://i.loli.net/2020/08/09/DuhnoCcUt13XArZ.jpg" alt="Screenshot_20200809-172043.jpg" /></p>
+<blockquote>
+<p>A parallel projection is a projection in which all projection rays are parallel to a given line.</p>
+</blockquote>
+<p>翻译成中文就是：</p>
+<blockquote>
+<p>平行投影指的是每一条投射线都与给定直线平行的投影。</p>
+</blockquote>
+<h1 id="一个例子"><a class="markdownIt-Anchor" href="#一个例子"></a> 一个例子</h1>
+<p>值得注意的是，在游戏中，所有关于投影的题都不会提示你使用中心投影法或者平行投影法。</p>
+<p>不知道各位有没有发现，在画图上，平行投影法像是画出了一个棱柱，而中心投影法像是画出了一个棱锥。</p>
+<p>这是因为棱柱的每条棱互相平行，正好符合平行投影中投射线的性质。棱锥中所有棱都会相交与一点，也符合中心投影的性质。</p>
+<p>下面来看一个例子。因为 XSection 中是无法改变视图的，再加上竖屏不方便观看，我们就用 GeoGebra 进行演示：</p>
+<p><img src="https://i.loli.net/2020/08/09/DUq6LEMoI7cbX9y.jpg" alt="Screenshot_20200809_221233.jpg" /></p>
+<p>这是 XSection 中的 3.4 题，我认为比较有代表性。题目是这样的：</p>
+<p>已知<code>I</code>、<code>H</code>两点，求线段 I、H 在底面上的投影。（过F点的直线FH和GC是相交的，原谅我忘了作交点了吧）</p>
+<p>看到这个棱锥，首先想到的一定是中心投影法，因为它相当于给定了一个点G来求投影。</p>
+<p>投影面当然是底面，这个在题目中有提到。</p>
+<p>需要说明的是，直线FH的作用是表明点H在平面BGC上。事实上，FH//BC。</p>
+<p>那么作法就非常简单了，首先连接并延长GH、GI。</p>
+<p><img src="https://i.loli.net/2020/08/09/8GsNxvmBnzocQay.jpg" alt="Screenshot_20200809_221321.jpg" /></p>
+<p>下一步，找到这两条射线和底面的交点。</p>
+<p>这里要注意的是，游戏中你是无法直接找到线和面的交点的，必须找到这个面上可以与它相交的一条线，然后点出线与线的交点（这其实也是后面很多题的难点）</p>
+<p>在这道题中，这条线就是BC。<a href="https://www.cnblogs.com/dong628/p/13415431.html" target="_blank" rel="noopener">第一节</a>中讲过，「一个平面上任意个点都是处在同一平面的」，所以，有了平面BCG，就有平面HCG，也就有交点J。</p>
+<p>于是，根据同样的方法，可以找到点I的投影点D。</p>
+<p>最后，连接DJ，完成。</p>
+<p><img src="https://i.loli.net/2020/08/09/lVJZskqnMXaSCg4.jpg" alt="Screenshot_20200809_221342.jpg" /></p>
+<p>-&gt; to be continued…</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/XSection/" rel="tag"># XSection</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/05/POJ2965-sol/" rel="prev" title="「POJ2965」The Pilots Brothers' refrigerator">
+      <i class="fa fa-chevron-left"></i> 「POJ2965」The Pilots Brothers' refrigerator
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/22/introduction-of-git-A/" rel="next" title="使用 Git 来管理代码">
+      使用 Git 来管理代码 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#投影"><span class="nav-text"> 投影</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中心投影"><span class="nav-text"> 中心投影</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#平行投影"><span class="nav-text"> 平行投影</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个例子"><span class="nav-text"> 一个例子</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">JingleiDong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JingleiDong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+  <script src="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css">
+
+
+  
+
+</body>
+</html>
