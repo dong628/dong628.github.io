@@ -1954,4 +1954,21 @@ n\\
         <tag>分块</tag>
       </tags>
   </entry>
+  <entry>
+    <title>一些拾遗&amp;tips</title>
+    <url>/2022/08/25/collections/</url>
+    <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<p>这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。</p>
+<p>灵感来自 <a href="https://www.cnblogs.com/rainybunny/p/15369366.html" target="_blank" rel="noopener">Rainybunny 的博客</a> （其实本来想叫这个名字来着）</p>
+<a id="more"></a>
+<h1 id="图论"><a class="markdownIt-Anchor" href="#图论"></a> 图论</h1>
+<h2 id="网络流"><a class="markdownIt-Anchor" href="#网络流"></a> 网络流</h2>
+<ul>
+<li>割是一种点的划分方式，把一些边割开只是计算最小割的方法。计算时只有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S\rightarrow T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 的边会计入割的容量，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">T\rightarrow S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 不会计入。（<a href="https://www.luogu.com.cn/problem/P1361" target="_blank" rel="noopener">Luogu P1361</a> 的建模）</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>杂项</tag>
+      </tags>
+  </entry>
 </search>
