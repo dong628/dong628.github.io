@@ -1966,6 +1966,10 @@ n\\
 <ul>
 <li>割是一种点的划分方式，把一些边割开只是计算最小割的方法。计算时只有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S\rightarrow T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 的边会计入割的容量，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">T\rightarrow S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 不会计入。（<a href="https://www.luogu.com.cn/problem/P1361" target="_blank" rel="noopener">Luogu P1361</a> 的建模）</li>
 </ul>
+<h1 id="数学"><a class="markdownIt-Anchor" href="#数学"></a> 数学</h1>
+<ul>
+<li>碰到重复开方计算的问题关注所需精度，一些重复开方运算是有收敛值的，这种情况下数据范围只是用来唬人的。（MssCTF 2021）</li>
+</ul>
 ]]></content>
       <tags>
         <tag>杂项</tag>
