@@ -1955,12 +1955,16 @@ n\\
       </tags>
   </entry>
   <entry>
-    <title>一些拾遗&amp;tips</title>
+    <title>一些拾遗&amp;Tips</title>
     <url>/2022/08/25/collections/</url>
     <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
 <p>这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。</p>
 <p>灵感来自 <a href="https://www.cnblogs.com/rainybunny/p/15369366.html" target="_blank" rel="noopener">Rainybunny 的博客</a> （其实本来想叫这个名字来着）</p>
 <a id="more"></a>
+<h1 id="杂项"><a class="markdownIt-Anchor" href="#杂项"></a> 杂项</h1>
+<ul>
+<li><code>time(0)</code> 的值<strong>每秒更新一次</strong>，也就是说如果用它做随机种子，每秒只能产生一个种子。当你使用这个东西作为数据生成器对拍的时候，切记不要拍两秒之后看没啥问题就跑，因为你很可能测试了许多相同的数据。</li>
+</ul>
 <h1 id="图论"><a class="markdownIt-Anchor" href="#图论"></a> 图论</h1>
 <h2 id="网络流"><a class="markdownIt-Anchor" href="#网络流"></a> 网络流</h2>
 <ul>
@@ -1969,6 +1973,20 @@ n\\
 <h1 id="数学"><a class="markdownIt-Anchor" href="#数学"></a> 数学</h1>
 <ul>
 <li>碰到重复开方计算的问题关注所需精度，一些重复开方运算是有收敛值的，这种情况下数据范围只是用来唬人的。（MssCTF 2021）</li>
+</ul>
+<h1 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> 数据结构</h1>
+<ul>
+<li>
+<p>函数指针传址是 <code>*&amp;</code> 这样表示的，而不是 <code>&amp;*</code> 这样（不过第一个编译也过不了</p>
+</li>
+<li>
+<p>不要随便使用 <strong>指针传址</strong> ，尤其在写这种东西的时候一定慎重：</p>
+</li>
+<li>
+<pre class="highlight"><code class="">void split(Node *&amp;, int, Node *&amp;, Node *&amp;);
+void split(rt -&gt; rs, val, rt -&gt; rs, spr)	// 当参数1和3都是指针传址的时候，这种写法很容易出bug（事实上这个确实是bug）
+</code></pre>
+</li>
 </ul>
 ]]></content>
       <tags>

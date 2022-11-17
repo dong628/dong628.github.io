@@ -22,12 +22,12 @@
 
   <meta name="description" content="前言 这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。 灵感来自 Rainybunny 的博客 （其实本来想叫这个名字来着）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一些拾遗&amp;tips">
+<meta property="og:title" content="一些拾遗&amp;Tips">
 <meta property="og:url" content="http://dong628.github.io/2022/08/25/collections/index.html">
 <meta property="og:site_name" content="Jinglei&#39;s blog">
 <meta property="og:description" content="前言 这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。 灵感来自 Rainybunny 的博客 （其实本来想叫这个名字来着）">
 <meta property="article:published_time" content="2022-08-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-29T04:08:42.366Z">
+<meta property="article:modified_time" content="2022-11-17T09:16:34.034Z">
 <meta property="article:author" content="JingleiDong">
 <meta property="article:tag" content="杂项">
 <meta name="twitter:card" content="summary">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>一些拾遗&tips | Jinglei's blog</title>
+  <title>一些拾遗&Tips | Jinglei's blog</title>
   
 
 
@@ -206,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          一些拾遗&tips
+          一些拾遗&Tips
         </h1>
 
         <div class="post-meta">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-29 12:08:42" itemprop="dateModified" datetime="2022-08-29T12:08:42+08:00">2022-08-29</time>
+                <time title="Modified: 2022-11-17 17:16:34" itemprop="dateModified" datetime="2022-11-17T17:16:34+08:00">2022-11-17</time>
               </span>
 
           
@@ -241,6 +241,10 @@
 <p>这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。</p>
 <p>灵感来自 <a href="https://www.cnblogs.com/rainybunny/p/15369366.html" target="_blank" rel="noopener">Rainybunny 的博客</a> （其实本来想叫这个名字来着）</p>
 <a id="more"></a>
+<h1 id="杂项"><a class="markdownIt-Anchor" href="#杂项"></a> 杂项</h1>
+<ul>
+<li><code>time(0)</code> 的值<strong>每秒更新一次</strong>，也就是说如果用它做随机种子，每秒只能产生一个种子。当你使用这个东西作为数据生成器对拍的时候，切记不要拍两秒之后看没啥问题就跑，因为你很可能测试了许多相同的数据。</li>
+</ul>
 <h1 id="图论"><a class="markdownIt-Anchor" href="#图论"></a> 图论</h1>
 <h2 id="网络流"><a class="markdownIt-Anchor" href="#网络流"></a> 网络流</h2>
 <ul>
@@ -249,6 +253,20 @@
 <h1 id="数学"><a class="markdownIt-Anchor" href="#数学"></a> 数学</h1>
 <ul>
 <li>碰到重复开方计算的问题关注所需精度，一些重复开方运算是有收敛值的，这种情况下数据范围只是用来唬人的。（MssCTF 2021）</li>
+</ul>
+<h1 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> 数据结构</h1>
+<ul>
+<li>
+<p>函数指针传址是 <code>*&amp;</code> 这样表示的，而不是 <code>&amp;*</code> 这样（不过第一个编译也过不了</p>
+</li>
+<li>
+<p>不要随便使用 <strong>指针传址</strong> ，尤其在写这种东西的时候一定慎重：</p>
+</li>
+<li>
+<pre class="highlight"><code class="">void split(Node *&amp;, int, Node *&amp;, Node *&amp;);
+void split(rt -&gt; rs, val, rt -&gt; rs, spr)	// 当参数1和3都是指针传址的时候，这种写法很容易出bug（事实上这个确实是bug）
+</code></pre>
+</li>
 </ul>
 
     </div>
@@ -330,7 +348,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图论"><span class="nav-text"> 图论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络流"><span class="nav-text"> 网络流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学"><span class="nav-text"> 数学</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杂项"><span class="nav-text"> 杂项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图论"><span class="nav-text"> 图论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络流"><span class="nav-text"> 网络流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学"><span class="nav-text"> 数学</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构"><span class="nav-text"> 数据结构</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
