@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Jinglei&#39;s blog">
 <meta property="og:description" content="前言 这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。 灵感来自 Rainybunny 的博客 （其实本来想叫这个名字来着）">
 <meta property="article:published_time" content="2022-08-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-17T09:16:34.034Z">
+<meta property="article:modified_time" content="2022-11-19T12:23:08.412Z">
 <meta property="article:author" content="JingleiDong">
 <meta property="article:tag" content="杂项">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-11-17 17:16:34" itemprop="dateModified" datetime="2022-11-17T17:16:34+08:00">2022-11-17</time>
+                <time title="Modified: 2022-11-19 20:23:08" itemprop="dateModified" datetime="2022-11-19T20:23:08+08:00">2022-11-19</time>
               </span>
 
           
@@ -267,6 +267,12 @@
 void split(rt -&gt; rs, val, rt -&gt; rs, spr)	// 当参数1和3都是指针传址的时候，这种写法很容易出bug（事实上这个确实是bug）
 </code></pre>
 </li>
+</ul>
+<h2 id="平衡树"><a class="markdownIt-Anchor" href="#平衡树"></a> 平衡树</h2>
+<ul>
+<li>区间操作的文艺平衡树，最后输出时要先下传lazytag</li>
+<li>下传加减之类的tag时，注意不要下传到叶子节点的左右儿子指针，因为叶子节点的左右儿子实际上是<strong>公共的空指针</strong>，大家都下传会导致越堆越多，最后向上更新区间信息的时候受到影响。push的时候做特判，或者每次push之后清空（<a href="https://www.luogu.com.cn/record/94688360" target="_blank" rel="noopener">P4146 序列终结者</a>）</li>
+<li>区间加减操作和区间最值都需要实现的时候，最好像线段树一样，同时更新最值，当前节点值和tag，其实这样操作是没什么问题的（<a href="https://www.luogu.com.cn/record/94688360" target="_blank" rel="noopener">P4146 序列终结者</a>）</li>
 </ul>
 
     </div>
@@ -348,7 +354,7 @@ void split(rt -&gt; rs, val, rt -&gt; rs, spr)	// 当参数1和3都是指针传�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杂项"><span class="nav-text"> 杂项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图论"><span class="nav-text"> 图论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络流"><span class="nav-text"> 网络流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学"><span class="nav-text"> 数学</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构"><span class="nav-text"> 数据结构</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杂项"><span class="nav-text"> 杂项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图论"><span class="nav-text"> 图论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络流"><span class="nav-text"> 网络流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学"><span class="nav-text"> 数学</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构"><span class="nav-text"> 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡树"><span class="nav-text"> 平衡树</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

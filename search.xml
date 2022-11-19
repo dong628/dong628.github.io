@@ -1988,6 +1988,12 @@ void split(rt -&gt; rs, val, rt -&gt; rs, spr)	// 当参数1和3都是指针传�
 </code></pre>
 </li>
 </ul>
+<h2 id="平衡树"><a class="markdownIt-Anchor" href="#平衡树"></a> 平衡树</h2>
+<ul>
+<li>区间操作的文艺平衡树，最后输出时要先下传lazytag</li>
+<li>下传加减之类的tag时，注意不要下传到叶子节点的左右儿子指针，因为叶子节点的左右儿子实际上是<strong>公共的空指针</strong>，大家都下传会导致越堆越多，最后向上更新区间信息的时候受到影响。push的时候做特判，或者每次push之后清空（<a href="https://www.luogu.com.cn/record/94688360" target="_blank" rel="noopener">P4146 序列终结者</a>）</li>
+<li>区间加减操作和区间最值都需要实现的时候，最好像线段树一样，同时更新最值，当前节点值和tag，其实这样操作是没什么问题的（<a href="https://www.luogu.com.cn/record/94688360" target="_blank" rel="noopener">P4146 序列终结者</a>）</li>
+</ul>
 ]]></content>
       <tags>
         <tag>杂项</tag>
