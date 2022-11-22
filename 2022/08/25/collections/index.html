@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Jinglei&#39;s blog">
 <meta property="og:description" content="前言 这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。 灵感来自 Rainybunny 的博客 （其实本来想叫这个名字来着）">
 <meta property="article:published_time" content="2022-08-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-19T12:23:08.412Z">
+<meta property="article:modified_time" content="2022-11-22T07:23:31.665Z">
 <meta property="article:author" content="JingleiDong">
 <meta property="article:tag" content="杂项">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-11-19 20:23:08" itemprop="dateModified" datetime="2022-11-19T20:23:08+08:00">2022-11-19</time>
+                <time title="Modified: 2022-11-22 15:23:31" itemprop="dateModified" datetime="2022-11-22T15:23:31+08:00">2022-11-22</time>
               </span>
 
           
@@ -246,6 +246,11 @@
 <li><code>time(0)</code> 的值<strong>每秒更新一次</strong>，也就是说如果用它做随机种子，每秒只能产生一个种子。当你使用这个东西作为数据生成器对拍的时候，切记不要拍两秒之后看没啥问题就跑，因为你很可能测试了许多相同的数据。</li>
 </ul>
 <h1 id="图论"><a class="markdownIt-Anchor" href="#图论"></a> 图论</h1>
+<h2 id="距离相关"><a class="markdownIt-Anchor" href="#距离相关"></a> 距离相关</h2>
+<ul>
+<li>可以使用 BFS 计算边权为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的图上的最短路径，单源时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 。还可以用 <a href="https://oi-wiki.org/graph/bfs/#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97-bfs" target="_blank" rel="noopener">0-1BFS</a> 计算权值为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的图上的最短路径，复杂度同 BFS。</li>
+<li>有些时候，计算最短路径并不使用松弛操作（比如上面这种），在连通图上dis数组初值为0不会出错，然而到了非连通图上，两个不连通的点的距离就成为了0，显然会出大问题。所以，记得给dis数组赋初值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infin</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span> 。</li>
+</ul>
 <h2 id="网络流"><a class="markdownIt-Anchor" href="#网络流"></a> 网络流</h2>
 <ul>
 <li>割是一种点的划分方式，把一些边割开只是计算最小割的方法。计算时只有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S\rightarrow T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 的边会计入割的容量，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">T\rightarrow S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 不会计入。（<a href="https://www.luogu.com.cn/problem/P1361" target="_blank" rel="noopener">Luogu P1361</a> 的建模）</li>
@@ -354,7 +359,7 @@ void split(rt -&gt; rs, val, rt -&gt; rs, spr)	// 当参数1和3都是指针传�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杂项"><span class="nav-text"> 杂项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图论"><span class="nav-text"> 图论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络流"><span class="nav-text"> 网络流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学"><span class="nav-text"> 数学</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构"><span class="nav-text"> 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡树"><span class="nav-text"> 平衡树</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杂项"><span class="nav-text"> 杂项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图论"><span class="nav-text"> 图论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#距离相关"><span class="nav-text"> 距离相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络流"><span class="nav-text"> 网络流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学"><span class="nav-text"> 数学</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构"><span class="nav-text"> 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡树"><span class="nav-text"> 平衡树</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
