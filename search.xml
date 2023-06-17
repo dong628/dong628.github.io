@@ -1956,49 +1956,35 @@ n\\
   </entry>
   <entry>
     <title>一些拾遗&amp;Tips</title>
-    <url>/2022/08/24/collections/</url>
-    <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
-<p>这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。</p>
+    <url>/2022/08/25/collections/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇文章主要用来记录学习算法竞赛的过程中遇到的那些注意事项，比如一些调试了很久却没有发现，到头来却发现非常弱智的bug。持续更新，部分条目会附上题目或代码提交记录。</p>
 <p>灵感来自 <a href="https://www.cnblogs.com/rainybunny/p/15369366.html" target="_blank" rel="noopener">Rainybunny 的博客</a> （其实本来想叫这个名字来着）</p>
 <a id="more"></a>
-<h1 id="乱搞做法"><a class="markdownIt-Anchor" href="#乱搞做法"></a> 乱搞做法</h1>
-<h2 id="随机化"><a class="markdownIt-Anchor" href="#随机化"></a> 随机化</h2>
-<p>有些时候，题目中让你维护的信息并不是你真正需要维护的，比如 <a href="https://www.luogu.com.cn/problem/P8819" target="_blank" rel="noopener">[CSP-S 2022] 星战</a> 这道题中，虽然在一张图上操作，但只需要维护每个点的入边是否为1，以及整张图上的每条边是否有且仅有一条出边，并且操作也很简单。这时候可以把大部分信息舍弃掉，给每个点附上随机权值，用很小的代价维护这一个信息。</p>
-<h1 id="杂项"><a class="markdownIt-Anchor" href="#杂项"></a> 杂项</h1>
-<ul>
+<h1 id="乱搞做法"><a href="#乱搞做法" class="headerlink" title="乱搞做法"></a>乱搞做法</h1><h2 id="随机化"><a href="#随机化" class="headerlink" title="随机化"></a>随机化</h2><p>有些时候，题目中让你维护的信息并不是你真正需要维护的，比如 <a href="https://www.luogu.com.cn/problem/P8819" target="_blank" rel="noopener">[CSP-S 2022] 星战</a> 这道题中，虽然在一张图上操作，但只需要维护每个点的入边是否为1，以及整张图上的每条边是否有且仅有一条出边，并且操作也很简单。这时候可以把大部分信息舍弃掉，给每个点附上随机权值，用很小的代价维护这一个信息。</p>
+<h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><ul>
 <li><code>time(0)</code> 的值<strong>每秒更新一次</strong>，也就是说如果用它做随机种子，每秒只能产生一个种子。当你使用这个东西作为数据生成器对拍的时候，切记不要拍两秒之后看没啥问题就跑，因为你很可能测试了许多相同的数据。</li>
 </ul>
-<h1 id="图论"><a class="markdownIt-Anchor" href="#图论"></a> 图论</h1>
-<h2 id="距离相关"><a class="markdownIt-Anchor" href="#距离相关"></a> 距离相关</h2>
-<ul>
-<li>可以使用 BFS 计算边权为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的图上的最短路径，单源时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 。还可以用 <a href="https://oi-wiki.org/graph/bfs/#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97-bfs" target="_blank" rel="noopener">0-1BFS</a> 计算权值为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的图上的最短路径，复杂度同 BFS。</li>
-<li>有些时候，计算最短路径并不使用松弛操作（比如上面这种），在连通图上dis数组初值为0不会出错，然而到了非连通图上，两个不连通的点的距离就成为了0，显然会出大问题。所以，记得给dis数组赋初值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infin</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span> 。</li>
+<h1 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h1><h2 id="距离相关"><a href="#距离相关" class="headerlink" title="距离相关"></a>距离相关</h2><ul>
+<li>可以使用 BFS 计算边权为 $1$ 的图上的最短路径，单源时间复杂度为 $O(n)$ 。还可以用 <a href="https://oi-wiki.org/graph/bfs/#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97-bfs" target="_blank" rel="noopener">0-1BFS</a> 计算权值为 $0$ 或 $1$ 的图上的最短路径，复杂度同 BFS。</li>
+<li>有些时候，计算最短路径并不使用松弛操作（比如上面这种），在连通图上dis数组初值为0不会出错，然而到了非连通图上，两个不连通的点的距离就成为了0，显然会出大问题。所以，记得给dis数组赋初值 $\infin$ 。</li>
 </ul>
-<h2 id="网络流"><a class="markdownIt-Anchor" href="#网络流"></a> 网络流</h2>
-<ul>
-<li>割是一种点的划分方式，把一些边割开只是计算最小割的方法。计算时只有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S\rightarrow T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 的边会计入割的容量，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">T\rightarrow S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 不会计入。（<a href="https://www.luogu.com.cn/problem/P1361" target="_blank" rel="noopener">Luogu P1361</a> 的建模）</li>
+<h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><ul>
+<li>割是一种点的划分方式，把一些边割开只是计算最小割的方法。计算时只有 $S\rightarrow T$ 的边会计入割的容量，$T\rightarrow S$ 不会计入。（<a href="https://www.luogu.com.cn/problem/P1361" target="_blank" rel="noopener">Luogu P1361</a> 的建模）</li>
 </ul>
-<h1 id="数学"><a class="markdownIt-Anchor" href="#数学"></a> 数学</h1>
-<ul>
+<h1 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h1><ul>
 <li>碰到重复开方计算的问题关注所需精度，一些重复开方运算是有收敛值的，这种情况下数据范围只是用来唬人的。（MssCTF 2021）</li>
 <li>浮点数判断等于不能直接写 <code>a==b</code> ，要将计算精度导致的误差纳入考量，相差不超过误差即可，一般设为 <code>1e-6~1e-8</code> 之间。</li>
 </ul>
-<h1 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> 数据结构</h1>
-<ul>
-<li>
-<p>函数指针传址是 <code>*&amp;</code> 这样表示的，而不是 <code>&amp;*</code> 这样（不过第一个编译也过不了</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><ul>
+<li><p>函数指针传址是 <code>*&amp;</code> 这样表示的，而不是 <code>&amp;*</code> 这样（不过第一个编译也过不了</p>
 </li>
-<li>
-<p>不要随便使用 <strong>指针传址</strong> ，尤其在写这种东西的时候一定慎重：</p>
+<li><p>不要随便使用 <strong>指针传址</strong> ，尤其在写这种东西的时候一定慎重：</p>
 </li>
-<li>
-<pre class="highlight"><code class="">void split(Node *&amp;, int, Node *&amp;, Node *&amp;);
-void split(rt -&gt; rs, val, rt -&gt; rs, spr)	// 当参数1和3都是指针传址的时候，这种写法很容易出bug（事实上这个确实是bug）
-</code></pre>
-</li>
+<li><pre><code>void split(Node *&amp;, int, Node *&amp;, Node *&amp;);
+void split(rt -&gt; rs, val, rt -&gt; rs, spr)    // 当参数1和3都是指针传址的时候，这种写法很容易出bug（事实上这个确实是bug）
+</code></pre></li>
 </ul>
-<h2 id="平衡树"><a class="markdownIt-Anchor" href="#平衡树"></a> 平衡树</h2>
-<ul>
+<h2 id="平衡树"><a href="#平衡树" class="headerlink" title="平衡树"></a>平衡树</h2><ul>
 <li>区间操作的文艺平衡树，最后输出时要先下传lazytag</li>
 <li>下传加减之类的tag时，注意不要下传到叶子节点的左右儿子指针，因为叶子节点的左右儿子实际上是<strong>公共的空指针</strong>，大家都下传会导致越堆越多，最后向上更新区间信息的时候受到影响。push的时候做特判，或者每次push之后清空（<a href="https://www.luogu.com.cn/record/94688360" target="_blank" rel="noopener">P4146 序列终结者</a>）</li>
 <li>区间加减操作和区间最值都需要实现的时候，最好像线段树一样，同时更新最值，当前节点值和tag，其实这样操作是没什么问题的（<a href="https://www.luogu.com.cn/record/94688360" target="_blank" rel="noopener">P4146 序列终结者</a>）</li>
@@ -2006,6 +1992,197 @@ void split(rt -&gt; rs, val, rt -&gt; rs, spr)	// 当参数1和3都是指针传�
 ]]></content>
       <tags>
         <tag>杂项</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023高考游记</title>
+    <url>/2023/06/17/the-exam-review-2023/</url>
+    <content><![CDATA[<h1 id="写在前面"><a class="markdownIt-Anchor" href="#写在前面"></a> 写在前面</h1>
+<p>坐标山西，考题是新课标2。</p>
+<p>本人今年高二，通过报名中科大少创班获得的参加高考的机会，不出意外的话，明年会再参加一次高考。</p>
+<h1 id="day-200-20221118"><a class="markdownIt-Anchor" href="#day-200-20221118"></a> Day -200 (2022.11.18)</h1>
+<p>报名！</p>
+<p>可怜地只填了个二等奖上去。</p>
+<p>感觉希望不大，不过川大似乎也有个类似的，这个过不了可以报那个。</p>
+<a id="more"></a>
+<h1 id="day-176-20221212"><a class="markdownIt-Anchor" href="#day-176-20221212"></a> Day -176 (2022.12.12)</h1>
+<p>芜湖，少创班竟然审核通过了！！</p>
+<p>本来都没有报什么希望的，疫情寄不出去申请表都想要放弃了，结果还没等材料寄到，提交的线上报名单就已经通过了，明天缴费之后就拿到高考的入场券了。</p>
+<p>像是回到了2019年暑假结束，那个得知自己可以去西安参加mssCTF决赛的晚上。</p>
+<h1 id="day-165-20221223"><a class="markdownIt-Anchor" href="#day-165-20221223"></a> Day -165 (2022.12.23)</h1>
+<p>高考拍照确认，然而中科大发的报名证还没有邮到。</p>
+<p>原来不是应届生就只能是往届生，所以我们今年属于复读生对吧，明年直接复读两年（</p>
+<p>拍照完回家就阳。</p>
+<h1 id="day-49-2023418"><a class="markdownIt-Anchor" href="#day-49-2023418"></a> Day -49 (2023.4.18)</h1>
+<p>高考体检。</p>
+<p>色盲测试卡答案628。</p>
+<p>视力出乎意料地好，5.0/5.1，本来以为要下5.0了。</p>
+<p>嗅觉测试的那个酒精浓度好低，本来想说是水的，那个酒精味就一点点……</p>
+<p>测肝功能早上不能吃饭喝水，本来以为会先测那个的，然后就可以吃东西了，结果拖到11点才测……</p>
+<h1 id="day-30-202357"><a class="markdownIt-Anchor" href="#day-30-202357"></a> Day -30 (2023.5.7)</h1>
+<p>去石家庄参加少创班考试。（<s>我到河北省来</s></p>
+<p>车次 G628</p>
+<p>显然这个考试和高考没什么关系，但还是得去图一乐。</p>
+<p>数学一共五道题，发挥OIer传统——倒序开题。</p>
+<p>结果做了5和4之后，发现3才是最可做的题，寄。</p>
+<p>顺便一提，那个3题在之后学校的半月考里出了一道几乎一样的，<s>都不知道是谁押中谁了</s></p>
+<p>物理七道题，做完力学电学几何光学就开始玩最后一道原子物理，最后也算是推了个正确的式子。</p>
+<p>右前方是个衡中的，穿着标志性的紫色校服，看见答题卡都写满了。</p>
+<p>拿到了科大送的笔袋和文具，那个涂卡铅笔是真的好用。</p>
+<h1 id="day-21-2023516"><a class="markdownIt-Anchor" href="#day-21-2023516"></a> Day -21 (2023.5.16)</h1>
+<p>高三模考。</p>
+<p>本来以为是周四周五的，没想到是周二周三，而且是周一下午才知道的。</p>
+<p>太好了，没有留给我们时间紧张。</p>
+<p>语文头一次见到两篇小说，压迫感极强，还好作文好写。</p>
+<p>数学不难，但是那段时间思维过于迟钝了，最后时间不够用，其实解析几何和导数都很简单，前面也错了不应该错的函数和解几选择。</p>
+<p>考完去和高三对答案，去最强的那个考场，那个考场认识我的人还挺多，其实更希望没有人认识我的（）</p>
+<p>人生的第一场理综，时间分配上竟然没有出现问题，该写的差不多都写完了，应该是出题人给放水了。考完去和高三对答案很欢乐，竟然找到了我做对他们做错的题hhh。</p>
+<p>英语题也许是个人差比较严重，也有可能是自己太菜了，阅读推进有点困难，A篇最难了，作文还考了个自然主题。</p>
+<p>周五就出成绩了，99+89+106+178=472，大寄，少创班之耻了属于是</p>
+<h1 id="day-1"><a class="markdownIt-Anchor" href="#day-1"></a> Day -1</h1>
+<p>晚餐时间去六层高三那里，碰巧他们就要离开学校了，在楼梯口挂了几个粽子，旁边竖了两个条幅，是头一次见到的“头顶满分粽，高考一定中”，年级组的老师看到我，还让我去顶一顶hh</p>
+<p>另一边摆了一张桌子，放了一个本子和几支马克笔，是让大家签字用的，我既然都来顶粽子了，不如再签个字。</p>
+<p><img src="https://s1.ax1x.com/2023/06/11/pCVfEJf.jpg" alt="pCVfEJf.jpg" /></p>
+<p>（hhh不知道写什么就写rp++）</p>
+<h1 id="day-1-2"><a class="markdownIt-Anchor" href="#day-1-2"></a> Day 1</h1>
+<h2 id="上午"><a class="markdownIt-Anchor" href="#上午"></a> 上午</h2>
+<p>语文。</p>
+<p>考点设施很齐全，之前每次参加竞赛，都会有类似的安检，但这次莫名觉得自己从来没有被这么对待过。</p>
+<p>可能是因为门口有人脸识别吧，本来以为是静脉识别之类的高端方法。但是考试要人脸识别+刷身份证的第一次见。</p>
+<p>进入考场，本来以为那里的桌子会像外国语一样坑坑洼洼，还带了一卷胶带用来填坑。</p>
+<p>现在发现只有外国语的高二还在用木制课桌。</p>
+<p>没有想象中那么严格，印象中有老师和我们说过，高考时监考老师只能在特定的时间说特定的话，但是去考了才发现不是这样。</p>
+<p>先发答题卡。</p>
+<p>一眼就看到了选择题区域醒目的“ABCDEFG”，有种英语七选五既视感。</p>
+<p>然后定睛一看，选择题ABCD竟然是竖着排的，还好它没有把四道题放在一起，不然相当容易填错。</p>
+<p>选择题填涂的区域好小，感觉不如平常考试的答题卡大气。</p>
+<p>竟然正反面都是两栏，大题没有画横线，不知道历年都是如此还是只有我们碰到了。</p>
+<p>拿到试卷，先看了一眼作文，感觉好写，遂看默写。此时距离开始还有五分钟。</p>
+<p>第一个是《伶官传序》，题型竟然是那种直接把前句的翻译摆在上面，感觉像是不知道怎么编情境了，只好放个翻译上去，出题水平不如平时做的默写题，基本是白给。</p>
+<p>第二个竟然考了《临安春雨初霁》，高考前两天的晚上突然蹦出来了一句“素衣莫起风尘叹”，然后突然想不起来是哪首诗里的了，就查了一下，进考点前还想起了这事，没想到真就考这个。</p>
+<p>第三个写了个《正气歌》，本来内心已经满是无端联想的“滚滚长江东逝水”了，还在想高考为啥会考这玩意，然后定睛一看，和这个没有一点关系，情境是月下的文天祥吟诵诗句，好像还说是前人的诗句，我就写了个“月落乌啼霜满天，江枫渔火对愁眠”上去。</p>
+<p>也不知道这句诗从哪蹦出来的，我也没背过什么《正气歌》，这句诗也挺契合情境的。后来发现《正气歌》是文天祥的作品，我的天，这不会也要背吧，语文书上都没有的……看了一眼时间对的上，文天祥是南宋，《枫桥夜泊》是唐。要是写个南宋之后的诗就有意思了hh</p>
+<p>开始从前往后写。前面做得比之前慢一些，二十多分钟才做完论述类文本，只给框不给画线很难受。</p>
+<p>小说的两道题都挺活的，没见过，只是现在不太想得起来内容是啥了。</p>
+<p>文言比较简单，好懂，基本是读完做的题。</p>
+<p>作文好像写得有点跑，网上说主题是空间，我写的是宁静，而且感觉素材还是不太够。</p>
+<p>回家路上查作文题，才知道我们是新课标2，不是全国乙了。</p>
+<h2 id="下午"><a class="markdownIt-Anchor" href="#下午"></a> 下午</h2>
+<p>数学。</p>
+<p>去的时候坐出租车，拿着准考证和司机合照一张，就没有付钱，这就是所谓“国宝级待遇”吗。</p>
+<p>进门之前先炫了一块士力架。</p>
+<p>拿到答题卡照例看立体几何，琢磨了十几秒之后看到了一组平行线，判断为简单题。</p>
+<p>拿到卷子之后就没有再接着看几何了，大致扫了一眼题，也判断不出来哪个简单哪个难，先看前面几道选择。</p>
+<p>从发卷到打铃，做了三道选择，其实单选都比较简单，三角函数那个有点失策，本来想先化简一下再用量角器的，其实直接拿量角器和圆规画一个就行，耽误了两分钟吧。</p>
+<p>解几选择题过定点差点被坑了。</p>
+<p>多选难得没有压力，都做出来了，没有考基本不等式算是走运。</p>
+<p>此时考试过去30分钟。</p>
+<p>填空题也挺简单的，没有导数，解几很好算。</p>
+<p>此时考试过去41分钟。</p>
+<p>开始做三角函数大题，没想到直接就卡这里了，反反复复用了两次正弦和一次余弦才算出来，答题区域已经占掉了三分之二，遂放弃第二问。</p>
+<p>此时考试过去55分钟。</p>
+<p>数列在玩一种很新的东西，第二问的证明需要分奇偶讨论，挺麻烦的，写的时候还有点着急改了好几下，最后算是证出来了。</p>
+<p>统计大题被排在了第三道大题的位置，题目背景是假阴性和假阳性概率的，之前看3b1b讲概率用的就是这个例子，可惜这题用不上（可能会对读题有些帮助？）。第二问是一个分段函数，算了挺长时间的，还算错了好几遍，计算能力不行呀。</p>
+<p>此时距离结束还有不到40分钟，翻面做后三道大题。</p>
+<p>其实感觉后三道比前三道简单，立几第一问和那对平行线没有关系，不需要什么空间感。</p>
+<p>解几第一问也是光速过，条件都给完了，列个方程装个样子写个答案。第二问目测还行，虽然是个双曲线，但应该不算难的双曲线。</p>
+<p>此时距离考试结束还有15分钟。</p>
+<p>看导数，第一问不就是中科大考试的第4题吗，稍微修改了一下，原题是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>−</mo><mfrac><msup><mi>x</mi><mn>3</mn></msup><mn>6</mn></mfrac><mo>&lt;</mo><mi>sin</mi><mo>⁡</mo><mi>x</mi><mo>&lt;</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x-\frac{x^3}{6}&lt;\sin x &lt; x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.36292em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01792em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.70696em;vertical-align:-0.0391em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>，高考是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>x</mi><mo>&lt;</mo><mi>sin</mi><mo>⁡</mo><mi>x</mi><mo>&lt;</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x^2+x&lt;\sin x &lt; x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.70696em;vertical-align:-0.0391em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> ，解法大差不差，求个二阶导就出来了。本来就没有想着写第二问，遂写得比较飘逸，基本也没地方写第二问了。</p>
+<p>还剩下十几分钟，返回去算了算统计大题的第二问，然后本来想做立几，但是发现建系之前还要证线面垂直，遂放弃，回去看选填。</p>
+<p>也没看出来啥问题，到点交卷。</p>
+<p>出考场还特意等了一下zjd，他说简单。我也和他说简单，我的感觉就是如此，现在想想大概是被选填迷惑了，前三道大题其实也不简单。</p>
+<p>zjd说三角函数中点要用向量做，我说我用的是面积暴算，怪不得那么吃力。</p>
+<p>没人接，回家本来想走上回的，不想坐车了，看了一下也就55分钟。</p>
+<p>不过最后还是坐出租车回去的。</p>
+<h1 id="day-2"><a class="markdownIt-Anchor" href="#day-2"></a> Day 2</h1>
+<h2 id="上午-2"><a class="markdownIt-Anchor" href="#上午-2"></a> 上午</h2>
+<p>理综。</p>
+<p>人生的第二场理综。</p>
+<p>到了考点门口顺着门前排的队一路走到队尾，少说排了200m的队，大受震撼。</p>
+<p>在门口看到了有个人在看数学，满脸疑惑。</p>
+<p>早晨吃得少，炫了块士力架进考场。</p>
+<p>监考老师和昨天的不一样，昨天上午和下午好像是一样的。</p>
+<p>拿到考题，14页，先看生物选择。</p>
+<p>开考前五分钟做了两道，第二道不太拿得准，感觉有些慢了。</p>
+<p>生态大题竟然编得行云流水。</p>
+<p>伴性遗传这不一眼就看出来的，为啥还要让我写原因？？？</p>
+<p>哦豁，没有考基因频率，遗传超简单。</p>
+<p>最后一道题也挺简单的，比模考简单。</p>
+<p>此时距离考试开始34分钟。</p>
+<p>开始看化学。选择有个结构拿不准，最后一道看了一眼直接放弃，其他没啥。</p>
+<p>做化学选择的时候看到了旁边的原子物理，没忍住做了一下，一分钟没做出来快速回来做化学。</p>
+<p>工艺流程不会推，前几个空就是在猜，还老觉得自己猜的是对的。</p>
+<p>氧化还原方程式配起来真爽。</p>
+<p>热化学白给，平衡就考了个简单的勒夏特列和分压平衡常数，竟然没有给公式。</p>
+<p>结构竟然没有考数晶胞，就考了个什么计算Na的原子数，不难。</p>
+<p>有机三分钟写完一半，不推路线竟然可以写出来一半，难道是看在我们第一届必须做有机的份上故意出简单了？这比我们平常练习题还水。</p>
+<p>感觉化学和生物好多让写原因的……</p>
+<p>开物理，考试已经过去95分钟。</p>
+<p>原子物理最后还是做出来了，给了个eV有点迷惑，后来想起来库伦乘以伏特就是焦耳。</p>
+<p>运动选择是个 W/x 图像，第一次见，有一点点计算量。</p>
+<p>实验相当水，没有考测电动势和内阻，考了两个动力学实验可还行。最后一个g没算。</p>
+<p>开大题，第一道题尽力把原本一行就能写完的东西扩写成三行，要不然看着太少了，就一个公式。</p>
+<p>第二道大题好玩，算是整个理综最好玩的一道题了，算是个用比值求比值，用一些奇怪的算法算出来的，也不知道会不会扣过程，玩了15分钟左右。</p>
+<p>此时距离考试结束还有15分钟。</p>
+<p>第三道大题是个双杆，写了个第一问就跑了。</p>
+<p>交卷。外面太阳好晒，坐车开窗户晒，不开窗户又没有风。</p>
+<h2 id="下午-2"><a class="markdownIt-Anchor" href="#下午-2"></a> 下午</h2>
+<p>英语。</p>
+<p>中午没睡着，还好下午起来发现不困。</p>
+<p>去的时候听说，高考期间考生可以预定出租车，这个司机两天就只接你一个人，算是出租车公司的惠民政策吧。</p>
+<p>进考场，前面那个人背后写了个 “unitedful”，没有听说过有这个词，不是说不能穿带字的衣服吗……</p>
+<p>最离谱的是左前方的一个同学，穿了个黑色衣服，背后全是字母，仔细看一眼，写的还是英文，数了一下有二十多行，每行十几个字母。看来穿这种带字的衣服也没人管。当然也有可能是因为这个字是写在后面的吧，真算作弊也是便宜了后面的人了（</p>
+<p>卷子上的注意事项写着：“听力考试不计入总成绩，录取时会提供给高校参考”</p>
+<p>答题卡上，第一篇作文竟然被拆成了两半，正面四行背面四行。</p>
+<p>听力试音终于听到了久违的 International Friends Club 完整版，这几次校内考试都是放两句就结束的。</p>
+<p>每次校内考试的听力感觉都是同一个人读的，可能是同一家机构出的卷子的缘故，高考听力的口音是不一样的，听起来比模考舒服，没有那种听多了耳朵疼的高频溢出。</p>
+<p>听力第二个大题都有一定难度，有些地方听两遍也听不懂qwq</p>
+<p>听力放了20分钟，算是短的了，结束之后我还真按照他的要求先涂了答题卡。</p>
+<p>开笔试，高考基本是发下卷子就放听力，顶多看一眼作文。</p>
+<p>A篇又是个旅游主题的，比高三模考的A篇简单多了。</p>
+<p>BCD中规中矩，印象中没有让我纠结太多的。</p>
+<p>七选五多读一读应该也没啥问题。</p>
+<p>完形要读两遍，前几道题一开始做不出来，耗费时间长了一点。</p>
+<p>语法填空有一个比较迷惑的，纠结了一会，先填了一个原型上去。</p>
+<p>开第一篇作文，此时考试开始65分钟。</p>
+<p>主题是给一个随机分组练口语的外教提建议，依然没有给具体的建议内容，只是说了“你觉得这样不妥”，传统艺能了。</p>
+<p>我写这种提建议的作文好喜欢欲抑先扬，上来先说一段“我觉得你这个方法很好”。</p>
+<p>铺垫就铺垫了三行，感觉有点写不下。</p>
+<p>其实最后指出问题只写了一句，提建议也只写了一句。有点头重脚轻。</p>
+<p>不过如果一开始就提建议的话，后面就不知道该写什么了，总比这样好。</p>
+<p>行文相当流畅，竟然没有什么词穷时刻，20分钟就写完了。</p>
+<p>此时已经过去85分钟，距离结束35分钟。</p>
+<p>看读后续写，五分钟读完材料，有点懵。</p>
+<p>视角是一个中学生，文学功底不太好的样子，但是能写出来让老师开怀大笑的故事，老师于是让他去参加故事比赛，我在写故事的时候收获了快乐，已经不在乎得奖了。就在我快要忘掉它的时候，消息传来了……</p>
+<p>初看比联考的涂滑梯还抽象，但其实比滑梯好写。</p>
+<p>抽象的部分主要是故事，给的材料中的主人公写的好像是一匹马的心声，感觉这个材料明显在传递一个信号——主人公写的故事其实是自己的心声。</p>
+<p>不过我最后也没有把这个体现在我的作文里，有点可惜。</p>
+<p>这个稍微有点词穷，尤其是最后在升华讲道理的时候，不过也不严重，想一会也能想出来。</p>
+<p>最后的主旨是文学创作中感情与主旨最重要，文笔（也就是主人公不擅长的地方）是其次的。</p>
+<p>交卷前把那个语法填空改了，wish 改成了 wished。交卷。</p>
+<p>出考场，太阳还是挺晒的，但是远不如中午那会热了。出门看到了一班家长拉的横幅，有点惊喜。</p>
+<p>凑了凑热闹，听他们闲聊了一会就走了。</p>
+<p>不想坐车了，走回家，走了50多分钟。</p>
+<p>路上路过蜜雪冰城，买了个甜筒，记得中考的某一天也买了一个。</p>
+<p>晚上找答案，只找到了数学的，对了一下。选择全对，填空错了一个，统计大题第二问算了好长时间也算错了，有那时间不如去做立几。预估 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">[</mo><mn>100</mn><mo separator="true">,</mo><mn>115</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[100, 115]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">5</span><span class="mclose">]</span></span></span></span> 。</p>
+<p>其他答案没有找见。</p>
+<h1 id="day-3"><a class="markdownIt-Anchor" href="#day-3"></a> Day 3</h1>
+<p>物理最后一个选择真的是选两个！！好像只有我和x同学对了，我们班的两位都觉得肯定选三个hhh</p>
+<h1 id="day-4"><a class="markdownIt-Anchor" href="#day-4"></a> Day 4</h1>
+<p>听英语老师说，那个语法填空是 had wished，貌似无人生还。</p>
+<h1 id="day-5"><a class="markdownIt-Anchor" href="#day-5"></a> Day 5</h1>
+<p>物理看了一下答案，选择竟然全对了，实验扣两分，最后一道大题第二问没有做，再加上可能有过程分，预估 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">[</mo><mn>85</mn><mo separator="true">,</mo><mn>95</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[85, 95]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">8</span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">9</span><span class="mord">5</span><span class="mclose">]</span></span></span></span> 。</p>
+<h1 id="后记"><a class="markdownIt-Anchor" href="#后记"></a> 后记</h1>
+<p>看了一下隔壁zjd的博客，再看看我自己的，虽然说已经好长好长时间没有更新了，但是“好像”也没有什么坑没有填。</p>
+<p>时间长没有更新的一个主要原因，或者说是影响吧，是因为我换电脑了，而博客的源代码放在我的旧电脑上，迁移听上去还挺费劲的，不过也就花了不到一个小时就搞定了，现在它在我的服务器上，应该还算稳定。</p>
+<p>一个充实的学期要接近尾声了，学期的明线是竞赛和高考，暗线是服务器的搭建调试和迭代，中间基本上没有歇下来的时间。</p>
+<p>高考结束之后没有想象中的欢呼，倒是门口有给孩子送花的，不过远没有我想象的热闹。</p>
+<p>我们在考前，无论是小学，初中，甚至是高考前一年，接收到的有关高考的信息，和真正的高考出入还是相当大的，而许多地方只能自己感受，这篇游记虽然点出了一些和我想象中不同的地方，但还是远不如自己去考一次。</p>
+<p>高考结束也就意味着我们成为高三生了，各位可以提前预定一下2024高考游记（</p>
+]]></content>
+      <tags>
+        <tag>杂谈</tag>
+        <tag>游记</tag>
       </tags>
   </entry>
 </search>
